@@ -1,0 +1,1076 @@
+@use '../_core/valiables' as *;
+@use '../_core/mixins' as *;
+
+/* ----------------------------------------------------------------
+  共通
+---------------------------------------------------------------- */
+// 新着記事リスト - お知らせ
+.sec-latest {
+  margin-left: -20px;
+  margin-right: -20px;
+  margin-top: 40px;
+  padding: 40px 20px;
+  .sec-latest-works + & {
+    margin-top: 0;
+    padding-top: 0;
+  }
+  background-color: #F1F1F1;
+  .post-list {
+    margin-top: 10px;
+  }
+  .button-wrap {
+    margin-top: 25px;
+  }
+}
+@include res_min( $break ) {
+  .sec-latest {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 70px;
+    .sec-latest-works + & {
+      margin-top: 0;
+    }
+    padding: 70px 0;
+    .inner {
+      position: relative;
+    }
+    .post-list {
+      margin-top: 18px;
+    }
+    .button-wrap {
+      justify-content: flex-end;
+      width: 100%;
+      padding-left: 5vw;
+      padding-right: 10vw;
+      position: absolute;
+      left: 50%;
+      top: -6px;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+
+// 新着記事リスト - 実績紹介
+.sec-latest-works {
+  @extend .sec-latest;
+  padding: 40px 20px;
+  margin-top: 40px;
+  .post-list {
+    margin-top: 20px;
+  }
+}
+@include res_min( $break ) {
+  .sec-latest-works {
+    margin-top: 100px;
+    .post-list {
+      margin-top: 35px;
+    }
+  }
+}
+
+
+// 新着記事リスト - クルマの知恵袋
+.sec-latest-kurumano-chie-bukuro {
+  margin-left: -20px;
+  margin-right: -20px;
+  margin-top: 40px;
+  .sec-latest + &,
+  .sec-latest-works + & {
+    margin-top: 0;
+  }
+  padding: 30px 20px;
+  background-color: $mainColor;
+  .title-latest-kurumano-chie-bukuro {
+    h2 {
+      padding: 2px 10px;
+      background-color: #fff;
+      border-radius: 2px;
+      font-size: 2.2rem;
+      font-weight: 600;
+    }
+    p {
+      margin-top: 15px;
+      color: #fff;
+    }
+  }
+  .post-list {
+    margin-top: 25px;
+  }
+  .button-wrap {
+    margin-top: 25px;
+  }
+}
+@include res_min( $break ) {
+  .sec-latest-kurumano-chie-bukuro {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 70px;
+    .sec-latest + &,
+    .sec-latest-works + & {
+      margin-top: 0;
+    }
+    padding: 50px 0 40px;
+    .button-wrap {
+      margin-top: 30px;
+      justify-content: flex-end;
+    }
+    @include res_min( $break2 ) {
+      .title-latest-kurumano-chie-bukuro {
+        @include flex(nowrap, flex-start, center);
+        padding: 0 20px;
+        background-color: #fff;
+        border-radius: 2px;
+        height: 47px;
+        h2 {
+          padding: 0;
+          margin-right: 20px;
+          font-size: 2.6rem;
+        }
+        p {
+          margin-top: 0;
+          font-size: 1.4rem;
+          color: $textBaseColor;
+        }
+      }
+      .post-list {
+        margin-top: 30px;
+      }
+      .button-wrap {
+        margin-top: 20px;
+      }
+    }
+  }
+}
+
+
+// 新着記事リスト - 採用情報
+.sec-latest-recruit {
+  @extend .sec-latest;
+  padding: 0 20px;
+  background-color: transparent;
+}
+@include res_min( $break ) {
+  .sec-latest-recruit {
+    margin-top: 80px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+
+// お問い合わせ・ご相談
+.sec-to-inquiry {
+  padding: 40px 0;
+  text-align: center;
+	.inner {
+		.to-inquiry-text {
+      margin-top: 20px;
+      font-weight: 600;
+      line-height: 1.64;
+		}
+		.to-inquiry-subtext {
+      margin-top: 10px;
+      font-size: 1.2rem;
+      line-height: 1.64;
+      letter-spacing: 0;
+		}
+		.button {
+      margin-top: 20px;
+		}
+		.to-inquiry-tel {
+      margin-top: 20px;
+      line-height: 1.64;
+			.to-inquiry-tel__text {
+        font-weight: 400;
+        letter-spacing: 0.03em;
+        &:first-child {
+          font-size: 1.4rem;
+        }
+        &:last-child {
+          margin-top: 0;
+          font-size: 1.3rem;
+        }
+			}
+			.to-inquiry-tel__num {
+        margin: 8px auto 10px;
+        font-size: 2.2rem;
+        font-weight: 600;
+        letter-spacing: 0;
+        line-height: 1em;
+        span {
+          display: inline-block;
+          font-size: 70%;
+          line-height: inherit;
+        }
+			}
+		}
+	}
+}
+@include res_min( $break ) {
+  .sec-to-inquiry {
+    padding: 70px 0;
+    .inner {
+      .to-inquiry-text {
+        margin-top: 28px;
+        font-size: 2rem;
+        line-height: 1.75;
+      }
+      .to-inquiry-subtext {
+        font-size: 1.6rem;
+        line-height: 2;
+        letter-spacing: 0.05em;
+      }
+      .button {
+        margin-top: 30px;
+      }
+      .to-inquiry-tel {
+        margin-top: 30px;
+        .to-inquiry-tel__text {
+          &:first-child {
+            display: inline;
+            vertical-align: middle;
+          }
+          &:last-child {
+            margin-top: 3px;
+          }
+        }
+        .to-inquiry-tel__num {
+            margin: 0 0 2px 5px;
+            font-size: 1.9rem;
+            vertical-align: middle;
+          span {
+            font-size: 80%;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// ページイントロ
+.page-intro {
+  margin-top: 15px;
+  .inner + & {
+    margin-top: 0;
+  }
+}
+@include res_min( $break ) {
+  .page-intro {
+    margin-top: 30px;
+    font-size: 1.8rem;
+    line-height: 2;
+  }
+}
+
+
+/* ----------------------------------------------------------------
+  home
+---------------------------------------------------------------- */
+// mv
+.mv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: -20px;
+  margin-right: -20px;
+  height: 70.5vh;
+  height: 70.5dvh;
+  max-height: 500px;
+  position: relative;
+  z-index: 0;
+  .mv__movie {
+    background-color: $textBaseColor;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    .movie {
+      width: 100%;
+      height: 100%;
+      -o-object-fit: cover;
+         object-fit: cover;
+      -o-object-position: center;
+         object-position: center;
+    }
+    // ビデオが再生できる前（読み込み中）と後
+    &::before {
+      @include transition( all, 1 );
+      // content: "";
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 1);
+      position: absolute;
+      top: 0px;
+      left: 0px;
+    }
+    &.is-play {
+      &::before {
+        background-color: rgba(255, 0, 0, 0);
+      }
+    }
+  }
+  // キャッチ
+  .mv__catchcopy {
+    margin-top: 0.25em;
+    width: min(90%, 600px);
+    font-size: clamp(12px, 4.8vw, 2.5rem);
+    line-height: 2;
+    .mv__catchcopy__image {
+      img {
+        width: 100%;
+      }
+    }
+    .mv__catchcopy__text {
+      margin-top: clamp(8px, 0.3vw, 15px);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: #fff;
+      text-align: center;
+    }
+  }
+}
+@include res_min( $break ) {
+  .mv {
+    margin-left: 0;
+    margin-right: 0;
+    height: 70vw;
+    @include res_min( $break2 ) {
+      height: calc(100vh - 78px);
+      max-height: none;
+    }
+    position: relative;
+    z-index: 0;
+    // キャッチ
+    .mv__catchcopy {
+      padding-right: 30px;
+      margin-top: 0;
+      width: min(80%, 1600px);
+      .mv__catchcopy__text {
+        line-height: 2;
+      }
+    }
+  }
+}
+
+// キャンペーン情報 最新記事一件
+.sec-latest-campaign {
+  padding: 15px 5px 5px;
+  margin-left: -20px;
+  margin-right: -20px;
+  background-color: #F1F1F1;
+  position: relative;
+  .inner {
+    position: relative;
+  }
+  .title {
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.03em;
+  }
+  .post-list {
+    .post {
+      padding: 10px;
+      margin-top: 10px;
+      background-color: $mainColorDark;
+      border-bottom: none;
+      &:hover, &:active {
+        img {
+          opacity: 1;
+        }
+      }
+      .post__thumbnail {
+        flex: 0 0 90px;
+        margin-right: 10px;
+      }
+      .post__data {
+        color: #fff;
+        .post-title {
+          color: #fff;
+        }
+      }
+    }
+  }
+  .button-wrap {
+    justify-content: flex-end;
+    width: 100%;
+    position: absolute;
+    right: 0;
+    top: -8px;
+  }
+}
+@include res_min( $break ) {
+  .sec-latest-campaign {
+    padding: 30px 15px 50px;
+    margin-left: 0;
+    margin-right: 0;
+    .title {
+      font-size: 1.8rem;
+    }
+    .post-list {
+      .post {
+        padding: 14px;
+        position: relative;
+        z-index: 1;
+        &::before {
+          content: '';
+          width: calc(100% - 10px);
+          height: calc(100% - 10px);
+          border: 1px solid #fff;
+          position: absolute;
+          left: 5px;
+          top: 5px;
+          z-index: -1;
+        }
+        .post__data {
+          @include flex(nowrap, flex-start, center);
+          gap: 12px;
+          .post__data__meta {
+            .post-date {
+              display: block;
+            }
+          }
+          .post-title {
+            margin-top: 0;
+          }
+        }
+      }
+    }
+    .button-wrap {
+      padding-left: 5vw;
+      padding-right: 10vw;
+      left: 50%;
+      top: 1px;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+// 歴史
+.sec-home-history {
+  padding: 20px;
+  margin-left: -20px;
+  margin-right: -20px;
+  background-color: $mainColorDark;
+  .home-history {
+    background-color: #fff;
+
+    .home-history__main {
+      padding: min(4vw, 25px) min(4vw, 30px) 0;
+      .home-history__main__title {
+        font-size: 2rem;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+      }
+      .home-history__main__text {
+        margin-top: 10px;
+        br.pc {
+          display: none;
+        }
+      }
+      .button {
+        margin-top: 15px;
+        width: auto;
+      }
+    }
+    .home-history__image {
+      margin-top: 5px;
+      margin-left: -8%;
+      width: 114%;
+      text-align: center;
+      position: relative;
+      img {
+        width: 100%;
+        max-width: 700px;
+      }
+    }
+  }
+}
+@include res_min( $break ) {
+  .sec-home-history {
+    padding: 5vw 0;
+    @include res_min( 1100 ) {
+      padding: 64px 0;
+    }
+    margin-left: 0;
+    margin-right: 0;
+    .inner {
+      @include maxW( 1416 );
+    }
+    .home-history {
+      @include res_min( 1100 ) {
+        @include flex(nowrap, space-between, stretch);
+        flex-direction: row-reverse;
+        padding: 35px 0 30px;
+        position: relative;
+      }
+      .home-history__main {
+        @include res_min( 1100 ) {
+          flex-basis: 48%;
+          padding: 0 2.5% 0 0;
+        }
+        .home-history__main__title {
+          font-size: 2.2rem;
+          line-height: 1.64;
+          @include res_min( 1400 ) {
+            font-size: 2.6rem;
+            line-height: 1.75;
+          }
+        }
+        .home-history__main__text {
+          margin-top: 12px;
+          font-size: 1.6rem;
+          line-height: 1.75;
+          @include res_min( 1400 ) {
+            font-size: 1.8rem;
+            line-height: 2;
+            br.pc {
+              display: block;
+            }
+          }
+        }
+        .button {
+          margin-top: 25px;
+        }
+      }
+      .home-history__image {
+        @include res_min( 1100 ) {
+          margin-top: 0;
+          margin-left: 0;
+          width: 52%;
+          height: 100%;
+          position: absolute;
+          left: 0;
+          top: 0;
+          img {
+            margin-left: -10%;
+            margin-bottom: 0;
+            width: 110%;
+            max-width: none;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            @include res_min( 1400 ) {
+              margin-left: -15%;
+              width: 116%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// サービス
+.sec-home-service {
+  margin-top: 40px;
+  .page-intro {
+    margin-top: 20px;
+  }
+  .service-link:first-of-type {
+    margin-top: 20px;
+  }
+}
+@include res_min( $break ) {
+  .sec-home-service {
+    margin-top: 80px;
+    .page-intro {
+      margin-top: 35px;
+      font-size: 1.8rem;
+      text-align: center;
+    }
+    .service-link:first-of-type {
+      margin-top: 35px;
+    }
+  }
+}
+
+
+/* ----------------------------------------------------------------
+  service
+---------------------------------------------------------------- */
+.service-link {
+  @include flex(nowrap, flex-start, stretch);
+  flex-direction: column-reverse;
+  margin-top: 15px;
+  &:first-of-type {
+    margin-top: 40px;
+  }
+  &:link, &:visited {
+    background-color: #fff;
+  }
+  &:hover, &:active {
+    opacity: 1;
+    background-color: #F4F4F4;
+    .service-link__image {
+      opacity: 0.8;
+    }
+  }
+  border: 1px solid #BFBFBF;
+	.service-link__content {
+    padding: 12px 15px 15px;
+		.service-link__content__title {
+      em {
+        display: block;
+        font-size: 2.6rem;
+        font-weight: 600;
+        line-height: 1.4;
+        letter-spacing: 0.02em;
+      }
+      span {
+        display: block;
+        margin-top: 2px;
+        margin-left: -0.55em;
+        font-size: 1.6rem;
+      }
+		}
+		.service-link__content__text {
+      margin-top: 8px;
+      font-weight: 400;
+      line-height: 1.67;
+		}
+	}
+	.service-link__image {
+    @include transition();
+    width: 100%;
+    height: 45vw;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    //個別
+    &--car-sales {
+      background-image: url(./assets/images/service/img-cover_car-sales-s.jpg);
+    }
+    &--repair {
+      background-image: url(./assets/images/service/img-cover_repair-s.jpg);
+    }
+    &--maintenance {
+      background-image: url(./assets/images/service/img-cover_maintenance-s.jpg);
+    }
+    &--emergency {
+      background-image: url(./assets/images/service/img-cover_emergency-s.jpg);
+    }
+  }
+}
+@include res_min( $break ) {
+  .service-link {
+    flex-direction: row-reverse;
+    margin-top: 20px;
+    &:first-of-type {
+      margin-top: 70px;
+    }
+    &:hover, &:active {
+      .service-link__content::before {
+        background-image: url(./assets/images/common/icon-arrow8.svg);
+      }
+    }
+    .service-link__content {
+      align-self: center;
+      flex-basis: 65%;
+      padding: min(2%, 50px) min(8%, 100px) min(2%, 50px) min(3%, 36px);
+      @include res_min( $break3 ) {
+        flex-basis: 69.5%;
+        padding: min(3.3%, 50px) min(9%, 100px) min(3.3%, 50px) min(3%, 36px);
+      }
+      position: relative;
+      &::before {
+        content: '';
+        width: 20px;
+        height: 100%;
+        background-image: url(./assets/images/common/icon-arrow7.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+        position: absolute;
+        right: min(4%, 36px);
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .service-link__content__title {
+        @include res_min( $break3 ) {
+          @include flex(nowrap, flex-start, center);
+          -moz-column-gap: 25px;
+               column-gap: 25px;
+        }
+        em {
+          white-space: nowrap;
+          font-size: 3rem;
+          @include res_min( $break3 ) {
+            font-size: 4.6rem;
+          }
+        }
+        span {
+          margin-top: 0;
+          font-size: min(1.7vw, 1.6rem);
+          @include res_min( $break3 ) {
+            font-size: min(1.3vw, 2rem);
+          }
+        }
+      }
+      .service-link__content__text {
+        margin-top: 3px;
+        font-size: 1.3rem;
+        @include res_min( $break3 ) {
+          margin-top: 8px;
+          font-size: 1.5rem;
+        }
+      }
+    }
+    .service-link__image {
+      flex-basis: 35%;
+      @include res_min( $break3 ) {
+        flex-basis: 30.5%;
+      }
+      height: auto;
+      //個別
+      &--car-sales {
+        background-image: url(./assets/images/service/img-cover_car-sales.jpg);
+      }
+      &--repair {
+        background-image: url(./assets/images/service/img-cover_repair.jpg);
+      }
+      &--maintenance {
+        background-image: url(./assets/images/service/img-cover_maintenance.jpg);
+      }
+      &--emergency {
+        background-image: url(./assets/images/service/img-cover_emergency.jpg);
+      }
+    }
+  }
+}
+
+
+.sec-service {
+  .title02 {
+    margin-bottom: 15px;
+  }
+}
+@include res_min( $break ) {
+  .sec-service {
+    .title02 {
+      margin-bottom: 30px;
+    }
+  }
+}
+
+
+/* ----------------------------------------------------------------
+  history
+---------------------------------------------------------------- */
+.content-history {
+  margin-top: 40px;
+}
+@include res_min( $break ) {
+  .content-history {
+    margin-top: 60px;
+  }
+}
+
+.content-history__wrap {
+  .history-table {
+    padding-bottom: 40px;
+    margin-top: 20px;
+    position: relative;
+    &::before {
+      content: '';
+      width: 3px;
+      height: calc(100% - 0.35em - 27px);
+      background-color: $mainColor;
+      position: absolute;
+      left: calc(11px / 2 - 1.5px);
+      top: 0.35em;
+    }
+    &::after {
+      content: '';
+      width: 3px;
+      height: 27px;
+      background-image: url(./assets/images/history/bg-history.svg);
+      background-repeat: no-repeat;
+      background-position: center bottom;
+      background-size: 100%;
+      position: absolute;
+      left: calc(11px / 2 - 1.5px);
+      bottom: 0;
+    }
+    .history-table__item {
+      padding-left: 22px;
+      &:not(:first-of-type) {
+        margin-top: 15px;
+      }
+      @include flex(nowrap, flex-start, stretch);
+      position: relative;
+      &::before {
+        content: '';
+        width: 11px;
+        height: 11px;
+        background-color: $mainColor;
+        border-radius: 50%;
+        position: absolute;
+        left: 0;
+        top: 0.35em;
+      }
+      dt,
+      dd {
+        line-height: 1.4;
+      }
+      dt {
+        flex: 0 0 auto;
+        white-space: nowrap;
+        padding-right: 12px;
+      }
+    }
+  }
+  .history-image {
+    margin-top: 20px;
+    text-align: center;
+    img {
+      width: 51%;
+      max-width: 170px;
+    }
+  }
+}
+@include res_min( $break ) {
+  .content-history__wrap {
+    margin-top: 20px;
+    @include flex(nowrap, space-between, stretch);
+    .history-table {
+      flex-basis: calc(63% - 5%);
+      padding-bottom: 55px;
+      margin-top: 0;
+      &::before {
+        left: calc(15px / 2 - 1.5px);
+      }
+      &::after {
+        left: calc(15px / 2 - 1.5px);
+      }
+      .history-table__item {
+        padding-left: 35px;
+        &:not(:first-of-type) {
+          margin-top: 24px;
+        }
+        &::before {
+          width: 15px;
+          height: 15px;
+        }
+        dt,
+        dd {
+          font-size: 1.8rem;
+          line-height: 1.75;
+          letter-spacing: 0.05em;
+        }
+        dt {
+          padding-right: 42px;
+        }
+      }
+    }
+    .history-image {
+      flex-basis: 37%;
+      margin-top: 0;
+      text-align: left;
+      img {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+  }
+}
+
+
+.content-gallery {
+  margin-top: 50px;
+  .gallery {
+    margin-top: 20px;
+    .gallery__item {
+      &:not(:first-of-type) {
+        margin-top: 15px;
+      }
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+@include res_min( $break ) {
+  .content-gallery {
+    margin-top: 70px;
+    .gallery {
+      @include flex(wrap, flex-start, stretch);
+      gap: 25px 5%;
+      .gallery__item {
+        flex-basis: calc(50% - 2.5%);
+        &:not(:first-of-type) {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+}
+
+
+/* ----------------------------------------------------------------
+  採用情報
+---------------------------------------------------------------- */
+//パンくずから「お知らせ」を削除
+.category-recruit .bread-navi {
+  span {
+    span {
+      span {
+        a {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.rectuit {
+  padding: 45px 10px;
+  margin-top: 20px;
+  background-color: rgba(153,153,153,0.4);
+  font-size: 1.8rem;
+  color: #FF1212;
+  text-align: center;
+}
+@include res_min( $break ) {
+  .rectuit {
+    padding: 80px 10px;
+    margin-top: 40px;
+    font-size: 2.4rem;
+  }
+}
+
+
+/* ----------------------------------------------------------------
+  archive
+---------------------------------------------------------------- */
+.sec-archive {
+  .post-list {
+    margin-top: 25px;
+  }
+  .blog & {
+    .post-list {
+      margin-top: 5px;
+    }
+  }
+}
+@include res_min( $break ) {
+  .sec-archive {
+    .post-list {
+      margin-top: 45px;
+    }
+    .blog & {
+      .post-list {
+        margin-top: 20px;
+      }
+    }
+  }
+}
+
+
+/* ----------------------------------------------------------------
+  post
+---------------------------------------------------------------- */
+.sec-post {
+  .post-header {
+    .post-title {
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      line-height: 1.64;
+    }
+    .post-meta {
+      margin-top: 10px;
+      .post-date {
+        margin-right: 5px;
+        font-size: 1.3rem;
+      }
+    }
+  }
+  .post-body {
+    margin-top: 40px;
+  }
+}
+@include res_min( $break ) {
+  .sec-post {
+    .post-header {
+      .post-title {
+        font-size: 2.6rem;
+        line-height: 1.75;
+      }
+      .post-meta {
+        margin-top: 10px;
+        .post-date {
+          margin-right: 8px;
+          font-size: 1.4rem;
+        }
+      }
+    }
+    .post-body {
+      margin-top: 20px;
+    }
+  }
+}
+
+
+/* ----------------------------------------------------------------
+  inquiry
+---------------------------------------------------------------- */
+.sec-inquiry {
+  .inner {
+    padding-bottom: 60px;
+  }
+  .page-intro {
+    padding: 10px;
+    background: #F1F1F1;
+    font-size: 1.4rem;
+    line-height: 1.5;
+  }
+}
+@include res_min( $break ) {
+  .sec-inquiry {
+    .inner {
+      padding-right: 5% !important;
+      padding-bottom: 100px;
+    }
+    .page-intro {
+      padding: 0;
+      background: transparent;
+      font-size: 1.8rem;
+      line-height: 2;
+    }
+  }
+}
+
+
+/* ----------------------------------------------------------------
+  プライバシーポリシー
+---------------------------------------------------------------- */
+.privacypolicy {
+  margin-top: 40px;
+  .title03 {
+    &:not(:first-of-type) {
+      margin-top: 25px;
+    }
+  }
+  p {
+    margin-top: 15px;
+  }
+}
+@include res_min( $break ) {
+  .privacypolicy {
+    margin-top: 70px;
+    .title03 {
+      &:not(:first-of-type) {
+        margin-top: 40px;
+      }
+    }
+    p {
+      margin-top: 25px;
+    }
+  }
+}

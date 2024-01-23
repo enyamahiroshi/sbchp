@@ -1,0 +1,90 @@
+.editor-styles-wrapper {
+  &.block-editor-writing-flow {
+    //入力エリア内側の定義
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    width: auto;
+    height: auto !important;
+    width: 100%;
+    max-width: 950px;
+    background-color: white;
+    margin: 20px auto;
+    padding: 25px 0 100px;
+
+    //タイトル系の定義
+    h1 {
+
+    }
+    h2 {
+
+    }
+    h3 {
+
+    }
+    h4 {
+
+    }
+
+    //リストの定義
+    ul {
+      li {
+
+      }
+    }
+    ol {
+      li {
+
+      }
+    }
+
+    //テーブルの定義
+    .wp-block-table {
+      width: 100%;
+      max-width: 900px;
+      table{
+        tbody {
+          tr {
+            td {
+            }
+          }
+          td {
+          }
+        }
+      }
+    }
+
+    //通常の文章とリンクの定義
+    p {
+
+      a {
+        //リンクの定義
+        text-decoration: none;
+      }
+    }
+
+  }
+}
+
+.wp-block {
+  max-width: 900px;
+}
+
+.wp-block-image { //imgを囲うボックス
+
+    .components-resizable-box__container {
+     height: auto !important; //画像をリサイズしたときに必要
+    max-width: 100% !important; //画像をリサイズしたときに必要
+    }
+   img { //imgの定義
+
+  }
+}
+
+.editor-post-title__block {
+    .editor-post-title__input { //メインタイトルの定義
+
+    }
+}
+
+.edit-post-visual-editor__post-title-wrapper .editor-post-title {
+  margin: 0 auto; //メインタイトル周りの余白の定義
+}

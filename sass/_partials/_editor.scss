@@ -1,0 +1,285 @@
+@use '../_core/valiables' as *;
+@use '../_core/mixins' as *;
+
+// ----------------------------------------------------------------
+// the_content(); で吐き出される投稿箇所
+// ----------------------------------------------------------------
+.post-body {
+
+  // 見出し
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 1em;
+    font-weight: 600;
+    line-height: 1.75;
+  }
+  @include res_min() {
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 2em;
+    }
+  }
+  // h1 {font-size: 2.8rem;}
+  h2 {
+    padding-left: 0.8em;
+    font-size: 2.5rem;
+    position: relative;
+    &::before {
+      content: '';
+      width: 6px;
+      height: calc(100% - 0.25em);
+      border-radius: 3px;
+      background-color: $mainColor;
+      position: absolute;
+      left: 0;
+      top: 0.125em;
+    }
+  }
+  @include res_min() {
+    h2 {
+      margin-top: 1.5em;
+      font-size: 3.2rem;
+    }
+  }
+  h3 {
+    padding-left: 1em;
+    font-size: 2.1rem;
+    position: relative;
+    &::before {
+      content: '';
+      width: 0.5em;
+      height: 0.5em;
+      border-radius: 3px;
+      background-color: $mainColor;
+      position: absolute;
+      left: 0;
+      top: 0.5em;
+    }
+  }
+  @include res_min() {
+    h3 {
+      font-size: 2.8rem;
+    }
+  }
+  h4 {
+    font-size: 2rem;
+  }
+  h5 {
+    font-size: 1.9rem;
+  }
+  h6 {
+    font-size: 1.8rem;
+  }
+  @include res_min() {
+    h4 {
+      font-size: 2.6rem;
+    }
+    h5 {
+      font-size: 2.4rem;
+    }
+    h6 {
+      font-size: 2.2rem;
+    }
+  }
+
+  // 段落
+  p {
+    font-size: inherit;
+    &:not(:first-of-type) {
+      margin: 1em 0 0;
+    }
+  }
+  @include res_min() {
+    p {
+      &:not(:first-of-type) {
+        margin-top: 1.5em;
+      }
+    }
+  }
+
+  // リンク
+  a {
+    &:link,
+    &:visited {
+      color: $mainColor;
+      text-decoration: underline;
+    }
+    &:hover,
+    &:active {
+      opacity: 0.8;
+    }
+  }
+
+  // 画像
+  img {
+    // width: auto;
+    // height: auto;
+    max-width: 100%;
+    margin: 1em 0 0;
+    vertical-align: bottom;
+  }
+  @include res_min() {
+    img {
+      margin-top: 1.5em;
+    }
+  }
+
+  // 回り込み
+  .alignnone {
+    display: block;
+    float: none;
+  }
+  .alignleft {
+    float: left;
+    margin: 0 1em 1em 0;
+  }
+  .aligncenter {
+    display: block;
+    float: none;
+    margin: 1em auto;
+    text-align: center;
+  }
+  .alignright {
+    float: right;
+    margin: 0 0 1em 1em;
+  }
+  // 回り込み解除(clearfix)
+  .alignleft:before,
+  .alignleft:after,
+  .alignrightalignright:before,
+  .alignright:after {
+    display: table;
+    content: '';
+  }
+  .alignleft:after,
+  .alignrightalignright:after {
+    clear: both;
+  }
+  .alignleft,
+  .alignright {
+    *zoom: 1;
+  }
+
+  // リスト
+  ul,
+  ol {
+    margin: 1em 0 0;
+    padding: 0;
+    padding-left: 1em;
+  }
+  @include res_min() {
+    ul,
+    ol {
+      margin-top: 1.5em;
+    }
+  }
+  // 丸
+  ul {
+    list-style: none outside;
+    li {
+      position: relative;
+      &::before {
+        content: '';
+        width: 0.5em;
+        height: 0.5em;
+        background-color: $mainColor;
+        border-radius: 50%;
+        position: absolute;
+        left: -1em;
+        top: 0.625em;
+      }
+    }
+  }
+  // 番号
+  ol {
+    list-style: decimal outside;
+    li {
+      &::marker {
+        color: $mainColor;
+      }
+    }
+  }
+
+  dl {
+    margin: 1em 0 0;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    dt, dd {
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    dt {
+      margin-bottom: 0.5em;
+    }
+    dd {
+      margin-bottom: 0.5em;
+    }
+  }
+
+  // リストのネスト
+  ul ul,
+  ul ol,
+  ul dl,
+  ol ol,
+  ol ul,
+  ol dl,
+  dl dl,
+  dl ul,
+  dl ol {
+    margin: 1em;
+  }
+
+  // テーブル
+  table {
+    margin: 1em 0;
+    width: auto;
+    max-width: 100%;
+  }
+  th,
+  td {
+    padding: 0.7em 0.8em;
+    border: 1px solid #b3b3b3;
+    background: #f6f6f6;
+    line-height: 1.5em;
+  }
+  td {
+    background: #fdfdfd;
+  }
+
+  // iframe
+  iframe {
+    margin: 1em auto;
+    max-width: 100%;
+  }
+
+  // その他装飾
+  strong {
+    font-weight: 400;
+    color: $textBaseColor;
+  }
+  em {
+    font-weight: normal;
+    font-style: italic;
+    color: $textBaseColor;
+  }
+  pre {
+    margin: 1em 0;
+    padding: 1em 1.5em;
+    background: #ededed;
+    white-space: pre-wrap;
+  }
+  hr {
+    border: 1px solid #ccc;
+  }
+  blockquote {
+    padding: 1em 1.5em;
+    color: #555;
+    font-style: italic;
+  }
+  blockquote cite:before {
+    margin: 0 1em;
+    color: #999;
+    content: '─';
+  }
+
+} // .post-area

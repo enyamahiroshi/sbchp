@@ -1,0 +1,128 @@
+@charset 'UTF-8';
+// =======================================================
+//  editor-style.css
+//  管理画面エディタ用
+// =======================================================
+body#tinymce.wp-editor {
+  margin :10px;
+  font-family :Arial, Helvetica, sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  clear :both;
+}
+blockquote {
+  position :relative;
+  margin-bottom :30px;
+  padding :0 0 0 25px;
+  border-left :3px solid #aaa;
+  color :#595959!important;
+  font-style :italic!important;
+}
+img {
+  max-width :100%;
+  height :auto!important;
+}
+img.alignleft,
+.wp-caption.alignleft {
+  float :left;
+  margin :0 1.8em 1.8em 0;
+}
+img.alignright,
+.wp-caption.alignright {
+  float :right;
+  margin :0 0 1.8em 1.8em;
+  text-align :right;
+}
+img.aligncenter,
+.wp-caption.aligncenter {
+  display :block;
+  clear :both;
+  margin :0 auto 1.8em;
+  text-align :center;
+}
+img.size-medium {
+  width :40%;
+  height :auto;
+}
+// -----------------------------------------
+//  固定ページ
+// -----------------------------------------
+.post-type-page section {
+  clear :both;
+}
+.post-type-page img.alignleft {
+  float :left;
+  margin :0 1.8em 1.8em 0;
+  width :40%;
+}
+.post-type-page img.alignright {
+  float :right;
+  margin :0 0 1.8em 1.8em;
+  width :40%;
+}
+.post-type-page img.aligncenter {
+  display :block;
+  clear :both;
+  margin :0 auto 1.8em;
+}
+.post-type-page div[class^='brick']:after {
+  display :block;
+  visibility :hidden;
+  clear :both;
+  height :0;
+  content :'.';
+}
+.post-type-page .memo {
+  padding :10px;
+  background-color :#ffffe3;
+}
+.post-type-page .mindmap>div {
+  margin-bottom :.4em;
+  line-height :1.4;
+}
+.post-type-page #heading_message {
+  font-size :35px;
+}
+.post-type-page .signature em {
+  font-size :1.4em;
+}
+.post-type-page .sleeve {
+  clear :both;
+  width :100%;
+}
+.post-type-page .sleeve:after {
+  display :block;
+  visibility :hidden;
+  clear :both;
+  height :0;
+  content :'.';
+}
+.post-type-page .sleeve .col {
+  float :left;
+  margin :1%;
+}
+.post-type-page .sleeve .col img {
+  width :100%;
+  height :auto;
+}
+.post-type-page .sleeve.col2 .col {
+  width :45%;
+}
+.post-type-page .sleeve.col3 .col {
+  width :30%;
+}
+.post-type-page .sleeve.col4 .col {
+  width :22%;
+}
+.post-type-page dl.faqlist dt {
+  margin-bottom :15px;
+  font-size :20px;
+}
+.post-type-page dl.faqlist dd {
+  margin-bottom :30px;
+}

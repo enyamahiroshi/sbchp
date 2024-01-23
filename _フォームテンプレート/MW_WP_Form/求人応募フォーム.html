@@ -1,0 +1,98 @@
+<section class="form-contents">
+  <div class="item">
+    <div class="item__label required">ご希望職種</div>
+    <div class="item__input">
+      <div class="row-item row-item--DT">
+        [mwform_radio name="ご希望職種" children="営業,製造作業員,事務員"]
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item__label required">お名前</div>
+    <div class="item__input">
+      [mwform_text name="お名前" class="long"]
+      <p class="input-note">例）長野 太郎</p>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item__label required">性別</div>
+    <div class="item__input">
+      <div class="row-item row-item--DT">
+        [mwform_radio name="性別" children="男,女"]
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item__label required">生年月日</div>
+    <div class="item__input">
+      <div class="row-item">
+        [mwform_text name="誕生年" class="short"]<div>年</div>
+        [mwform_text name="誕生月" class="xshort"]<div>月</div>
+        [mwform_text name="誕生日" class="xshort"]<div>日</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item__label required">メールアドレス</div>
+    <div class="item__input">
+      [mwform_email name="メールアドレス" class="long"]
+      <p class="input-note">例）example@example.com</p>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item__label required">ご住所</div>
+    <div class="item__input">
+      <div class="row-item">
+        <div>〒</div>[mwform_text name="郵便番号" class="short"]
+      </div>
+      <div class="row-item">
+        <div>住所</div>[mwform_text name="住所" class="long"]
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item__label optional">電話番号</div>
+    <div class="item__input">
+      <div class="row-item">
+        <div>自宅電話番号</div>[mwform_tel name="自宅電話番号" class="long" conv_half_alphanumeric="true"]
+      </div>
+      <p class="input-note">例）0263-52-1824</p>
+      <div class="row-item">
+        <div>携帯電話番号</div>[mwform_tel name="携帯電話番号" class="long" conv_half_alphanumeric="true"]
+      </div>
+      <p class="input-note">例）012-3456-7890</p>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item__label optional">自己PR・ご質問など</div>
+    <div class="item__input">
+      [mwform_textarea name="自己PR・ご質問など" class="long" rows="5"]
+      <p class="input-note">※自己PRやご質問などございましたらご入力ください。</p>
+    </div>
+  </div>
+
+  <div class="agree">
+    <div class="item">
+      <div class="item__label required">個人情報のお取扱い<br>について</div>
+      <div class="item__input">
+        <p class="agree__text">
+          <a href="../privacy_policy/" target="_blank" rel="noopener">プライバシーポリシー</a>に同意をお願いします。
+        </p>
+        [mwform_checkbox name="同意" children="同意します。"]
+      </div>
+    </div>
+  </div>
+
+  <div class="button-wrap">
+    [mwform_bconfirm class="button button-confirm" value="confirm"]入力内容を確認する[/mwform_bconfirm]
+    [mwform_bsubmit class="button button-submit" value="send"]送信[/mwform_bsubmit]
+    [mwform_bback class="button button-back" value="back"]戻る[/mwform_bback]
+  </div>
+</section>

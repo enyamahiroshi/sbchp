@@ -1,0 +1,52 @@
+// ----------------------------------------------------------------
+// シェアボタン（AddToAny）プラグイン
+// ダッシュボードでの設定を上書き
+// ----------------------------------------------------------------
+$btn_sizeSP: 23;
+$btn_sizePC: 28;
+
+.a2a_full_footer {
+  display: none !important;
+}
+
+.addtoany_share_save_container.addtoany_content {
+  &:first-of-type {
+    display: none;
+  }
+  margin: 40px 0;
+  .addtoany_list {
+    @include flex(wrap, center, stretch);
+    gap: 8px;
+    line-height: #{$btn_sizeSP} + px !important;
+    & > a {
+      padding: 0;
+      & > span {
+        width: #{$btn_sizeSP} + px !important;
+        height: #{$btn_sizeSP} + px !important;
+      }
+      //隠れているその他のシェアボタンスタイル
+      &.addtoany_share {
+      }
+    }
+  }
+}
+@include res_min( $break ) {
+  .addtoany_share_save_container.addtoany_content {
+    &:first-of-type {
+      display: block;
+      margin-top: 0;
+      margin-bottom: 40px;
+    }
+    margin: 60px 0 20px;
+    .addtoany_list {
+      justify-content: flex-end;
+      line-height: #{$btn_sizePC} + px !important;
+      & > a {
+        & > span {
+          width: #{$btn_sizePC} + px !important;
+          height: #{$btn_sizePC} + px !important;
+        }
+      }
+    }
+  }
+}

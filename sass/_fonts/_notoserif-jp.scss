@@ -1,0 +1,49 @@
+// @font-face {
+// font-family: 'Noto Serif JP';
+// font-style: normal;
+// font-weight: 200;
+// src: local("Noto Serif JP ExtraLight"),
+// url('./assets/fonts/notoserif-jp/NotoSerifCJKjp-ExtraLight.woff') format('woff'),
+// }
+// @font-face {
+// font-family: 'Noto Serif JP';
+// font-style: normal;
+// font-weight: 300;
+// src: local("Noto Serif JP Light"),
+// url('./assets/fonts/notoserif-jp/NotoSerifCJKjp-Light.woff') format('woff'),
+// }
+@font-face {
+font-family: 'Noto Serif JP';
+font-style: normal;
+font-weight: 400;
+src: local("Noto Serif JP Regular"),
+url('./assets/fonts/notoserif-jp/NotoSerifCJKjp-Regular.woff') format('woff'),
+}
+// @font-face {
+// font-family: 'Noto Serif JP';
+// font-style: normal;
+// font-weight: 500;
+// src: local("Noto Serif JP Medium"),
+// url('./assets/fonts/notoserif-jp/NotoSerifCJKjp-Medium.woff') format('woff'),
+// }
+@font-face {
+font-family: 'Noto Serif JP';
+font-style: normal;
+font-weight: 600;
+src: local("Noto Serif JP SemiBold"),
+url('./assets/fonts/notoserif-jp/NotoSerifCJKjp-SemiBold.woff') format('woff'),
+}
+@font-face {
+font-family: 'Noto Serif JP';
+font-style: normal;
+font-weight: 700;
+src: local("Noto Serif JP Bold"),
+url('./assets/fonts/notoserif-jp/NotoSerifCJKjp-Bold.woff') format('woff'),
+}
+@font-face {
+font-family: 'Noto Serif JP';
+font-style: normal;
+font-weight: 900;
+src: local("Noto Serif JP Black"),
+url('./assets/fonts/notoserif-jp/NotoSerifCJKjp-Black.woff') format('woff'),
+}

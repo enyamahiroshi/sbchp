@@ -1,0 +1,116 @@
+@use '../_core/valiables' as *;
+@use '../_core/mixins' as *;
+
+
+/* ------------------------------------
+//  base
+// ----------------------------------*/
+* {
+  // スマホでリンクをタップした時の青いハイライト色を変更
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+html {
+  width: 100%;
+  height: 100%;
+  font-size: 62.5%; //10px
+}
+body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  font-family: $ff-go;
+  font-size: 1.6rem;
+  font-weight: 500; // R:400, M:500, B:600
+  line-height: 2;
+  letter-spacing: 0.05em;
+  color: $textBaseColor;
+  text-align: left;
+  word-break : break-word;
+  word-wrap : break-word;
+  overflow-wrap : break-word;
+}
+@include res_min( $break ) {
+  body {
+    font-size: 1.5rem;
+    line-height: 2;
+  }
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+/* ------------------------------------
+//  見出し
+// ----------------------------------*/
+h1,h2,h3,h4,h5,h6 {
+  line-height: 1.64;
+}
+
+/* ------------------------------------
+//  フォント
+// ----------------------------------*/
+em,
+strong {
+  font-style: normal;
+}
+
+/* ------------------------------------
+//  リスト
+// ----------------------------------*/
+ol, ul {
+  list-style: none;
+}
+
+/* ------------------------------------
+//  button
+// ----------------------------------*/
+button {
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+/* ------------------------------------
+//  段落設定
+// ----------------------------------*/
+p {
+  &:first-of-type {
+    margin-top: 0;
+  }
+  margin-top: 1.5em;
+}
+@include res_min( $break ) {
+  p {
+    margin-top: 2em;
+  }
+}
+
+/* ------------------------------------
+//  画像
+// ----------------------------------*/
+figure {
+  line-height: 1;
+}
+
+img,
+svg {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  vertical-align: bottom;
+  line-height: 1;
+}
+@include res_min( $break ) {
+  // img,
+  // svg {
+  //   width: auto;
+  //   height: auto;
+  // }
+}

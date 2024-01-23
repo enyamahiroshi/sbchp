@@ -1,0 +1,714 @@
+@use '../_core/valiables' as *;
+@use '../_core/mixins' as *;
+
+/* -----------------------------------------
+// リセット
+// ---------------------------------------*/
+input[type="text"],input[type="password"],textarea,select { outline: none; }
+// ie11のinputに出る×印を消す
+input[type=text]::-ms-clear,input[type=password]::-ms-reveal { display: none; }
+// iOSでinputが角丸になるのを防止
+input[type="button"],input[type="text"],input[type="email"],input[type="url"],input[type="tel"],input[type="submit"],textarea { -webkit-appearance: none; border-radius: 0; }
+
+//プレースホルダーの色
+$phcolor: #bbbbbb;
+$phweight: inherit;
+
+:placeholder-shown { color: $phcolor !important; font-weight: $phweight !important; }
+/* Google Chrome, Safari, Opera 15+, Android, iOS */
+::-webkit-input-placeholder { color: $phcolor !important; font-weight: $phweight !important; }/* Firefox 18- */:-moz-placeholder { color: $phcolor !important; font-weight: $phweight !important; opacity: 1; }/* Firefox 19+ */::-moz-placeholder { color: $phcolor !important; font-weight: $phweight !important; opacity: 1; }
+
+/* -----------------------------------------
+// 基本設定
+// ---------------------------------------*/
+form {
+  padding: 0;
+  margin: 0;
+}
+label {}
+input:is([type="email"],[type="number"],[type="password"],[type="search"],[type="tel"],[type="text"],[type="url"]),
+select,
+textarea {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: 1.5;
+  padding: 0.5em 1em;
+  // border: 1px solid rgba(0,0,0,0.25);
+  border: none;
+  &:focus {
+    outline: none;
+    // border: 1px solid $mainColor;
+    // background-color: #f1f1f1;
+  }
+  @include res_min( $break ) {
+    padding: 6px 8px;
+  }
+}
+textarea {
+  height: 6em;
+  @include res_min( $break ) {
+    height: 10em;
+  }
+}
+// 郵便番号・電話番号等(MW WP Form)
+.mwform-zip-field, .mwform-tel-field {
+  input:is([type="email"],[type="number"],[type="password"],[type="search"],[type="tel"],[type="text"],[type="url"]) {
+    display: inline-block;
+    width: auto;
+  }
+}
+
+
+/* -----------------------------------------
+// ここから
+// ---------------------------------------*/
+.form-contents{
+
+
+  // -----------------------------------------
+  // ラベル + input
+  // -----------------------------------------
+  // ラベル + input の基本ブロック
+  .item {
+    padding: 30px 0;
+    &:first-of-type{
+      padding-top: 0;
+    }
+    position: relative;
+    &:not(:first-of-type)::before{
+      content: '';
+      width: 100%;
+      height: 1px;
+      background-color: #ddd;
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+    }
+  }
+  @include res_min( $break ) {
+    .item {
+      @include flex(nowrap, flex-start, stretch);
+    }
+  }
+
+  // ラベル
+  .item__label {
+    font-size: 2rem;
+    line-height: 1.5;
+    br{
+      display: none;
+    }
+    //必須・任意アイコン
+    &.required,
+    &.optional {
+      @include flex(nowrap, flex-start, center);
+      white-space: nowrap;
+      &::after{
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 3px;
+        padding: 0 8px;
+        margin: 0.2em 0 0 15px;
+        height: 18px;
+        font-size: 1rem;
+        line-height: 1;
+      }
+    }
+    &.required {
+      &::after{
+        content: '必須';
+        color: #fff;
+        background-color: #CC0000;
+
+      }
+    }
+    &.optional {
+      &::after{
+        content: '任意';
+        color: transparent;
+      }
+    }
+  }
+  @include res_min( $break ) {
+    .item__label {
+      flex: 0 0 30%;
+      padding: 0;
+      // margin-top: 0.3em;
+      line-height: 1.7;
+      white-space: nowrap;
+      text-align: right;
+      br{
+        display: block;
+      }
+      &.required,
+      &.optional {
+        justify-content: flex-end;
+        align-items: stretch;
+        &::after{
+          margin-top: 0.85em;
+          margin-left: min(12%, 30px);
+        }
+      }
+    }
+  }
+
+  // input
+  .item__input {
+    margin-top: 10px;
+    //例）など
+    .input-note{
+      margin-top: 8px;
+      font-size: 1.3rem;
+      line-height: 1.5;
+    }
+  }
+  @include res_min( $break ) {
+    .item__input {
+      flex: 1 1 calc(100% - 30%);
+      margin-top: 0;
+      padding-left: 2em;
+      //例）など
+      .input-note{
+        margin-top: 10px;
+        font-size: 1.4rem;
+      }
+    }
+  }
+
+
+  // -----------------------------------------
+  // INPUT 並び方
+  // -----------------------------------------
+
+  //PC,SPとも横並びにする（基本）
+  .row-item{
+    @include flex(nowrap, flex-start, center);
+    gap: 1em 0.5em;
+    & > div,
+    & > input{
+      margin: 0;
+    }
+    & > div{
+      white-space: nowrap;
+    }
+    &:not(:first-of-type){
+      margin-top: 1em;
+    }
+
+    //SPだけ縦並び
+    &.row-item--DT{
+      flex-wrap: wrap;
+      gap: 1.5em 1em;
+      margin-top: 1.5em;
+      & > *{
+        flex-basis: 100%;
+        margin-left: 0 !important;
+      }
+    }
+  }
+  @include res_min( $break ) {
+    .row-item{
+      gap: 1em 0.5em;
+      & > div,
+      & > input{
+        margin: 0;
+      }
+      & > div{
+        white-space: nowrap;
+      }
+      &:not(:first-of-type){
+        margin-top: 1em;
+      }
+
+      //SPだけ縦並び
+      &.row-item--DT{
+        gap: 1.5em 1.65em;
+        margin-top: 0.25em;
+        & > *{
+          flex-basis: auto;
+        }
+      }
+    }
+  }
+
+
+  // -----------------------------------------
+  // INPUT類パーツ
+  // -----------------------------------------
+  // クラスを付与してinputの長短をつける
+  .xshort { width: 3.5em !important; }
+  .short { width: 7em !important; }
+  .middle { width: 50% !important; }
+
+
+  //ラジオボタン, チェックボックス カスタマイズ
+  .mwform-radio-field,
+  .mwform-checkbox-field {
+    // display: block;
+    // margin: 1.3em 0 0 10px;
+    line-height: 1.7;
+    white-space: nowrap;
+    label {
+      position: relative;
+      cursor: pointer;
+      //ボタンのカスタマイズ
+      input { display: none; }
+      //チェックなし時
+      span.mwform-radio-field-text,
+      span.mwform-checkbox-field-text {
+        display: inline-block;
+        padding-left: 25px;
+        font-weight: 500;
+        position: relative;
+        @include res_min( $break ) {
+          padding-left: 28px;
+        }
+        //ボタンを装飾
+        &::before {
+          content: "";
+          width: 20px;
+          height: 20px;
+          background-color: #fff;
+          border: 1px solid #DDDDDD;
+          border-radius: 50%;
+          position: absolute;
+          top: 0.25em;
+          left: 0;
+          @include res_min( $break ) {
+            width: 22px;
+            height: 22px;
+            top: 0.2em;
+          }
+        }
+      }
+      span.mwform-checkbox-field-text {
+        &::before {
+          border-radius: 0;
+        }
+      }
+      //チェックあり有り時
+      input:checked + span.mwform-radio-field-text,
+      input:checked + span.mwform-checkbox-field-text {
+        &::before {
+          border-color: $mainColorLight;
+        }
+        &::after {
+          content: "";
+          width: 14px;
+          height: 14px;
+          background-color: $mainColorLight;
+          border-radius: 50%;
+          position: absolute;
+          top: calc(0.25em + 3px);
+          left: 3px;
+          @include res_min( $break ) {
+            width: 16px;
+            height: 16px;
+            top: calc(0.2em + 3px);
+          }
+        }
+      }
+      input:checked + span.mwform-checkbox-field-text {
+        //チェックボックス
+        &::before {
+          // background-color: $mainColor;
+        }
+        &::after {
+          background-color: #fff;
+          background-image: url(./assets/images/common/icon-checkmark.svg);
+          background-repeat: no-repeat;
+          background-position: center center;
+          background-size: 100%;
+          border: none;
+          border-radius: 0;
+        }
+      }
+    }
+  }
+
+
+  // 郵便番号
+  .mwform-zip-field {
+    display: block;
+    margin-bottom: 10px;
+    input {
+      margin: 0 10px;
+      &:first-of-type {
+        margin-left: 5px;
+      }
+    }
+  }
+
+  // 電話番号
+  .mwform-tel-field {
+    input {
+      max-width: 4.5em !important;
+      margin: 0 2px;
+      text-align: right;
+      &:first-of-type {
+        margin-left: 0;
+      }
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+  }
+
+  // セレクトボックス：カスタマイズ
+  select { // 初期化
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    position: relative;
+    // color: rgba(51,51,51,0.3);
+    &-ms-expand {
+      display: none;
+    }
+  }
+  // セレクトボックスに下矢印をつけるカスタマイズ
+  // .item__input に .custom-select を付け足す
+  .custom-select {
+    width: 100%;
+    position: relative;
+    select {
+      padding-right: 50px;
+      background-color: #fff;
+    }
+    // &::before,
+    // &::after {
+    //   content: "";
+    //   width: 0;
+    //   height: 0;
+    //   border: 6px solid transparent;
+    //   border-top-color: $textBaseColor;
+    //   position: absolute;
+    //   right: 12px;
+    //   // top: calc(50% - 3px);
+    //   top: 15px;
+    //   z-index: 999;
+    //   pointer-events: none;
+    //   cursor: pointer;
+    // }
+    // &::after {
+    //   border-top-color:#fff;
+    //   top: 14px;
+    // }
+    &::before {
+      content: '';
+      width: 40px;
+      height: 100%;
+      background-image: url(./assets/images/common/icon-arrow3.svg);
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 10px;
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 1;
+      pointer-events: none;
+      cursor: pointer;
+    }
+  }
+  @include res_min( $break ) {
+    .custom-select {
+      flex: 0 0 350px !important;
+      select {
+        padding-right: 68px;
+        width: 350px;
+      }
+      &::before {
+        width: 53px;
+      }
+    }
+  }
+
+  // ラジオボタンやチェックボックスなどでチェックがあれば開くボックス
+  .checked-open-item {
+    display: none;
+    margin: 15px 0 0 35px;
+  }
+
+
+  // -----------------------------------------
+  // 同意する
+  // -----------------------------------------
+  .agree {
+    .item{
+      padding-bottom: 0;
+      &::after{
+        content: none;
+      }
+    }
+    .mwform-checkbox-field {
+      margin: 0 !important;
+      .mwform-checkbox-field-text {}
+    }
+    .agree__text {
+      margin-bottom: 10px;
+      a {
+        &:link, &:visited {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  @include res_min( $break ) {
+    .agree {
+      .mwform-checkbox-field-text {
+        font-size: 1.4rem;
+      }
+      .agree__text {
+        font-size: 2rem;
+      }
+    }
+  }
+
+
+  // -----------------------------------------
+  // ボタン
+  // -----------------------------------------
+  .button-wrap {
+    margin-top: 50px;
+    @include flex(nowrap, center, center);
+    flex-direction: column;
+    gap: 20px;
+  }
+  @include res_min( $break ) {
+    .button-wrap {
+      margin-top: 100px;
+    }
+  }
+
+  .button {
+    @include transition();
+    width: 100%;
+    background-color: $keyColor;
+    background-image: url(./assets/images/common/icon-arrow01.svg);
+    background-repeat: no-repeat;
+    background-position: right 18px center;
+    background-size: auto 11px;
+    &:hover {
+      opacity: 0.8;
+    }
+
+    // 確認
+    &.button-confirm {}
+    // 戻る
+    &.button-back {
+      background-color: #ccc;
+      background-image: url(./assets/images/common/icon-arrow02.svg);
+      background-position: left 18px center;
+    }
+    // 送信
+    &.button-submit {}
+  }
+  @include res_min( $break ) {
+    .button {
+      background-position: right 22px center;
+      background-size: auto 15px;
+    }
+  }
+
+
+  // -----------------------------------------
+  // 現在のページ状態による処理
+  // -----------------------------------------
+  // 【入力】ページでの表示 -----
+  .mw_wp_form_input & {
+    // 確認
+    .button__confirm {}
+    // 戻る
+    .button__back {
+      // display: none;
+    }
+    // 送信
+    .button__submit {
+      // display: none;
+    }
+  }
+  @include res_min( $break ) {
+    .mw_wp_form_input {
+      // 確認
+      .button__confirm {
+        // max-width: 640px;
+      }
+    }
+  }
+
+  // 【確認】ページでの表示 -----
+  .mw_wp_form_confirm & {
+    // 確認
+    .button__confirm {
+      // display: none;
+    }
+    .item {
+      .item__input {
+        min-height: 1em;
+        .input-note{
+          display: none;
+        }
+      }
+    }
+    .agree {
+      display: none;
+    }
+  }
+  @include res_min( $break ) {
+    .mw_wp_form_confirm {
+      // 戻る
+      .button__back {
+        flex-basis: 31%;
+      }
+      // 送信
+      .button__submit {
+        flex-basis: calc(69% - 20px);
+      }
+    }
+  }
+
+  // 【エラー】の表示 -----
+  .error {
+    color: #ee0000;
+    display: block !important;
+    line-height: 1.4;
+  }
+  .item__input {
+    .error {
+      margin: 4px 0 0;
+    @include res_min( $break ) {
+      margin: 6px 0 0;
+    }
+    }
+  }
+  .input-inline-item {
+    position: relative;
+    .error {
+      position: absolute;
+      margin: 2px 0 1em;
+      @include res_min( $break ) {
+        margin: 4px 0 1em;
+      }
+    }
+  }
+  .agree {
+    position: relative;
+    .error {
+      position: absolute;
+      left: 0;
+      top: 0;
+      margin: -1.2em 0 0 0;
+      @include res_min( $break ) {
+        position: relative;
+        margin: 0 0 0 1em;
+        line-height: 1.7;
+      }
+    }
+  }
+
+
+  // -----------------------------------------
+  // その他
+  // -----------------------------------------
+  // フォームステップ
+  // .step {
+  //   margin: 60px auto 0;
+  //   width: 50%;
+  //   position: relative;
+  //   z-index: 1;
+  //   // バックの横線
+  //   &::before {
+  //     content: "";
+  //     width: 100%;
+  //     height: 1px;
+  //     background-color: rgba(89,161,184,0.5);
+  //     position: absolute;
+  //     left: 0;
+  //     top: 50%;
+  //     transform: translateY(-50%);
+  //     z-index: -1;
+  //   }
+  //   // ステップの丸
+  //   .step-item {
+  //     width: 14px;
+  //     height: 14px;
+  //     position: absolute;
+  //     top: -7px;
+  //     z-index: 1;
+  //     &::before {
+  //       content: "";
+  //       width: 100%;
+  //       height: 100%;
+  //       background-color: #E6E6E6;
+  //       border-radius: 100%;
+  //       position: absolute;
+  //       left: 0;
+  //       top: 0;
+  //       z-index: -1;
+  //     }
+  //     &:nth-of-type(1) { left: 0; } // 入力
+  //     &:nth-of-type(2) { left: calc(50% - 7px); } // 確認
+  //     &:nth-of-type(3) { right: 0; } // 完了
+  //     // 各ステップのテキスト
+  //     .step-item__text {
+  //       font-size: 1.4rem;
+  //       line-height: 1;
+  //       white-space: nowrap;
+  //       position: absolute;
+  //       left: 50%;
+  //       bottom: -28px;
+  //       transform: translateX(-50%);
+  //     }
+  //     // current
+  //     &.current {
+  //       // color: $mainColor;
+  //       &::before { background-color: $mainColor; } // ステップの丸
+  //       &::after { // 更に後ろに丸
+  //         content: "";
+  //         width: 24px;
+  //         height: 24px;
+  //         background-color: rgba(89,161,184,0.2);
+  //         border-radius: 100%;
+  //         position: absolute;
+  //         left: -5px;
+  //         top: -5px;
+  //         z-index: -1;
+  //       }
+  //     }
+  //   }
+  // }
+  // @include res_min( $break ) {
+  //   .step {
+  //     margin-top: 70px;
+  //     width: 200px;
+  //     // ステップの丸
+  //     .step-item {
+  //       width: 16px;
+  //       height: 16px;
+  //       top: -8px;
+  //       &:nth-of-type(2) { left: calc(50% - 8px); } // 確認
+  //       // 各ステップのテキスト
+  //       .step-item__text {
+  //         font-size: 1.5rem;
+  //         bottom: -30px;
+  //       }
+  //       // current
+  //       &.current {
+  //         &::after { // 更に後ろに丸
+  //           width: 28px;
+  //           height: 28px;
+  //           left: -6px;
+  //           top: -6px;
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
+
+
+}

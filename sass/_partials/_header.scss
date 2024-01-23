@@ -1,0 +1,359 @@
+@use '../_core/valiables' as *;
+@use '../_core/mixins' as *;
+
+
+$headerHighSP: 45;
+$headerHighPC: 78;
+
+
+/* ----------------------------------------------------------------
+  ヘッダーのレイアウト
+---------------------------------------------------------------- */
+.header {
+  @include transition(transform);
+  @include flex(nowrap, flex-end, center);
+  position: relative;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+
+  padding: 0 3px 0 10px;
+  width: 100%;
+  height: #{$headerHighSP + px};
+  background-color: rgba(255,255,255,1);
+  box-shadow: 0 3px 4px rgba(0,0,0,0);
+  .header__logo {
+    flex: 0 0 87px;
+    img {
+      width: 100%;
+    }
+  }
+  .menu-bar {
+    flex: 0 0  #{$headerHighSP + px};
+    margin-left: auto;
+  }
+}
+@include res_min( $break ) {
+  .header {
+    padding: 0 20px 0 15px;
+    height: #{$headerHighPC + px};
+    @include res_min( $break2 ) {
+      padding: 0 40px 0 20px;
+    }
+    .header__logo {
+      flex-basis: 100px;
+      margin-right: min(3vw, 30px);
+      margin-top: -2px;
+      @include res_min( $break2 ) {
+        flex-basis: 130px;
+        margin-right: min(1.5vw, 50px);
+        margin-top: -4px;
+      }
+    }
+  }
+}
+
+
+/* ----------------------------------------------------------------
+  グローバルメニュー
+---------------------------------------------------------------- */
+.global-menu {
+  @include transition(opacity);
+  @include flex(nowrap, flex-start, stretch);
+  flex-direction: column;
+
+  opacity: 0;
+  padding: 30px 20px 80px;
+  background-color: $mainColorDark;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  position: absolute;
+  left: 0;
+  top:  0;
+  pointer-events: none;
+  z-index: 9998;
+
+  .header-navi {
+    order: 2;
+  }
+  .inquiry-links {
+    order: 1;
+  }
+  .sns-links {
+    order: 3;
+  }
+
+  .menu {
+    margin: 15px auto 0;
+    max-width: 550px;
+    .menu-item {
+      padding: 10px 2px;
+      font-size: 1.8rem;
+      line-height: 1.3;
+      border-bottom: 1px solid #4A4C65;
+      a {
+        display: block;
+        padding-right: 25px;
+        position: relative;
+        &::before {
+          content: '';
+          width: 7px;
+          height: 1em;
+          background-image: url(./assets/images/common/icon-arrow2.svg);
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: 100% auto;
+          position: absolute;
+          right: 7px;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+        &:link, &:visited {
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+@include res_min( $break ) {
+  .global-menu {
+    @include flex(nowrap, flex-end, center);
+    flex-direction: row;
+
+    opacity: 1;
+    padding: 0;
+    background-color: transparent;
+    height: auto;
+    pointer-events: visible;
+    position: relative;
+    top: auto;
+
+    .header-navi {
+      order: 1;
+    }
+    .inquiry-links {
+      order: 3;
+    }
+    .sns-links {
+      order: 2;
+    }
+
+    .menu {
+      padding: 0;
+      margin: 0;
+      max-width: none;
+      @include flex(wrap, flex-end, stretch);
+      -moz-column-gap: min(3.5vw, 20px);
+           column-gap: min(3.5vw, 20px);
+      row-gap: 8px;
+      @include res_min( $break2 ) {
+        -moz-column-gap: min(2vw, 28px);
+             column-gap: min(2vw, 28px);
+      }
+      .menu-item {
+        padding: 0;
+        font-size: 1.4rem;
+        line-height: 1.64;
+        letter-spacing: 0;
+        @include res_min( $break2 ) {
+          font-size: 1.7rem;
+          letter-spacing: 0.03em;
+        }
+        border-bottom: none;
+        a {
+          display: inline;
+          padding-right: 0;
+          &::before {
+            content: none;
+          }
+          &:link, &:visited {
+            color: $textBaseColor;
+          }
+          &:hover, &:active {
+            opacity: 1;
+            color: $mainColor;
+          }
+        }
+        &.current {
+          a {
+            font-weight: 600;
+            &:link, &:visited {
+              color: $mainColor;
+            }
+          }
+        }
+      }
+    }
+
+    // カレント - お知らせ
+    body.archive.category & .menu li,
+    body.single-post & .menu li {
+      &.information {
+        a {
+          font-weight: 600;
+          &:link, &:visited {
+            color: $mainColor;
+          }
+        }
+      }
+    }
+    // カレント - 実績紹介
+    body.works & .menu li {
+      &.works {
+        a {
+          font-weight: 600;
+          &:link, &:visited {
+            color: $mainColor;
+          }
+        }
+      }
+    }
+    // カレント - クルマの知恵袋
+    body.kurumano-chie-bukuro & .menu li {
+      &.kurumano-chie-bukuro {
+        a {
+          font-weight: 600;
+          &:link, &:visited {
+            color: $mainColor;
+          }
+        }
+      }
+    }
+    // カレント - 採用情報
+    body.archive.category.category-recruit & .menu li {
+      &.information {
+        a {
+          font-weight: 500;
+          &:link, &:visited {
+            color: $textBaseColor;
+          }
+        }
+      }
+    }
+
+  }
+}
+
+
+/* ----------------------------------------------------------------
+  開閉トグルボタン
+---------------------------------------------------------------- */
+.menu-bar {
+  cursor: pointer;
+  background-color: #fff;
+  height:  #{$headerHighSP + px};
+  position: relative;
+  z-index: 9999;
+  .menu-bar-line {
+    width: 30px;
+    height: 3px;
+    background-color: $mainColor;
+    position: absolute;
+    left: 50%;
+    top: 16px;
+    transform: translateX(-50%);
+    &::before,
+    &::after {
+      content: "";
+      width: 100%;
+      height: 3px;
+      background-color: $mainColor;
+      position: absolute;
+      left: 0;
+      @include transition();
+    }
+    &::before {
+      top: -6px;
+    }
+    &::after {
+      top: 6px;
+    }
+  }
+  .menu-bar-image {
+    width: 30px;
+    position: absolute;
+    left: 50%;
+    bottom: 8px;
+    transform: translateX(-50%);
+  }
+}
+@include res_min( $break ) {
+  .menu-bar {
+    display: none;
+  }
+}
+
+
+/* ----------------------------------------------------------------
+  スクロールでfixed　まとめて指定
+---------------------------------------------------------------- */
+// グローバルメニュー表示
+body.is-hide,
+body.is-fixed  {
+  padding-top: #{$headerHighSP + px};
+}
+.header.is-hide,
+.header.is-fixed {
+  position: fixed;
+}
+.header.is-hide {
+  transform: translateY(-#{$headerHighSP + px});
+}
+.header.is-fixed {
+  box-shadow: 0 3px 4px rgba(0,0,0,0.08);
+  transform: translateY(0);
+}
+@include res_min( $break ) {
+  body.is-hide,
+  body.is-fixed  {
+    padding-top: #{$headerHighPC + px};
+  }
+  .header.is-hide {
+    transform: translateY(-#{$headerHighPC + px});
+  }
+}
+
+
+/* ----------------------------------------------------------------
+  メニュー開閉時の挙動　まとめて指定
+---------------------------------------------------------------- */
+// body
+body.is-open {
+  overflow: hidden;
+}
+// header
+.header.is-open {
+  background-color: $mainColorDark;
+}
+// メニュー
+.global-menu.is-open {
+  opacity: 1;
+  //以下、スマホでメニューオープン時に背景がスクロールしないようにするため
+  pointer-events: visible;
+  overscroll-behavior-y: contain;
+  overflow-y: auto;
+}
+// 開閉トグルボタン
+.menu-bar.is-open {
+  background-color: transparent;
+  .menu-bar-line {
+    background-color: transparent;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    &::before,
+    &::after {
+      background-color: #fff;
+      top: 0;
+    }
+    &::before {
+      transform: rotate(45deg);
+    }
+    &::after {
+      transform: rotate(-45deg);
+    }
+  }
+  .menu-bar-image {
+    display: none;
+  }
+}

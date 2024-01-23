@@ -1,0 +1,388 @@
+@use '../_core/valiables' as *;
+@use '../_core/mixins' as *;
+
+/* ------------------------------------
+//  BASE
+// ----------------------------------*/
+a {
+  @include transition();
+  color: $linkColor;
+  text-decoration: none;
+  &:link, &:visited {
+    text-decoration: none;
+  }
+  &:hover, &:active {
+    opacity: 0.8;
+    color: $linkHoverColor;
+  }
+  // ウェブアイコン使用時
+  i {
+    margin: 0 4px;
+  }
+  // transform使用時にchromeでズレが生じるのを防ぐ
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+//画像リンク
+a img {
+  opacity: 1;
+}
+@include res_min( $break ) {
+  a img {
+   @include transition(opacity);
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+
+/* ----------------------------------------------------------------
+  アイコンタイプ
+---------------------------------------------------------------- */
+// 左に > アイコン
+.link_type_arrow_left1 {
+  padding: 0 0 0 18px;
+  position: relative;
+  &::before {
+    content: '';
+    width: 7px;
+    height: 100%;
+    background-image: url(./assets/images/common/ico_arrow_r_white.svg);
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-size: 100% auto;
+    position: absolute;
+    top: 0.4em;
+    left: 0;
+  }
+}
+
+
+/* ----------------------------------------------------------------
+  ボタンタイプ
+---------------------------------------------------------------- */
+.button-wrap {
+  @include flex(wrap, center, stretch);
+  gap: 1em;
+}
+@include res_min( $break ) {
+  .button-wrap {
+    gap: 1.5em 2em;
+  }
+}
+
+.button {
+  // 基本
+  border-radius: 3px;
+  font-size: 1.3rem;
+  line-height: 1.3;
+  letter-spacing: 0.03em;
+  text-align: center;
+  position: relative;
+  &:link, &:visited {
+    color: #fff;
+    background-color: $mainColor;
+  }
+  &:hover, &:active {
+    opacity: 0.8;
+    text-decoration: none;
+  }
+
+  // 個別
+  &--01 {
+    padding: 13px 30px;
+    margin-top: 40px;
+    border-radius: 4px;
+    font-size: 1.8rem;
+  }
+  &--02 {
+    padding: 10px 1em;
+    margin-top: 30px;
+    width: 89.5%;
+    border-radius: 4px;
+    font-size: 1.5rem;
+  }
+  &--03,
+  &--03_white {
+    padding: 5px 8px;
+    &::after {
+      content: '';
+      display: inline-block;
+      margin-left: 6px;
+      width: 9px;
+      height: 1em;
+      vertical-align: bottom;
+      background-image: url(./assets/images/common/icon-arrow3.svg);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 100% auto;
+    }
+  }
+  &--03_white {
+    &:link, &:visited {
+      color: $mainColor;
+      background-color: #fff;
+    }
+    &::after {
+      background-image: url(./assets/images/common/icon-arrow4.svg);
+    }
+  }
+  &--inpuiry,
+  &--inpuiry-other {
+    padding: 12px 8px;
+    width: 100%;
+    font-size: 1.5rem;
+    &::after {
+      content: '';
+      display: inline-block;
+      margin-left: 9px;
+      width: 9px;
+      height: 1em;
+      vertical-align: -0.15em;
+      background-image: url(./assets/images/common/icon-triangle-yellow.svg);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 100% auto;
+    }
+    &:hover, &:active {
+      opacity: 1;
+      background-color: #fff;
+      color: $mainColor;
+      &::after {
+        background-image: url(./assets/images/common/icon-triangle-blue.svg);
+      }
+    }
+  }
+  &--inpuiry-other {
+    &:link, &:visited {
+      color: $mainColor;
+      background-color: $gray;
+      &::after {
+        background-image: url(./assets/images/common/icon-triangle-blue.svg);
+      }
+    }
+    &:hover, &:active {
+      opacity: 1;
+      background-color: #fff;
+      color: $mainColor;
+      &::after {
+        background-image: url(./assets/images/common/icon-triangle-blue.svg);
+      }
+    }
+  }
+}
+@include res_min( $break ) {
+  .button {
+    // 基本
+    border-radius: 4px;
+    font-size: 2rem;
+    letter-spacing: 0.05em;
+
+    // 個別
+    &--01 {
+      padding: 18px 40px;
+      margin-top: 70px;
+      font-size: 2rem;
+    }
+    &--02 {
+      padding: 12px 1.5em;
+      margin-top: 70px;
+      width: auto;
+      font-size: 1.6rem;
+    }
+    &--03,
+    &--03_white {
+      padding: 0;
+      font-size: 1.4rem;
+      &:link, &:visited {
+        color: $textBaseColor;
+        background-color: transparent;
+      }
+      &::after {
+        margin-left: 7px;
+        width: 14px;
+        background-image: url(./assets/images/common/icon-arrow5.svg);
+      }
+    }
+    &--03_white {
+      &:link, &:visited {
+        color: #fff;
+      }
+      &::after {
+        background-image: url(./assets/images/common/icon-arrow3.svg);
+      }
+    }
+    @include res_min( $break ) {
+    &--inpuiry,
+    &--inpuiry-other {
+      padding: 1em 22px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.4);
+      border-radius: 4px 0 0 4px;
+      width: auto;
+      font-size: 1.8rem;
+      line-height: 1;
+      -webkit-writing-mode: vertical-rl;
+          -ms-writing-mode: tb-rl;
+              writing-mode: vertical-rl;
+      white-space: nowrap;
+      &::after {
+        margin-left: 0;
+        margin-top: 8px;
+        background-position: left calc(50% + 1px) top;
+        width: 1em;
+        height: 11px;
+        vertical-align: 0;
+        background-size: auto 100%;
+      }
+    }
+    }
+  }
+}
+
+
+/* ----------------------------------------------------------------
+  ページナビ
+---------------------------------------------------------------- */
+.pager {
+  margin-top: 16px;
+  padding: 0 46px;
+  @include flex(wrap, center, stretch);
+  position: relative;
+
+  .prev,
+  .next,
+  .pager_num {
+    width: 30px;
+    flex: 0 0 30px;
+    height: 30px;
+    border-radius: 100%;
+    font-family: $ff-num;
+    font-size: 1.4rem;
+    line-height: 1;
+    @include flex(nowrap, center, center);
+  }
+
+  .pager_num {
+    margin: 16px 8px 0;
+  }
+  a.pager_num {
+    &:hover, &:active {
+      text-decoration: none;
+      background-color: $brown;
+      font-weight: 700;
+      color: #fff;
+    }
+  }
+
+  .current {
+    background-color: $brown;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  // 前後
+  .prev,
+  .next {
+    position: absolute;
+    bottom: 0;
+    &::before {
+      content: "";
+      width: 30px;
+      height: 30px;
+      background-image: url(./assets/images/common/ico_arrow_pager.svg);
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 5px;
+      border-radius: 15px;
+      position: absolute;
+      bottom: 0;
+    }
+    &::after {
+      content: "";
+      width: 30px;
+      height: 30px;
+      border: 1px solid $brown;
+      border-radius: 15px;
+      position: absolute;
+      bottom: 0;
+    }
+    &:hover, &:active {
+      text-decoration: none;
+      &::before {
+        background-color: $brown;
+        background-image: url(./assets/images/common/ico_arrow_pager_white.svg);
+      }
+    }
+  }
+  .prev {
+    left: 0;
+    padding-left: 40px;
+    &::before {
+      transform: scale(-1,-1);
+    }
+    &::before,
+    &::after {
+      left: 0;
+    }
+  }
+  .next {
+    right: 0;
+    padding-right: 40px;
+    &::before,
+    &::after {
+      left: auto;
+      right: 0;
+    }
+  }
+
+  ///// 個別記事内
+  &__entry {
+    margin-top: 34px;
+    margin-bottom: 60px;
+    padding: 0;
+    @include flex(nowrap, space-between, stretch);
+    .prev,
+    .next {
+      width: auto;
+      flex: 0 0 auto;
+      position: relative;
+    }
+  }
+
+}
+
+
+/* ----------------------------------------------------------------
+  その他
+---------------------------------------------------------------- */
+// blank
+a[target="_blank"] {
+  position: relative;
+  &::after {
+    content: '';
+    display: inline-block;
+    margin-left: 5px;
+    width: 13px;
+    height: 13px;
+    background-image: url(./assets/images/common/icon-blank.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+  }
+}
+
+// telリンク
+.link-tel {
+  &:hover, &:focus {
+    outline: none;
+    text-decoration: none;
+  }
+}
+// @include res_min( $break ) {
+//   .link-tel {
+//     pointer-events: none;
+//   }
+// }

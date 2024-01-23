@@ -1,0 +1,86 @@
+<section class="form-area">
+
+  <h2 class="form-hl">ご希望職種の選択</h2>
+
+  <div class="form-item">
+    <div class="item-label"><label for="kibo-job">ご希望職種<span class="req">必須</span></label></div>
+    <div class="item-input">
+    <div class="form-item-select">[select* kibo-job include_blank class:sizeM "管理栄養士、栄養士" "調理員" "介護職（介護福祉士）" "介護職（初任者研修）" "介護職（資格なし）" "看護師（正看護師）" "看護師（准看護師）" "リハビリ職（理学療法⼠）" "リハビリ職（作業療法⼠）" "ケアマネージャー（介護支援専門員）" "サービス管理責任者" "生活支援員" "事務職員" "その他"]</div>
+    </div>
+  </div>
+
+
+  <h2 class="form-hl">ご連絡先等の入力</h2>
+
+  <div class="form-item">
+    <div class="item-label"><label for="shimei">氏名<span class="req">必須</span></label></div>
+    <div class="item-input">[text* shimei class:sizeM]</div>
+  </div>
+
+  <div class="form-item">
+    <div class="item-label"><label for="furigana">フリガナ<span class="req">必須</span></label></div>
+    <div class="item-input">[text* furigana class:sizeM]</div>
+  </div>
+
+  <div class="form-item">
+    <div class="item-label"><label for="sex">性別<span class="req">必須</span></label></div>
+    <div class="item-input">[radio* sex use_label_element default:1 "男" "女"]</div>
+  </div>
+
+  <div class="form-item">
+    <div class="item-label"><label for="birth-year">生年月日<span class="req">必須</span></label></div>
+    <div class="item-input">[text* birth-year class:sizeS1]年[text* birth-month class:sizeS2]月[text* birth-day class:sizeS2]日</div>
+  </div>
+
+  <div class="form-item">
+    <div class="item-label"><label for="telnum">電話番号</label></div>
+    <div class="item-input">
+      <div>自宅電話番号[tel telnum class:sizeM]</div>
+      <div>携帯電話番号[tel telnum-mobile class:sizeM]</div>
+    </div>
+  </div>
+
+  <div class="form-item">
+    <div class="item-label"><label for="e-mail">メールアドレス<span class="req">必須</span></label></div>
+    <div class="item-input">[email* e-mail class:sizeL]</div>
+  </div>
+
+  <div class="form-item">
+    <div class="item-label"><label for="add-num">ご住所<span class="req">必須</span></label></div>
+    <div class="item-input">
+      <div>〒[text* add-num class:sizeS1]</div>
+      <div>住所：[text* add class:sizeL]</div>
+      </div>
+  </div>
+
+  <div class="form-item">
+    <div class="item-label"><label for="kibo-time">勤務希望時間</label></div>
+    <div class="item-input">[text kibo-time class:sizeL]</div>
+  </div>
+
+  <div class="form-item">
+    <div class="item-label"><label for="kibo-day">一週間の希望日数</label></div>
+    <div class="item-input">[text kibo-day class:sizeL]</div>
+  </div>
+
+  <div class="form-item">
+    <div class="item-label"><label for="biko">自己PR / ご質問など</label></div>
+    <div class="item-input">
+      <div>自己PRやご質問などございましたらご入力ください。</div>
+      <div>[textarea biko class:sizeM]</div>
+    </div>
+  </div>
+
+</section>
+
+<div class="agree-area">
+  <div class="item-input">[acceptance agreement optional] 個人情報保護方針に同意する [/acceptance]</div>
+  <a href="../privacy/" target="_blank" rel="noopener noreferrer" class="link02">→個人情報保護方針はこちら</a>
+</div>
+
+<div class="form-btn-wrap">
+  <p>ご記入ありがとうございました。<br>以下の「確認」ボタンより、入力内容の確認ページへ移動してください。</p>
+  <div>[confirm "確認"]</div>
+  <div>[back "戻る"]</div>
+  <div>[submit "送信"]</div>
+</div>

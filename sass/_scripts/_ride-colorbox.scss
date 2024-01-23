@@ -1,0 +1,62 @@
+// ----------------------------------------------------------------
+// colorbox のスタイルをオーバーレイ
+// ----------------------------------------------------------------
+
+#cboxOverlay{
+  background-color: rgba(230,230,230,0.85) !important;
+}
+#cboxContent{
+  margin-top: 0 !important;
+  background:#fff !important;
+}
+#cboxLoadedContent{
+  border: none !important;
+}
+#cboxTitle,
+#cboxCurrent{
+  display: none !important;
+}
+
+#cboxPrevious,
+#cboxNext {
+  top: auto !important;
+  left: calc( 50% - 70px ) !important;
+  bottom: 30px !important;
+  margin-top: 0 !important;
+  background: url(./assets/images/colorbox/arrow-left.png) no-repeat center !important;
+  width: 60px !important;
+  height: 60px !important;
+  cursor: pointer !important;
+  outline: none !important;
+  &:hover{
+    background-position: center !important;
+    opacity: 0.7 !important;
+    // background-color: #dfdfdf !important;
+  }
+}
+#cboxNext{
+  left: auto !important;
+  right: calc( 50% - 70px ) !important;
+  background: url(./assets/images/colorbox/arrow-right.png) no-repeat center !important;
+}
+
+#cboxClose{
+  top:0 !important;
+  right:0 !important;
+  background: #ee8222 url(./assets/images/colorbox/btn-close-lightbox.png) no-repeat center !important;
+  background-size: 15px !important;
+  width:45px !important;
+  height:45px !important;
+  outline: none !important;
+}
+#cboxClose:hover{
+  background-position: center !important;
+  opacity: 0.7 !important;
+}
+@include res_min() {
+  #cboxClose{
+    background-size: auto !important;
+    width:80px !important;
+    height:80px !important;
+  }
+}

@@ -1,0 +1,584 @@
+@use '../_core/valiables' as *;
+@use '../_core/mixins' as *;
+
+/* ------------------------------------
+//  記事関連各パーツ
+// ----------------------------------*/
+.post-category {
+  display: inline-block;
+  padding: 0 4px;
+  background-color: #CDD0E8;
+  border-radius: 2px;
+  font-size: 1.3rem;
+  line-height: 1.4;
+  letter-spacing: 0;
+
+  // 実績紹介、クルマの知恵袋
+  .post--works &,
+  .post--kurumano-chie-bukuro & {
+    background-color: $mainColor;
+    font-size: 1.1rem;
+    color: #fff;
+  }
+  // クルマの知恵袋
+  .post--kurumano-chie-bukuro &,
+  &--kurumano-chie-bukuro {
+    background-color: $keyColor;
+    color: $textBaseColor;
+  }
+}
+@include res_min( $break ) {
+  .post-category {
+    padding: 1px 5px;
+  }
+}
+
+.post-date {
+  margin-right: 3px;
+  font-size: 1.3rem;
+  line-height: 1;
+  letter-spacing: 0.03em;
+  // 実績紹介
+  .post--works & {
+    margin-right: 0;
+    font-size: 1.2rem;
+  }
+}
+@include res_min( $break ) {
+  .post-date {
+    margin-right: 0;
+    font-size: 1.4rem;
+    // 実績紹介
+    .post--works & {
+      font-size: 1.3rem;
+    }
+  }
+}
+
+.post-title {
+  display: block;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  letter-spacing: 0.03em;
+  .post__data__meta + & {
+    display: inline-block;
+  }
+  // 実績紹介、クルマの知恵袋
+  .post--works &,
+  .post--kurumano-chie-bukuro & {
+    font-size: 1.3rem;
+  }
+}
+@include res_min( $break ) {
+  .post-title {
+    font-size: 1.6rem;
+    // 実績紹介、クルマの知恵袋
+    .post--works &,
+    .post--kurumano-chie-bukuro & {
+      font-size: 1.4rem;
+    }
+  }
+}
+
+
+/* ----------------------------------------------------------------
+  リスト関連
+---------------------------------------------------------------- */
+// 記事リスト
+.post-list {
+  .post {
+    @include flex(nowrap, flex-start, center);
+    padding: 15px 0;
+    border-bottom: 1px solid #DFDFDF;
+    .post__thumbnail {
+      flex: 0 0 96px;
+      margin-right: 10px;
+      line-height: 1;
+    }
+    .post-eyecatch {
+      img {
+        width: 100%;
+        border: 1px solid $mainColor;
+      }
+    }
+    .post__data {
+      flex-basis: calc(100% - 96px);
+      .post__data__meta {
+        line-height: 1;
+      }
+    }
+    .post-title {
+      margin-top: 4px;
+    }
+  }
+  // 実績紹介、クルマの知恵袋
+  &.post-list--works,
+  &.post-list--kurumano-chie-bukuro {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    .post {
+      display: block;
+      padding: 10px;
+      background-color: #fff;
+      border: 1px solid #DFDFDF;
+      border-radius: 3px;
+      .post-eyecatch {
+        img {
+          border: none;
+        }
+      }
+      .post-category {
+        margin-top: 6px;
+      }
+      .post-date {
+        margin-top: 8px;
+        text-align: right;
+      }
+      .post-title {
+        margin-top: 0;
+      }
+    }
+  }
+  &.post-list--kurumano-chie-bukuro {
+    .post {
+      padding-bottom: 14px;
+    }
+  }
+  // 採用情報
+  &.post-list--recruit {
+    .post {
+      .post-title {
+        margin-top: 6px;
+      }
+    }
+  }
+}
+@include res_min( $break ) {
+  .post-list {
+    .post {
+      padding: 12px 0;
+      .post__thumbnail {
+        flex-basis: 136px;
+        margin-right: 24px;
+      }
+      .post__data {
+        flex-basis: calc(100% - 136px);
+      }
+      .post-title {
+        margin-top: 3px;
+      }
+    }
+    // 実績紹介、クルマの知恵袋
+    &.post-list--works,
+    &.post-list--kurumano-chie-bukuro {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      .post {
+        padding: 10px;
+      }
+      @include res_min( $break2 ) {
+      grid-template-columns: repeat(6, 1fr);
+      gap: min(1.8vw, 20px);
+      .post {
+        .post-category {
+          margin-top: 10px;
+        }
+        .post-title {
+          font-size: 1.3rem;
+        }
+      }
+      }
+    }
+    &.post-list--works {
+      @include res_min( $break2 ) {
+      grid-template-columns: repeat(5, 1fr);
+      }
+    }
+    // 採用情報
+    &.post-list--recruit {
+      .post {
+        padding: 20px 0;
+      }
+    }
+  }
+
+  //最新記事表示箇所の変更
+  @include res_min( $break2 ) {
+  .sec-latest-works {
+    .post-list--works {
+      grid-template-columns: repeat(5, 1fr);
+      .post:nth-of-type(6) {
+        display: none;
+      }
+    }
+  }
+  .sec-latest-kurumano-chie-bukuro {
+    .post-list--kurumano-chie-bukuro {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+  }
+}
+
+
+// カテゴリーのリスト表示
+.category-list {
+  @include flex(wrap, flex-start, stretch);
+  flex-direction: column;
+  gap: 8px;
+  .cat-item {
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 35px;
+      border: 1px solid $mainColor;
+      border-radius: 5px;
+      &:link, &:visited {
+        background-color: #fff;
+        color: $mainColor;
+      }
+      &:hover, &:active {
+        opacity: 1;
+        background-color: $mainColor;
+        color: #fff;
+      }
+    }
+
+    &.current-cat a {
+      &:link, &:visited {
+        background-color: $mainColor;
+        color: #fff;
+      }
+      &:hover, &:active {
+        opacity: 1;
+        background-color: #fff;
+        color: $mainColor;
+      }
+    }
+  }
+}
+@include res_min( $break ) {
+  .category-list {
+    justify-content: center;
+    flex-direction: row;
+    gap: 15px;
+    .cat-item {
+      a {
+        padding: 0 1.5em;
+        font-size: 1.7rem;
+        line-height: 1.5;
+        height: 43px;
+        min-width: 200px;
+      }
+    }
+  }
+}
+
+
+/* ----------------------------------------------------------------
+  ページネーション - アーカイブページ
+---------------------------------------------------------------- */
+// ページネーション（the_posts_pagenationで出力）↓
+// <nav class="navigation pagination" aria-label="投稿">
+// <h2 class="screen-reader-text">投稿ナビゲーション</h2>
+// <div class="nav-links">
+//   <ul class='page-numbers'>
+//     <li><span aria-current="page" class="page-numbers current">1</span></li>
+//     <li><a class="page-numbers" href="//localhost:3000/news/page/2/">2</a></li>
+//     <li><a class="page-numbers" href="//localhost:3000/news/page/3/">3</a></li>
+//     <li><a class="next page-numbers" href="//localhost:3000/news/page/2/">次へ</a></li>
+//   </ul>
+// </div>
+// </nav>
+.navigation.pagination {
+  margin-top: 40px;
+  .nav-links {
+    ul.page-numbers { // UL
+      @include flex(wrap, center, stretch);
+      gap: 10px;
+      & > li {
+        flex-basis: 30px;
+        height: 30px;
+      }
+      .page-numbers { // li span, li a
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid $mainColor;
+        width: 30px;
+        height: 30px;
+        font-size: 1.8rem;
+        line-height: 1;
+        // カレント
+        &.current {
+          color: $mainColor;
+          background-color: #fff;
+        }
+        // リンク有り
+        &:link, &:visited {
+          color: #fff;
+          background-color: $mainColor;
+        }
+        &:hover, &:active {
+          opacity: 1;
+          color: $mainColor;
+          background-color: #fff;
+        }
+        // dot
+        &.dots {
+          color: $mainColor;
+          &::before {
+            content: none;
+          }
+        }
+      }
+      // 前後へ
+      .page-numbers.prev,
+      .page-numbers.next {
+        width: 30px;
+        height: 30px;
+        background-image: url(./assets/images/common/icon-arrow7.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 11px;
+        border: none;
+        &:link, &:visited {
+          background-color: transparent;
+        }
+        &:hover, &:active {
+          background-image: url(./assets/images/common/icon-arrow6.svg);
+          background-color: transparent;
+        }
+      }
+      .page-numbers.prev {
+        transform: scale(-1,1);
+      }
+      .page-numbers.next {
+      }
+    }
+  }
+}
+@include res_min( $break ) {
+  .navigation.pagination {
+    margin-top: 60px;
+    .nav-links {
+      ul.page-numbers { // UL
+        // 前後へ
+        .page-numbers.prev {
+          margin-right: 4px;
+        }
+        .page-numbers.next {
+          margin-left: 4px;
+        }
+      }
+    }
+  }
+}
+
+
+/* ----------------------------------------------------------------
+  前後の記事 - シングルページ
+---------------------------------------------------------------- */
+.post-navi {
+  margin-top: 40px;
+  border-top: 1px solid #DFDFDF;
+  @include flex(wrap, flex-start, stretch);
+
+  //共通設定
+  .prev-post,
+  .next-post {
+    flex-basis: 50%;
+    padding: 15px 0;
+    //前後への記事文字
+    .prev-post-title,
+    .next-post-title {
+      padding: 0 15px;
+      font-size: 1.2rem;
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: 0;
+      position: relative;
+      //矢印
+      &::before {
+        content: '';
+        width: 6px;
+        height: 100%;
+        background-image: url(./assets/images/common/icon-arrow7.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+        position: absolute;
+      }
+    }
+    //記事表示
+    .post {
+      margin-top: 15px;
+      .post__thumbnail {
+        .post-eyecatch {
+          img {
+            width: 100%;
+          }
+        }
+      }
+      .post__data {
+        margin-top: 6px;
+        .post__data__meta {
+          line-height: 1;
+          .post-date {
+            margin-right: 0;
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 0;
+          }
+          .post-category {
+            padding: 0 3px;
+            font-size: 1rem;
+            letter-spacing: 0;
+          }
+        }
+        .post-title {
+          margin-top: 5px;
+          font-size: 1.3rem;
+          line-height: 1.5;
+        }
+      }
+    }
+  }
+  //前の記事
+  .prev-post {
+    order: 1;
+    .prev-post-title {
+      //矢印
+      &::before {
+        left: 0;
+        transform: scale(-1,-1);
+      }
+    }
+    .post {
+      padding-right: 15px;
+    }
+  }
+  //一覧へ
+  .archive-post {
+    order: 3;
+    flex-basis: 100%;
+    margin-top: 20px;
+    text-align: center;
+    line-height: 1;
+    .button {
+      margin-top: 0;
+      width: auto;
+    }
+  }
+  //次の記事
+  .next-post {
+    order: 2;
+    border-left: 1px solid #DFDFDF;
+    .next-post-title {
+      text-align: right;
+      //矢印
+      &::before {
+        right: 0;
+      }
+    }
+    .post {
+      padding-left: 15px;
+    }
+  }
+}
+@include res_min( $break-sp1 ) {
+  .post-navi {
+    .prev-post,
+    .next-post {
+      .post {
+        @include flex(nowrap, flex-start, stretch);
+        .post__thumbnail {
+          flex-basis: clamp(40px, 45%, 80px);
+          margin-right: 10px;
+        }
+        .post__data {
+          flex-basis: calc(100% - clamp(40px, 45%, 80px));
+          margin-top: -2px;
+          .post__data__meta {
+            .post-date {
+              font-size: 1.2rem;
+            }
+          }
+        }
+      }
+    }
+  }
+  @include res_min( $break ) {
+    .post-navi {
+      @include flex(nowrap, space-between, stretch);
+      padding-top: 40px;
+      margin-top: 20px;
+      .prev-post,
+      .next-post {
+        flex-basis: calc( (100% - clamp(118px, 18%, 200px) ) / 2 );
+        padding: 0;
+        //前後への記事文字
+        .prev-post-title,
+        .next-post-title {
+          padding: 0 20px;
+          font-size: 1.4rem;
+          //矢印
+          &::before {
+            width: 8px;
+          }
+        }
+        .post {
+          align-items: center;
+          .post__thumbnail {
+            flex-basis: 120px;
+          }
+          .post__data {
+            flex-basis: calc(100% - 120px);
+            margin-top: 0;
+            .post__data__meta {
+              .post-date {
+                font-size: 1.3rem;
+              }
+            }
+            .post-title {
+              font-size: 1.4rem;
+            }
+          }
+        }
+      }
+      .prev-post {
+        .post {
+          padding-right: 20px;
+        }
+      }
+      .archive-post {
+        order: 2;
+        margin-top: 34px;
+        flex-basis: clamp(118px, 18%, 200px);
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        .button {
+          white-space: nowrap;
+        }
+      }
+      .next-post {
+        order: 3;
+        border-left: none;
+        .post {
+          padding-left: 20px;
+          flex-direction: row-reverse;
+          .post__thumbnail {
+            margin-right: 0;
+            margin-left: 10px;
+          }
+          .post__data {
+            text-align: right;
+          }
+        }
+      }
+    }
+  }
+}

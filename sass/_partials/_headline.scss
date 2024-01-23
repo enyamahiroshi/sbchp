@@ -1,0 +1,149 @@
+@use '../_core/valiables' as *;
+@use '../_core/mixins' as *;
+
+/* ----------------------------------------------------------------
+  見出し設定
+---------------------------------------------------------------- */
+.title01 {
+  padding-bottom: 12px;
+  margin: 0 auto;
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  position: relative;
+  &::before {
+    content: '';
+    width: 42px;
+    height: 5px;
+    background-color: $mainColor;
+    position: absolute;
+    left: calc(50% - 21px);
+    bottom: 0;
+  }
+}
+@include res_min( $break ) {
+  .title01 {
+    padding-bottom: 24px;
+    font-size: 4rem;
+    &::before {
+      width: 66px;
+      height: 8px;
+      left: calc(50% - 33px);
+    }
+  }
+}
+
+.title02 {
+  padding: 0 0 10px;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  position: relative;
+  &::before,
+  &::after {
+    content: '';
+    height: 4px;
+    position: absolute;
+    bottom: 0;
+  }
+  &::before {
+    background-color: $keyColor;
+    width: 22%;
+    left: 0;
+  }
+  &::after {
+    background-color: $mainColor;
+    width: 78%;
+    right: 0;
+  }
+}
+@include res_min( $break ) {
+  .title02 {
+    padding-bottom: 18px;
+    font-size: 3rem;
+    line-height: 1.5;
+    &::before {
+      width: 186px;
+    }
+    &::after {
+      width: calc(100% - 186px);
+    }
+  }
+}
+
+.title03 {
+  padding-bottom: 5px;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  border-bottom: 3px solid $mainColor;
+}
+@include res_min( $break ) {
+  .title03 {
+    padding-bottom: 8px;
+    font-size: 2.4rem;
+  }
+}
+
+.title04 {
+  padding-bottom: 5px;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  border-bottom: 3px solid $mainColor;
+}
+@include res_min( $break ) {
+  .title04 {
+    padding-bottom: 8px;
+    font-size: 2.6rem;
+    border-bottom-width: 4px;
+  }
+}
+
+.title05 {
+  display: inline-block;
+  padding: 0 0.25em 15px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  position: relative;
+  &::before,
+  &::after {
+    content: '';
+    width: 50%;
+    height: 4px;
+    position: absolute;
+    bottom: 0;
+  }
+  &::before {
+    background-color: $keyColor;
+    left: 0;
+  }
+  &::after {
+    background-color: $mainColor;
+    right: 0;
+  }
+}
+@include res_min( $break ) {
+  .title05 {
+    padding-bottom: 18px;
+    font-size: 2.6rem;
+    letter-spacing: 0.05em;
+    line-height: 1.5;
+  }
+}
+
+
+.sub-title01 {
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.64;
+}
+@include res_min( $break ) {
+  .sub-title01 {
+    font-size: 2.6rem;
+    line-height: 1.75;
+  }
+}

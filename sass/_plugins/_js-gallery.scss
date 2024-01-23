@@ -1,0 +1,111 @@
+// ----------------------------------------------------------------
+// ギャラリー設定
+// ----------------------------------------------------------------
+
+// ▼▼▼ ギャラリープラグイン「」のスタイルを上書き ▼▼▼
+// ギャラリーコンテンツ外枠
+.flexslider{
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+// スライド表示
+.slides{
+  .flex-title{
+    display: none;
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-align: center;
+    margin: 0 0 15px 0 !important;
+    color: $textBaseColor !important;
+    border-bottom: none !important;
+    padding: 0 10px !important;
+    max-height: auto;
+    overflow: visible;
+  }
+  .flex-active-slide{
+    text-align: center !important;
+  }
+  // スライド画像
+  .fancybox.image{
+    display: inline-block;
+    width: 100% !important;
+    height: 0 !important;
+    //画像のアスペクト比 3:2
+    padding-top: 66.666% !important;
+    position: relative !important;
+    overflow: hidden !important;
+    img{
+      width: auto !important;
+      height: 100% !important;
+      max-height: 100% !important;
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+    }
+  }
+}
+// キャプション、説明文
+.flex-info{
+  background: transparent;
+  text-align: left;
+  padding: 0;
+  p{
+    padding: 0 1em;
+    margin: 0 0 1em;
+  }
+}
+// サムネイル表示
+.flex-control-thumbs{
+  margin: 15px 0 0;
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  align-items: baseline;
+  align-content: flex-start;
+  li{
+    margin-bottom: 10px;
+  }
+}
+// 左右ナビゲーション
+.flex-direction-nav{
+  display: none;
+}
+@include res_min() {
+  // ▼▼▼ ギャラリープラグイン「」のスタイルを上書き ▼▼▼
+  // ギャラリーコンテンツ外枠
+  .flexslider{
+  }
+  // スライド表示
+  .slides{
+    .flex-title{
+      font-size: 1.8rem;
+      margin: 0 0 25px 0 !important;
+    }
+    .flex-active-slide{
+    }
+    // スライド画像
+    .fancybox.image{
+    }
+  }
+  // キャプション、説明文
+  .flex-info{
+    position: relative;
+    color: $textBaseColor
+    padding: 0;
+    margin-bottom: 20px;
+    p{
+      padding: 0;
+      margin: 5px 0;
+    }
+  }
+  // サムネイル表示
+  .flex-control-thumbs{
+    margin: 00;
+    li{
+      margin-bottom: 20px;
+    }
+  }
+}

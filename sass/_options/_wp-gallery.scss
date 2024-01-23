@@ -1,0 +1,58 @@
+// -----------------------------------------
+//  WP標準ギャラリーのスタイル
+// <div id='gallery-1' class='gallery galleryid-10 gallery-columns-4 gallery-size-thumbnail'>
+//   <dl class='gallery-item'>
+//     <dt class='gallery-icon portrait'>
+//       <a href='.../wp/wp-content/uploads/2018/06/pic_001.jpg'>
+//         <img width="150" height="150" src=".../wp/wp-content/uploads/2018/06/pic_001-150x150.jpg" class="attachment-thumbnail size-thumbnail" alt="" />
+//       </a>
+//     </dt>
+//     <dd class='gallery-caption'></dd>
+//   </dl>
+// </div>
+// -----------------------------------------
+
+.gallery { //ギャラリーを囲むボックス
+  padding: 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  br{ //自動で挿入される clearfix の余白解除
+    display: none !important;
+  }
+}
+.gallery-item { //各ギャラリーアイテム
+  width: 50%;
+  .gallery-icon { //画像
+    margin: 0 10px 20px;
+    //高さを固定してセンター基点
+    height: 0;
+    padding-top: 66.666%; //一般的な一眼レフの画像比率（3:2）から算出
+    position: relative;
+    overflow: hidden;
+    img{
+      width: 105%;
+      height: auto;
+      //高さを固定してセンター基点
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+    }
+  }
+  .gallery-caption { //キャプション
+  }
+}
+@include res_min() {
+  .gallery { //ギャラリーを囲むボックス
+    max-width: 1000px;
+    padding: 0;
+    margin: 0 auto;
+  }
+  .gallery-item { //各ギャラリーアイテム
+    width: 250px;
+    .gallery-icon { //画像
+    }
+    .gallery-caption { //キャプション
+    }
+  }
+}

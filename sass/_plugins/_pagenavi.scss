@@ -1,0 +1,93 @@
+// ----------------------------------------------------------------
+//  ページネーション（プラグイン「WP-PageNavi」）
+// ----------------------------------------------------------------
+$btn-size-mobile: "36";
+$btn-size-desctop: "28";
+$current: $mainColor;
+$border: $gray;
+$txt-link: $gray;
+$txt-hover: #fff;
+$bg-link: #fff;
+$bg-hover: $mainColor;
+
+// wrap
+.wp-pagenavi {
+  margin-top: 2.5em;
+  @include flex(wrap, center, stretch);
+}
+// 数字を囲むbox
+.wp-pagenavi span,
+.wp-pagenavi a {
+  width: #{$btn-size-mobile}px;
+  height: #{$btn-size-mobile}px;
+  // margin: 0 -0.5px 6px;
+  margin: 0 5px 6px;
+  padding: 0;
+  font-size: 1.6rem;
+  border: 1px solid $border;
+  @include flex(nowrap, center, center);
+}
+.wp-pagenavi a {
+  &:link,
+  &:visited {
+    color: $txt-link;
+    text-decoration: none;
+    border-color: $border;
+  }
+  &:hover,
+  &:active {
+    color: $txt-hover;
+    opacity: 1;
+    background-color: $bg-hover;
+    border-color: $border;
+  }
+}
+// 次、前
+.wp-pagenavi a.nextpostslink,
+.wp-pagenavi a.previouspostslink {
+  white-space: nowrap;
+}
+// 最初・最後
+.wp-pagenavi a.first,
+.wp-pagenavi a.last {}
+.wp-pagenavi a.first {}
+.wp-pagenavi a.last {}
+// カレント
+.wp-pagenavi span.current {
+  color: $txt-hover;
+  background-color: $bg-hover;
+  border-color: $current;
+}
+// △／○ ページ
+.wp-pagenavi span.pages {
+  display: none;
+
+  width: auto;
+  color: $txt-link;
+  padding: 0 20px;
+  white-space: nowrap;
+}
+@include res_min() {
+  // wrap
+  .wp-pagenavi {
+    margin: 5em auto 1em;
+  }
+  // 数字を囲むbox
+  .wp-pagenavi span,
+  .wp-pagenavi a {
+    width: #{$btn-size-desctop}px;
+    height: #{$btn-size-desctop}px;
+  }
+  // 次、前
+  .wp-pagenavi a.nextpostslink,
+  .wp-pagenavi a.previouspostslink {}
+  // 最初・最後
+  .wp-pagenavi a.first,
+  .wp-pagenavi a.last {}
+  .wp-pagenavi a.first {}
+  .wp-pagenavi a.last {}
+  // カレント
+  .wp-pagenavi span.current {}
+  // △／○ ページ
+  .wp-pagenavi span.pages {}
+}

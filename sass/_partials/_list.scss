@@ -1,0 +1,43 @@
+@use '../_core/valiables' as *;
+@use '../_core/mixins' as *;
+
+/* ----------------------------------------------------------------
+  リスト
+---------------------------------------------------------------- */
+.list01 {
+  .list01__item {
+    margin-top: 10px;
+    padding: 0.5em 1.2em;
+    background-color: #fff;
+    border: 1px solid rgba(51,51,51,.65);
+    border-radius: 3px;
+    font-size: 1.6rem;
+    line-height: 1.4;
+    @include flex(nowrap, center, center);
+    &::before {
+      content: '';
+      flex: 0 0 26px;
+      height: 26px;
+      background-image: url(./assets/images/common/icon-chceck.svg);
+      background-repeat: no-repeat;
+      background-position: right center;
+      background-size: 100%;
+      margin-right: 14px;
+    }
+  }
+}
+@include res_min( $break ) {
+  .list01 {
+    @include flex(wrap, center, stretch);
+    gap: 25px;
+    .list01__item {
+      margin-top: 0;
+      padding: 0.5em 1.8em;
+      border-radius: 5px;
+      height: 60px;
+      font-size: 2.5rem;
+      line-height: 1.3;
+      white-space: nowrap;
+    }
+  }
+}

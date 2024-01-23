@@ -1,0 +1,35 @@
+/*
+Theme Name:
+Author:
+Author URI:
+*/
+
+// @use '_fonts/notosans-cjk-jp';
+@use '_fonts/notosans-jp';
+// @use '_fonts/notoserif-cjk-jp';
+// @use '_fonts/fork-awesome';
+
+
+@use '_core/_reset';
+
+@use '_partials/base';
+@use '_partials/common';
+// @use '_partials/breadcrumb'; //パンくずリスト（プラグインなし）functions.php で get_template_part( 'block/breadcrumb' ); 呼び出し
+@use '_partials/link';
+@use '_partials/list';
+@use '_partials/headline';
+@use '_partials/post';
+@use '_partials/header';
+@use '_partials/footer';
+@use '_partials/pages';
+@use '_partials/form';
+@use '_partials/editor';
+
+@use '_scripts/swiper';
+// @use '_scripts/scroll-hint';
+
+// @use '_plugins/yoastseo-pankuzu'; //パンくずリスト（YoastSEO）
+// @use '_plugins/add-to-any'; //シェアボタン（AddToAny）
+
+// @import は @use の後に書かないとエラーになる（読み込みは先頭）
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap');

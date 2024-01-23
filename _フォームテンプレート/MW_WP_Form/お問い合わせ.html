@@ -1,0 +1,55 @@
+<section class="form-contents">
+  <div class="item">
+    <div class="item__label optional">会社名</div>
+    <div class="item__input">
+      [mwform_text name="会社名" class="long"]
+      <p class="input-note">例）有限会社 熊井製作所　※個人の方は空欄のまま送信ください</p>
+    </div>
+  </div>
+  <div class="item">
+    <div class="item__label required">お名前</div>
+    <div class="item__input">
+      [mwform_text name="お名前" class="long"]
+      <p class="input-note">例）長野 太郎</p>
+    </div>
+  </div>
+  <div class="item">
+    <div class="item__label required">メールアドレス</div>
+    <div class="item__input">
+      [mwform_email name="メールアドレス" class="long"]
+      <p class="input-note">例）example@example.com</p>
+    </div>
+  </div>
+  <div class="item">
+    <div class="item__label required">電話番号</div>
+    <div class="item__input">
+      [mwform_tel name="電話番号" class="long" conv_half_alphanumeric="true"]
+      <p class="input-note">例）0263-52-1824</p>
+    </div>
+  </div>
+  <div class="item">
+    <div class="item__label required">お問い合わせ内容</div>
+    <div class="item__input">
+      [mwform_textarea name="お問い合わせ内容" class="long" rows="5"]
+      <p class="input-note">＊お問い合わせ内容をご記入ください。</p>
+    </div>
+  </div>
+
+  <div class="agree">
+    <div class="item">
+      <div class="item__label required">個人情報のお取扱い<br>について</div>
+      <div class="item__input">
+        <p class="agree__text">
+          <a href="../privacy_policy/" target="_blank" rel="noopener">プライバシーポリシー</a>に同意をお願いします。
+        </p>
+        [mwform_checkbox name="同意" children="同意します。"]
+      </div>
+    </div>
+  </div>
+
+  <div class="button-wrap">
+    [mwform_bconfirm class="button button-confirm" value="confirm"]入力内容を確認する[/mwform_bconfirm]
+    [mwform_bsubmit class="button button-submit" value="send"]送信[/mwform_bsubmit]
+    [mwform_bback class="button button-back" value="back"]戻る[/mwform_bback]
+  </div>
+</section>

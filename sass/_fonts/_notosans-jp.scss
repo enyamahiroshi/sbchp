@@ -1,0 +1,42 @@
+// @font-face {
+// font-family: 'Noto Sans JP';
+// font-style: normal;
+// font-weight: 100;
+// src: local("Noto Sans JP Thin"),
+// url('./assets/fonts/notosans-jp/NotoSansJP-Thin.woff2') format('woff2');
+// }
+// @font-face {
+// font-family: 'Noto Sans JP';
+// font-style: normal;
+// font-weight: 300;
+// src: local("Noto Sans JP Light"),
+// url('./assets/fonts/notosans-jp/NotoSansJP-Light.woff2') format('woff2');
+// }
+@font-face {
+font-family: 'Noto Sans JP';
+font-style: normal;
+font-weight: 400;
+src: local("Noto Sans JP Regular"),
+url('./assets/fonts/notosans-jp/NotoSansJP-Regular.woff2') format('woff2');
+}
+@font-face {
+font-family: 'Noto Sans JP';
+font-style: normal;
+font-weight: 500;
+src: local("Noto Sans JP Medium"),
+url('./assets/fonts/notosans-jp/NotoSansJP-Medium.woff2') format('woff2');
+}
+@font-face {
+font-family: 'Noto Sans JP';
+font-style: normal;
+font-weight: 700;
+src: local("Noto Sans JP Bold"),
+url('./assets/fonts/notosans-jp/NotoSansJP-Bold.woff2') format('woff2');
+}
+// @font-face {
+// font-family: 'Noto Sans JP';
+// font-style: normal;
+// font-weight: 900;
+// src: local("Noto Sans JP Black"),
+// url('./assets/fonts/notosans-jp/NotoSansJP-Black.woff2') format('woff2');
+// }

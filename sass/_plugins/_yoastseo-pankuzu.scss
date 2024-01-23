@@ -1,0 +1,76 @@
+// ----------------------------------------------------------------
+// パンくず(Yoast SEO)
+// ▼テーマファイルへ
+// <?php //パンくずリスト(yoast seo)
+// if ( function_exists('yoast_breadcrumb') ) { yoast_breadcrumb( '<aside class="bread-navi">','</aside>' ); }
+// ?>
+// ▼書き出されるコード
+// <aside class="bread-navi">
+//   <span>
+//     <span><a href="">HOME</a> &gt; <span class="breadcrumb_last" aria-current="page">◯◯◯◯</span></span>
+//   </span>
+// </aside>
+// ----------------------------------------------------------------
+.bread-navi {
+  padding: 5px 10px;
+  margin-left: -20px;
+  margin-right: -20px;
+  margin-bottom: 25px;
+  background-color: #F1F1F1;
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.03em;
+  span {
+    span {
+      @include flex(nowrap, flex-start, stretch);
+      overflow: hidden;
+      & > * {
+        white-space: nowrap;
+      }
+      a {
+        &:link, &:visited {
+          text-decoration: none;
+        }
+        &:hover, &:active {
+          opacity: 1;
+          font-weight: 500;
+          color: $mainColor;
+        }
+        &::after {
+          content: '';
+          display: inline-block;
+          vertical-align: top;
+          width: 12px;
+          height: 100%;
+          background-image: url(./assets/images/common/icon-arrow6.svg);
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: auto 5px;
+        }
+      }
+      // current
+      &.breadcrumb_last {}
+    }
+  }
+}
+@include res_min( $break ) {
+  .bread-navi {
+    padding: 13px 18px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 70px;
+    font-size: 1.3rem;
+    span {
+      span {
+        a {
+          &::after {
+            width: 22px;
+            height: 100%;
+            background-size: auto 7px;
+          }
+        }
+      }
+    }
+  }
+}

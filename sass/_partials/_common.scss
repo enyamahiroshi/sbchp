@@ -1,0 +1,343 @@
+@use '../_core/valiables' as *;
+@use '../_core/mixins' as *;
+
+/* ----------------------------------------------------------------
+  各ページ共通
+---------------------------------------------------------------- */
+// SPで表示
+.sp {}
+@include res_min( $break ) {
+  .sp { display: none; }
+}
+// PCで表示
+.pc { display: none; }
+@include res_min( $break ) {
+  .pc { display: inline; }
+}
+
+// お問い合わせボタン
+.inquiry-links {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 550px;
+  .inquiry-links__title {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #fff;
+    line-height: 1;
+    letter-spacing: 0.03em;
+    text-align: center;
+  }
+  .button-wrap {
+    gap: 10px;
+    padding: 10px;
+    margin-top: 12px;
+    background-color: #4A4C65;
+  }
+}
+@include res_min( $break ) {
+  .inquiry-links {
+    margin: 0;
+    max-width: none;
+    position: fixed;
+    right: 0;
+    top: 100px;
+    z-index: 9999;
+    .home & {
+      top: 160px;
+    }
+    .inquiry-links__title {
+      display: none;
+    }
+    .button-wrap {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+      padding: 0;
+      margin-top: 0;
+      background-color: transparent;
+    }
+  }
+}
+
+// SNSボタン
+.sns-links {
+  margin-top: 30px;
+  @include flex(nowrap, center, stretch);
+  gap: min(14vw, 60px);
+  .sns-links__item {
+    line-height: 1;
+    &::after {
+      content: none;
+    }
+    svg {
+      width: 30px;
+    }
+  }
+}
+@include res_min( $break ) {
+  .sns-links {
+    margin-top: 0;
+    margin-left: 25px;
+    gap: 8px;
+    @include res_min( $break3 ) {
+      margin-left: 40px;
+      gap: 14px;
+    }
+    .sns-links__item {
+      svg {
+        width: 20px;
+        path {
+          fill: $mainColor;
+        }
+      }
+    }
+  }
+}
+
+//メインコンテンツ
+.main {
+  margin: 0 20px;
+}
+@include res_min( $break ) {
+  .main {
+    margin: 0;
+  }
+}
+
+// section
+.sec {
+  & > .inner {}
+}
+@include res_min( $break ) {
+  .sec {
+    & > .inner {
+      @include maxW();
+    }
+  }
+}
+
+// ページヘッダー
+.page-header {
+  @include flex(nowrap, center, center);
+  margin-left: -20px;
+  margin-right: -20px;
+  height: clamp(90px, 26vw, 327px);
+  background-image: url(./assets/images/page-header/pheader005.jpg); // 基本画像
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  .page-header__title {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6rem;
+    color: #fff;
+    line-height: 1.4;
+    letter-spacing: 0.015em;
+    position: relative;
+    z-index: 1;
+    &::before {
+      content: '';
+      width: calc(100% + 2.6em);
+      height: 35px;
+      background-color: $mainColor;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: skewX(-20deg) translate(calc(-50% - 0.22em),-47%);
+      z-index: -1;
+    }
+  }
+
+  // 各ページごと
+  .service &,
+  .service-child & {
+    background-image: url(./assets/images/page-header/pheader001.jpg);
+  }
+  .works &,
+  .tax-works_category & {
+    background-image: url(./assets/images/page-header/pheader002.jpg);
+    background-position: right 35% center;
+  }
+  .history & {
+    background-image: url(./assets/images/page-header/pheader004.jpg);
+  }
+  .blog & {
+    background-position: right 30% center;
+  }
+  .kurumano-chie-bukuro &,
+  .tax-kurumano-chie-bukuro_category & {
+    background-image: url(./assets/images/page-header/pheader006.jpg);
+    background-position: right 10% center;
+  }
+  .recruit &,
+  .category-recruit & {
+    background-image: url(./assets/images/page-header/pheader003.jpg);
+    background-position: right center;
+  }
+}
+@include res_min( $break ) {
+  .page-header {
+    margin-left: 0;
+    margin-right: 0;
+    .page-header__title {
+      font-size: 3rem;
+      &::before {
+        width: calc(100% + 2.2em);
+        height: 60px;
+      }
+    }
+    // 各ページごと
+    .works &,
+    .tax-works_category & {
+      background-position: center;
+    }
+    .blog & {
+      background-position: right 30% center;
+    }
+    .kurumano-chie-bukuro &,
+    .tax-kurumano-chie-bukuro_category & {
+      background-position: right center;
+    }
+  }
+}
+
+
+//googlemap
+.g-map {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  iframe {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+}
+
+
+//キャプション
+.caption01 {
+  margin-top: 4px;
+  font-size: 1.4rem;
+  line-height: 1.5;
+}
+
+
+/* ------------------------------------
+//  テーブル
+// ----------------------------------*/
+//標準
+.tbl01 {
+  width: 100%;
+  table-layout: fixed;
+  .tbl-th,
+  .tbl-td {
+    padding: 10px 0;
+    vertical-align: top;
+    line-height: 1.4;
+    border-bottom: 1px solid #DFDFDF;
+  }
+  .tbl-th {
+    width: 25%;
+  }
+  .tbl-td {
+    & > * {
+      margin-top: 10px;
+    }
+  }
+
+  //個別
+  &--company {
+    margin-top: 30px;
+  }
+}
+@include res_min( $break ) {
+  .tbl01 {
+    .tbl-th,
+    .tbl-td {
+      padding: 16px 0;
+      line-height: 2;
+    }
+    .tbl-th {
+      width: 25%;
+    }
+    .tbl-td {
+      & > * {
+        margin-top: 10px;
+      }
+    }
+
+    //個別
+    &--company {
+      margin-top: 30px;
+      .g-map {
+        max-width: 630px;
+      }
+    }
+  }
+}
+
+
+/* ------------------------------------
+//  他パーツ
+// ----------------------------------*/
+// 注釈
+.note {
+  position: relative;
+  padding-left: 1.1em;
+  margin-top: 0.5em;
+  line-height: 1.5;
+  &::before {
+    content: '・';
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+
+// マーカー
+.marker {
+  background-color: #FFE2D9;
+  padding: 0 .3em;
+  margin: 0 .3em;
+}
+
+// ページトップ
+.bottun-page-top {
+  @include transition();
+  position: fixed;
+  right: 15px;
+  bottom: 15px;
+  z-index: 9990;
+  opacity: 0;
+
+  width: 45px;
+  height: 45px;
+  &.is-fixed {
+    opacity: 1;
+  }
+}
+@include res_min( $break ) {
+  .bottun-page-top {
+    right: 5%;
+    bottom: 5%;
+
+    width: 60px;
+    height: 60px;
+  }
+}
+
+// アンカーリンク
+.anchor {
+  display: block;
+  padding-top: 40px;
+  margin-top: -40px;
+}
+@include res_min( $break ) {
+  .anchor {
+    padding-top: 80px;
+    margin-top: -80px;
+  }
+}
