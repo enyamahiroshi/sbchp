@@ -18,7 +18,7 @@ _:-ms-lang(x)::-ms-backdrop, .slick-slide.is--active { // IE11 huck
   background-color: #fff !important;
   border: 1px solid rgba(51,51,51,0.34) !important;
   border-radius: 100%;
-  z-index: 9990;
+  z-index: 7;
   opacity: 1;
   &:hover {
     opacity: 0.8 !important;

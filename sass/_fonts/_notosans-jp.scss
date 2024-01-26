@@ -33,10 +33,10 @@ font-weight: 700;
 src: local("Noto Sans JP Bold"),
 url('./assets/fonts/notosans-jp/NotoSansJP-Bold.woff2') format('woff2');
 }
-// @font-face {
-// font-family: 'Noto Sans JP';
-// font-style: normal;
-// font-weight: 900;
-// src: local("Noto Sans JP Black"),
-// url('./assets/fonts/notosans-jp/NotoSansJP-Black.woff2') format('woff2');
-// }
+@font-face {
+font-family: 'Noto Sans JP';
+font-style: normal;
+font-weight: 900;
+src: local("Noto Sans JP Black"),
+url('./assets/fonts/notosans-jp/NotoSansJP-Black.woff2') format('woff2');
+}

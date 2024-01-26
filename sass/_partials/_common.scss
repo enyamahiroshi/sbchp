@@ -15,51 +15,6 @@
   .pc { display: inline; }
 }
 
-// お問い合わせボタン
-.inquiry-links {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 550px;
-  .inquiry-links__title {
-    font-size: 1.2rem;
-    font-weight: 400;
-    color: #fff;
-    line-height: 1;
-    letter-spacing: 0.03em;
-    text-align: center;
-  }
-  .button-wrap {
-    gap: 10px;
-    padding: 10px;
-    margin-top: 12px;
-    background-color: #4A4C65;
-  }
-}
-@include res_min( $break ) {
-  .inquiry-links {
-    margin: 0;
-    max-width: none;
-    position: fixed;
-    right: 0;
-    top: 100px;
-    z-index: 9999;
-    .home & {
-      top: 160px;
-    }
-    .inquiry-links__title {
-      display: none;
-    }
-    .button-wrap {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 10px;
-      padding: 0;
-      margin-top: 0;
-      background-color: transparent;
-    }
-  }
-}
-
 // SNSボタン
 .sns-links {
   margin-top: 30px;
@@ -310,7 +265,7 @@
   position: fixed;
   right: 15px;
   bottom: 15px;
-  z-index: 9990;
+  z-index: 10;
   opacity: 0;
 
   width: 45px;

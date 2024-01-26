@@ -7,7 +7,8 @@ $break2: 1200;
 $break3: 1500;
 $maxSize: 1200;
 
-$ff-go: 'Noto Sans CJK JP', sans-serif;
+$ff-go: 'Zen Kaku Gothic New', sans-serif; // R:400, M:500, B:700
+$ff-go2: 'Noto Sans CJK JP', sans-serif; // R:400, M:500, B:700, BLK:900
 // $ff-go: 'Noto Sans JP', sans-serif;
 // $ff-go: Helvetica, "Helvetica Neue", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro W3", sans-serif;
 // $ff-go: "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", sans-serif;
@@ -16,7 +17,7 @@ $ff-en: 'Montserrat', sans-serif;
 $ff-num: 'Roboto', sans-serif;
 // $ff-icon: 'ForkAwesome';
 
-$textBaseColor: #000000;
+$textBaseColor: #1A1A1A;
 $mainColor: #2C3692;
 $mainColorLight: #131741;
 $mainColorDark: #131741;
@@ -24,8 +25,102 @@ $keyColor: #FFE033;
 $linkColor: $textBaseColor;
 $linkHoverColor: $textBaseColor;
 
+$sbcRed: #E62310;
+$sbcGreen: #009544;
+$sbcBlue: #006EBB;
+$sbcWhite: #ffffff;
+$sbcGray1: #F1F1F1;
+$sbcGray2: #EFEFEF;
+$sbcGray3: #D9D9D9;
+$sbcGray4: #AAAAAA;
+$sbcGray5: #4C4C4C;
+$sbcOrangeUsui: #F1EDE3;
+$sbcOrange: #F9CF3B;
+$sbcOrangeKoi1: #DDBE6D;
+$sbcSkyBlue: #2A9BDB;
+$sbcOrangeKoi2: #F2BD00;
+$sbcOrangeAzayaka: #F7C033;
+$sbcBeige1: #F5F4F3;
+$sbcBeige2: #E0DEDA;
+$sbcBeige3: #BFBDBA;
+$sbcRedAwai: #F78479;
+$sbcLinkColor: #F0595F;
+$sbcLinkColorAwai: #FCC8CA;
+$sbcNagano: #F89D95;
+$sbcUeda: #66CE95;
+$sbcSaku: #64BAF7;
+
 $gray: #DFDFDF;
 $brown: #40210F;
 $red: #ff1212;
 $orange: #FF9C15;
 $green: #59D821;
+
+// to figma
+/* 基本サイズ(PC) */
+@mixin textStyleBase() {
+	font-size: 1.6rem;
+}
+
+/* 基本サイズ(SP) */
+@mixin textStyleBaseSp() {
+	font-size: 1.5rem;
+}
+
+/* 極小 */
+@mixin textStyleXs() {
+	font-size: 1.2rem;
+	line-height: 150%;
+}
+
+/* 小 */
+@mixin textStyleS() {
+	font-size: 1.4rem;
+	line-height: 150%;
+}
+@mixin textStyleL() {
+	font-size: 1.8rem;
+}
+@mixin textStyleXl() {
+	font-size: 2rem;
+	font-weight: 500;
+}
+@mixin textStyleXxl() {
+	font-size: 2.4rem;
+}
+@mixin textStyleH1() {
+	font-size: 3.8rem;
+	font-weight: 700;
+	line-height: 140%;
+}
+@mixin textStyleH2() {
+	font-size: 3.2rem;
+	font-weight: 700;
+	line-height: 150%;
+}
+@mixin textStyleH3() {
+	font-size: 2.4rem;
+	font-weight: 700;
+	line-height: 150%;
+}
+@mixin textStyleH4() {
+	font-size: 2rem;
+	font-weight: 700;
+	line-height: 150%;
+}
+@mixin textStyleH5() {
+	font-size: 1.8rem;
+	font-weight: 700;
+	line-height: 150%;
+}
+@mixin textStyleH6() {
+	font-size: 1.6rem;
+	font-weight: 700;
+	line-height: 150%;
+}
+@mixin effectStyleDropShadow1() {
+	box-shadow: 0px 1px 15px rgba(0,45,74,0.100);
+}
+@mixin effectStyleDropShadow2() {
+	box-shadow: 0px 1px 12px rgba(0,0,0,0.150);
+}

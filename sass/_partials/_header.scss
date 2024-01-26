@@ -15,7 +15,7 @@ $headerHighPC: 78;
   position: relative;
   left: 0;
   top: 0;
-  z-index: 9999;
+  z-index: 9;
 
   padding: 0 3px 0 10px;
   width: 100%;
@@ -62,7 +62,7 @@ $headerHighPC: 78;
   @include flex(nowrap, flex-start, stretch);
   flex-direction: column;
 
-  opacity: 0;
+  // opacity: 0;
   padding: 30px 20px 80px;
   background-color: $mainColorDark;
   width: 100%;
@@ -72,7 +72,7 @@ $headerHighPC: 78;
   left: 0;
   top:  0;
   pointer-events: none;
-  z-index: 9998;
+  z-index: 8;
 
   .header-navi {
     order: 2;
@@ -244,7 +244,7 @@ $headerHighPC: 78;
   background-color: #fff;
   height:  #{$headerHighSP + px};
   position: relative;
-  z-index: 9999;
+  z-index: 9;
   .menu-bar-line {
     width: 30px;
     height: 3px;
