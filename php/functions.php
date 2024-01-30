@@ -1,13 +1,24 @@
 <?php
 get_template_part( 'setting/system' );
 get_template_part( 'setting/include_files' );
-get_template_part( 'setting/custom-post-type' );
+// get_template_part( 'setting/custom-post-type' );
+// get_template_part( 'setting/custom-usr-setting' ); //モデルハウス担当者のユーザー権限設定
 // get_template_part( 'setting/customize-dashbord' );
 // get_template_part( 'setting/customize-plugins' );
 // get_template_part( 'setting/customize-block-editer' );
 get_template_part( 'block/breadcrumb' );
 get_template_part( 'block/prevnext-fn' );
 get_template_part( 'block/form-seni' );
+
+/* -------------------------------------------------------------
+//  特定ユーザーグループのメニュー設定
+// ------------------------------------------------------------*/
+add_action('admin_menu', 'hidden_menu');
+function hidden_menu()
+{
+    remove_menu_page('edit.php'); //投稿
+    remove_menu_page('edit.php?post_type=oyakudachi-column'); //カスタム投稿
+}
 
 /* -------------------------------------------------------------
 //  メインループの表示件数を制御
@@ -145,14 +156,14 @@ function removeId( $id ){
   return $id = array();
 }
 add_filter('nav_menu_item_id', 'removeId', 10);
+
 // li の class のコントロール
 function my_custom_nav( $classes, $item ) {
   global $post;
-  $current_class = 'current';
-  $classes[] = $current_class;
-  if( $item -> current == true ) {
-    $classes[] = $current_class;
-  }
+  $current_class = 'current-menu-item';
+  // if( $item -> current == true ) {
+  //   $classes[] = $current_class;
+  // }
   //カスタム投稿タイプでのカレント処理
   if (is_singular('works') && $item->object_id == $post->ID) {
     $classes[] = $current_class;
@@ -164,17 +175,17 @@ add_filter( 'nav_menu_css_class', 'my_custom_nav', 10, 2 );
 /* -------------------------------------------------------------
 // ウィジェットの使用
 // ------------------------------------------------------------*/
-function my_theme_widgets_init() {
-  register_sidebar( array(
-    'name' => 'Main Sidebar',
-    'id' => 'main-sidebar',
-    'before_widget' => '<section class="widget %1$s">',
-    'after_widget' => '</section>',
-    'before_title' => '<h3 class="hl03 widget__title">',
-    'after_title'  => '</h3>',
-  ) );
-}
-add_action( 'widgets_init', 'my_theme_widgets_init' );
+// function my_theme_widgets_init() {
+//   register_sidebar( array(
+//     'name' => 'Main Sidebar',
+//     'id' => 'main-sidebar',
+//     'before_widget' => '<section class="widget %1$s">',
+//     'after_widget' => '</section>',
+//     'before_title' => '<h3 class="hl03 widget__title">',
+//     'after_title'  => '</h3>',
+//   ) );
+// }
+// add_action( 'widgets_init', 'my_theme_widgets_init' );
 
 /* -------------------------------------------------------------
 // 標準ギャラリーのCSSを停止

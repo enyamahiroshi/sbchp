@@ -26,7 +26,7 @@
     }
   }
 }
-@include res_min( $break ) {
+@include res_min( map-get($BP, MD) ) {
   .list01 {
     @include flex(wrap, center, stretch);
     gap: 25px;

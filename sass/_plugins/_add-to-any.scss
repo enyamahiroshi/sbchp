@@ -30,7 +30,7 @@ $btn_sizePC: 28;
     }
   }
 }
-@include res_min( $break ) {
+@include res_min( map-get($BP, MD) ) {
   .addtoany_share_save_container.addtoany_content {
     &:first-of-type {
       display: block;

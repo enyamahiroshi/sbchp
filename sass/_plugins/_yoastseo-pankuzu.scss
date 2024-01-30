@@ -54,7 +54,7 @@
     }
   }
 }
-@include res_min( $break ) {
+@include res_min( map-get($BP, MD) ) {
   .bread-navi {
     padding: 13px 18px;
     margin-left: 0;

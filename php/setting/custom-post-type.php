@@ -98,6 +98,7 @@ add_action( 'init', function() {
 	$labels = array(
 		'name'               => $GLOBALS['cpName'], //管理画面などで表示する名前（単数形）
 		'add_new_item'       => '新規'.$GLOBALS['cpName'].'追加', //新規作成ページのタイトルに表示される名前
+		'add_new'            => '新規追加', //メニューに表示される名前
 		'edit_item'          => '編集', //編集ページのタイトルに表示される名前
 		'view_item'          => '表示', //編集ページの「投稿を表示」ボタンのラベル
 		'search_items'       => '検索', //一覧ページの検索ボタンのラベル
@@ -160,6 +161,7 @@ if ( $GLOBALS['cpSlug'] == $post_type ) {
 });
 // ▲▲▲▲▲▲▲▲▲▲ ------- ここまでカスタム投稿タイプ設定のセット ------- ▲▲▲▲▲▲▲▲▲▲
 
+
 // ▼▼▼▼▼▼▼▼▼▼ ------- ここからカスタム投稿タイプ設定のセット ------- ▼▼▼▼▼▼▼▼▼▼
 global
 $cpSlug2,      // カスタム投稿のスラッグ名
@@ -168,17 +170,18 @@ $cpTaxSlug2,   // カスタム投稿のタクソノミーのスラッグ名（ _
 $cpTaxName2,   // カスタム投稿のタクソノミーの表示名（ カテゴリー か タグ ）
 $rewriteslug2; // リライトルールを書き換えて sample/カテゴリー名/… という自然なURLにする場合
 
-$cpSlug2       = 'works';
-$cpName2       = '実績紹介';
-$cpTaxSlug2    = $GLOBALS['cpSlug2'].'_category';
-$cpTaxName2    = /* $GLOBALS['cpName2']. */'カテゴリー';
-$rewriteslug2  = 'category';
+$cpSlug2       = 'model-house';
+$cpName2       = 'モデルハウス情報';
+$cpTaxSlug2    = $GLOBALS['cpSlug2'].'_cat';
+$cpTaxName2    = /* $GLOBALS['cpName2']. */'モデルハウス';
+$rewriteslug2  = 'cat';
 
 add_action( 'init', function() {
 	// カスタム投稿タイプを作成
 	$labels = array(
 		'name'               => $GLOBALS['cpName2'], //管理画面などで表示する名前（単数形）
 		'add_new_item'       => '新規'.$GLOBALS['cpName2'].'追加', //新規作成ページのタイトルに表示される名前
+		'add_new'            => '新規'.$GLOBALS['cpName2'].'追加', //メニューに表示される名前
 		'edit_item'          => '編集', //編集ページのタイトルに表示される名前
 		'view_item'          => '表示', //編集ページの「投稿を表示」ボタンのラベル
 		'search_items'       => '検索', //一覧ページの検索ボタンのラベル
@@ -195,7 +198,7 @@ add_action( 'init', function() {
 		'rewrite'             => array( // パーマリンクの生成
 			'with_front'        => false,
 		),
-		'menu_icon'           => 'dashicons-admin-post', // メニューアイコン設定(アイコン選択: https://developer.wordpress.org/resource/dashicons/)
+		'menu_icon'           => 'dashicons-store', // メニューアイコン設定(アイコン選択: https://developer.wordpress.org/resource/dashicons/)
 		'supports'            => array( // 管理画面から投稿できる項目を設定
 		'title', // タイトル表示を有効に
 		'editor', // 本文の表示を有効に
@@ -216,7 +219,7 @@ add_action( 'init', function() {
 		'rewrite'      => array(  // パーマリンクのりライトルール ※パーマリンクの細かい設定は「Custom Post Type Permalinks」プラグインで行う
 			'with_front' => false,
 			'slug' => $GLOBALS['cpSlug2'], // urlを任意に指定する場合 → array( 'slug' => 'aaa/bbb', default： true )
-		),
+		)
 	);
 	register_taxonomy( $GLOBALS['cpTaxSlug2'], $GLOBALS['cpSlug2'], $args );
 });

@@ -44,13 +44,13 @@ textarea {
     // border: 1px solid $mainColor;
     // background-color: #f1f1f1;
   }
-  @include res_min( $break ) {
+  @include res_min( map-get($BP, MD) ) {
     padding: 6px 8px;
   }
 }
 textarea {
   height: 6em;
-  @include res_min( $break ) {
+  @include res_min( map-get($BP, MD) ) {
     height: 10em;
   }
 }
@@ -90,7 +90,7 @@ textarea {
       transform: translateX(-50%);
     }
   }
-  @include res_min( $break ) {
+  @include res_min( map-get($BP, MD) ) {
     .item {
       @include flex(nowrap, flex-start, stretch);
     }
@@ -135,7 +135,7 @@ textarea {
       }
     }
   }
-  @include res_min( $break ) {
+  @include res_min( map-get($BP, MD) ) {
     .item__label {
       flex: 0 0 30%;
       padding: 0;
@@ -168,7 +168,7 @@ textarea {
       line-height: 1.5;
     }
   }
-  @include res_min( $break ) {
+  @include res_min( map-get($BP, MD) ) {
     .item__input {
       flex: 1 1 calc(100% - 30%);
       margin-top: 0;
@@ -212,7 +212,7 @@ textarea {
       }
     }
   }
-  @include res_min( $break ) {
+  @include res_min( map-get($BP, MD) ) {
     .row-item{
       gap: 1em 0.5em;
       & > div,
@@ -266,7 +266,7 @@ textarea {
         padding-left: 25px;
         font-weight: 500;
         position: relative;
-        @include res_min( $break ) {
+        @include res_min( map-get($BP, MD) ) {
           padding-left: 28px;
         }
         //ボタンを装飾
@@ -280,7 +280,7 @@ textarea {
           position: absolute;
           top: 0.25em;
           left: 0;
-          @include res_min( $break ) {
+          @include res_min( map-get($BP, MD) ) {
             width: 22px;
             height: 22px;
             top: 0.2em;
@@ -307,7 +307,7 @@ textarea {
           position: absolute;
           top: calc(0.25em + 3px);
           left: 3px;
-          @include res_min( $break ) {
+          @include res_min( map-get($BP, MD) ) {
             width: 16px;
             height: 16px;
             top: calc(0.2em + 3px);
@@ -415,7 +415,7 @@ textarea {
       cursor: pointer;
     }
   }
-  @include res_min( $break ) {
+  @include res_min( map-get($BP, MD) ) {
     .custom-select {
       flex: 0 0 350px !important;
       select {
@@ -458,7 +458,7 @@ textarea {
       }
     }
   }
-  @include res_min( $break ) {
+  @include res_min( map-get($BP, MD) ) {
     .agree {
       .mwform-checkbox-field-text {
         font-size: 1.4rem;
@@ -479,7 +479,7 @@ textarea {
     flex-direction: column;
     gap: 20px;
   }
-  @include res_min( $break ) {
+  @include res_min( map-get($BP, MD) ) {
     .button-wrap {
       margin-top: 100px;
     }
@@ -508,7 +508,7 @@ textarea {
     // 送信
     &.button-submit {}
   }
-  @include res_min( $break ) {
+  @include res_min( map-get($BP, MD) ) {
     .button {
       background-position: right 22px center;
       background-size: auto 15px;
@@ -532,7 +532,7 @@ textarea {
       // display: none;
     }
   }
-  @include res_min( $break ) {
+  @include res_min( map-get($BP, MD) ) {
     .mw_wp_form_input {
       // 確認
       .button__confirm {
@@ -559,7 +559,7 @@ textarea {
       display: none;
     }
   }
-  @include res_min( $break ) {
+  @include res_min( map-get($BP, MD) ) {
     .mw_wp_form_confirm {
       // 戻る
       .button__back {
@@ -581,7 +581,7 @@ textarea {
   .item__input {
     .error {
       margin: 4px 0 0;
-    @include res_min( $break ) {
+    @include res_min( map-get($BP, MD) ) {
       margin: 6px 0 0;
     }
     }
@@ -591,7 +591,7 @@ textarea {
     .error {
       position: absolute;
       margin: 2px 0 1em;
-      @include res_min( $break ) {
+      @include res_min( map-get($BP, MD) ) {
         margin: 4px 0 1em;
       }
     }
@@ -603,7 +603,7 @@ textarea {
       left: 0;
       top: 0;
       margin: -1.2em 0 0 0;
-      @include res_min( $break ) {
+      @include res_min( map-get($BP, MD) ) {
         position: relative;
         margin: 0 0 0 1em;
         line-height: 1.7;
@@ -682,7 +682,7 @@ textarea {
   //     }
   //   }
   // }
-  // @include res_min( $break ) {
+  // @include res_min( map-get($BP, MD) ) {
   //   .step {
   //     margin-top: 70px;
   //     width: 200px;

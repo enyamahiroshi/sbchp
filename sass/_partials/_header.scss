@@ -2,8 +2,8 @@
 @use '../_core/mixins' as *;
 
 
-$headerHighSP: 45;
-$headerHighPC: 78;
+$headerHighSP: 50;
+$headerHighPC: 96;
 
 
 /* ----------------------------------------------------------------
@@ -17,38 +17,92 @@ $headerHighPC: 78;
   top: 0;
   z-index: 9;
 
-  padding: 0 3px 0 10px;
+  padding: 0 0 0 16px;
   width: 100%;
   height: #{$headerHighSP + px};
   background-color: rgba(255,255,255,1);
-  box-shadow: 0 3px 4px rgba(0,0,0,0);
-  .header__logo {
-    flex: 0 0 87px;
-    img {
-      width: 100%;
+  box-shadow: 0 2px 3px rgba(0,0,0,0);
+
+  .header__logo-wrap{
+    .header__logo {
+      flex: 0 1 auto;
+      margin-right: 1em;
+      line-height: 1;
+      img {
+        width: auto;
+        height: auto;
+        max-height: 16px;
+      }
+    }
+    .site-copy{
+      display: none;
     }
   }
   .menu-bar {
-    flex: 0 0  #{$headerHighSP + px};
+    flex: 0 1 56px;
+  }
+
+  //ヘッダー内の見学予約ボタン
+  .button-reserve{
     margin-left: auto;
+    flex: 0 1 124px;
+    align-self: stretch;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1;
+    letter-spacing: 0;
+    white-space: nowrap;
+    &:link, &:visited{
+      background-color: $sbcRed;
+      color: $sbcWhite;
+    }
+    em{
+      font-size: clamp(1.2rem, 4.4vw, 1.6rem);
+      font-weight: 500;
+    }
+    &::after{
+      content: '';
+      margin-left: 9px;
+      width: 6.6px;
+      height: 11px;
+      background-color: $sbcWhite;
+      -webkit-mask-image: url(./assets/images/common/icon-arrow.svg);
+              mask-image: url(./assets/images/common/icon-arrow.svg);
+      -webkit-mask-repeat: no-repeat;
+              mask-repeat: no-repeat;
+      -webkit-mask-position: center;
+              mask-position: center;
+      -webkit-mask-size: auto 100%;
+              mask-size: auto 100%;
+    }
   }
 }
-@include res_min( $break ) {
+@include res_min( map-get($BP, XL) ) {
   .header {
-    padding: 0 20px 0 15px;
+    padding: 0 70px 0 34px;
     height: #{$headerHighPC + px};
-    @include res_min( $break2 ) {
-      padding: 0 40px 0 20px;
-    }
-    .header__logo {
-      flex-basis: 100px;
-      margin-right: min(3vw, 30px);
-      margin-top: -2px;
-      @include res_min( $break2 ) {
-        flex-basis: 130px;
-        margin-right: min(1.5vw, 50px);
-        margin-top: -4px;
+
+    .header__logo-wrap{
+      .header__logo {
+        img {
+          height: 26px;
+          max-height: 26px;
+        }
       }
+      .site-copy{
+        display: block;
+        margin-top: 12px;
+        font-size: 1.4rem;
+        font-weight: 500;
+        line-height: 1;
+        white-space: nowrap;
+      }
+    }
+
+    //ヘッダー内の見学予約ボタン
+    .button-reserve{
+      display: none;
     }
   }
 }
@@ -62,176 +116,148 @@ $headerHighPC: 78;
   @include flex(nowrap, flex-start, stretch);
   flex-direction: column;
 
-  // opacity: 0;
-  padding: 30px 20px 80px;
-  background-color: $mainColorDark;
+  opacity: 0;
+  padding: 12px;
+  background-color: $sbcBlue;
   width: 100%;
-  height: 100vh;
-  height: 100dvh;
+  height: calc(100vh - #{$headerHighSP + px});
+  height: calc(100dvh - #{$headerHighSP + px});
   position: absolute;
   left: 0;
-  top:  0;
+  top:  #{$headerHighSP + px};
   pointer-events: none;
   z-index: 8;
 
-  .header-navi {
-    order: 2;
-  }
-  .inquiry-links {
-    order: 1;
-  }
-  .sns-links {
-    order: 3;
-  }
-
-  .menu {
-    margin: 15px auto 0;
-    max-width: 550px;
-    .menu-item {
-      padding: 10px 2px;
-      font-size: 1.8rem;
-      line-height: 1.3;
-      border-bottom: 1px solid #4A4C65;
-      a {
-        display: block;
-        padding-right: 25px;
-        position: relative;
-        &::before {
-          content: '';
-          width: 7px;
-          height: 1em;
-          background-image: url(./assets/images/common/icon-arrow2.svg);
-          background-repeat: no-repeat;
-          background-position: center;
-          background-size: 100% auto;
-          position: absolute;
-          right: 7px;
-          top: 50%;
-          transform: translateY(-50%);
+  .header-nav{
+    padding: 20px 25px 0;
+    background-color: $sbcWhite;
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+    .menu {
+      .menu-item {
+        border-bottom: 1px solid $sbcBeige2;
+        a {
+          display: block;
+          padding: 11px 10px 11px 30px;
+          font-size: 1.8rem;
+          font-weight: 700;
+          line-height: 1.5;
+          position: relative;
+          &::before {
+            content: '';
+            width: 8px;
+            height: 3px;
+            background-color: $sbcBlue;
+            position: absolute;
+            left: 11px;
+            top: 24px;
+          }
+          &:link, &:visited {
+            color: $sbcBlack;
+          }
         }
-        &:link, &:visited {
-          color: #fff;
+        //ラベルのみで使用する
+        &.page-label{
+          & > a{
+            pointer-events: none;
+          }
+        }
+        //サブメニューがある場合
+        &.menu-item-has-children{
+          .sub-menu{
+            margin-top: -5px;
+            margin-left: 24px;
+            .menu-item {
+              &:last-of-type{
+                border-bottom: none;
+              }
+              a{
+                font-size: 1.5rem;
+                font-weight: 500;
+                &::before {
+                  width: 7px;
+                  height: 1px;
+                  top: 23px;
+                }
+              }
+            }
+          }
         }
       }
     }
   }
-}
-@include res_min( $break ) {
-  .global-menu {
-    @include flex(nowrap, flex-end, center);
-    flex-direction: row;
 
+  .sns-links{
+    padding: 40px 0;
+    background-color: $sbcWhite;
+    border-radius: 0 0 10px 10px;
+    overflow: hidden;
+  }
+}
+@include res_min( map-get($BP, XL) ) {
+  .global-menu {
+    align-self: stretch;
     opacity: 1;
     padding: 0;
     background-color: transparent;
     height: auto;
-    pointer-events: visible;
     position: relative;
-    top: auto;
+    left: 0;
+    top: 0;
+    pointer-events: visible;
 
-    .header-navi {
-      order: 1;
-    }
-    .inquiry-links {
-      order: 3;
-    }
-    .sns-links {
-      order: 2;
-    }
-
-    .menu {
+    .header-nav{
       padding: 0;
-      margin: 0;
-      max-width: none;
-      @include flex(wrap, flex-end, stretch);
-      -moz-column-gap: min(3.5vw, 20px);
-           column-gap: min(3.5vw, 20px);
-      row-gap: 8px;
-      @include res_min( $break2 ) {
-        -moz-column-gap: min(2vw, 28px);
-             column-gap: min(2vw, 28px);
-      }
-      .menu-item {
-        padding: 0;
-        font-size: 1.4rem;
-        line-height: 1.64;
-        letter-spacing: 0;
-        @include res_min( $break2 ) {
-          font-size: 1.7rem;
-          letter-spacing: 0.03em;
-        }
-        border-bottom: none;
-        a {
-          display: inline;
-          padding-right: 0;
-          &::before {
-            content: none;
-          }
-          &:link, &:visited {
-            color: $textBaseColor;
-          }
-          &:hover, &:active {
-            opacity: 1;
-            color: $mainColor;
-          }
-        }
-        &.current {
+      background-color: transparent;
+      border-radius: 0;
+      .menu {
+        @include flex(nowrap, flex-end, stretch);
+        gap: 29px;
+        .menu-item {
+          border-bottom: none;
           a {
-            font-weight: 600;
-            &:link, &:visited {
-              color: $mainColor;
+            @include flex(nowrap, flex-start, center);
+            height: #{$headerHighPC + px};
+            padding: 0;
+            font-size: 1.7rem;
+            &::before {
+              content: none;
+            }
+          }
+          //ラベルのみで使用する
+          &.page-label{
+            cursor: pointer;
+          }
+          //サブメニューがある場合
+          &.menu-item-has-children{
+            .sub-menu{
+              display: none;
+
+              margin-top: 0;
+              margin-left: 0;
+              .menu-item {
+                &:last-of-type{
+                  border-bottom: none;
+                }
+                a{
+                  font-size: 1.5rem;
+                  font-weight: 500;
+                  &::before {
+                    width: 7px;
+                    height: 1px;
+                    top: 23px;
+                  }
+                }
+              }
             }
           }
         }
       }
     }
 
-    // カレント - お知らせ
-    body.archive.category & .menu li,
-    body.single-post & .menu li {
-      &.information {
-        a {
-          font-weight: 600;
-          &:link, &:visited {
-            color: $mainColor;
-          }
-        }
-      }
+    .sns-links{
+      display: none;
     }
-    // カレント - 実績紹介
-    body.works & .menu li {
-      &.works {
-        a {
-          font-weight: 600;
-          &:link, &:visited {
-            color: $mainColor;
-          }
-        }
-      }
-    }
-    // カレント - クルマの知恵袋
-    body.kurumano-chie-bukuro & .menu li {
-      &.kurumano-chie-bukuro {
-        a {
-          font-weight: 600;
-          &:link, &:visited {
-            color: $mainColor;
-          }
-        }
-      }
-    }
-    // カレント - 採用情報
-    body.archive.category.category-recruit & .menu li {
-      &.information {
-        a {
-          font-weight: 500;
-          &:link, &:visited {
-            color: $textBaseColor;
-          }
-        }
-      }
-    }
-
   }
 }
 
@@ -246,39 +272,34 @@ $headerHighPC: 78;
   position: relative;
   z-index: 9;
   .menu-bar-line {
-    width: 30px;
-    height: 3px;
-    background-color: $mainColor;
+    width: 20px;
+    height: 2px;
+    background-color: $sbcBlack;
+    border-radius: 1px;
     position: absolute;
     left: 50%;
-    top: 16px;
-    transform: translateX(-50%);
+    top: 50%;
+    transform: translate(-50%,-50%);
     &::before,
     &::after {
       content: "";
       width: 100%;
-      height: 3px;
-      background-color: $mainColor;
+      height: 2px;
+      background-color: $sbcBlack;
+      border-radius: 1px;
       position: absolute;
       left: 0;
       @include transition();
     }
     &::before {
-      top: -6px;
+      top: -7px;
     }
     &::after {
-      top: 6px;
+      top: 7px;
     }
   }
-  .menu-bar-image {
-    width: 30px;
-    position: absolute;
-    left: 50%;
-    bottom: 8px;
-    transform: translateX(-50%);
-  }
 }
-@include res_min( $break ) {
+@include res_min( map-get($BP, XL) ) {
   .menu-bar {
     display: none;
   }
@@ -301,10 +322,10 @@ body.is-fixed  {
   transform: translateY(-#{$headerHighSP + px});
 }
 .header.is-fixed {
-  box-shadow: 0 3px 4px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 3px rgba(0,0,0,0.1);
   transform: translateY(0);
 }
-@include res_min( $break ) {
+@include res_min( map-get($BP, XL) ) {
   body.is-hide,
   body.is-fixed  {
     padding-top: #{$headerHighPC + px};
@@ -324,7 +345,6 @@ body.is-open {
 }
 // header
 .header.is-open {
-  background-color: $mainColorDark;
 }
 // メニュー
 .global-menu.is-open {
@@ -343,7 +363,6 @@ body.is-open {
     transform: translate(-50%,-50%);
     &::before,
     &::after {
-      background-color: #fff;
       top: 0;
     }
     &::before {

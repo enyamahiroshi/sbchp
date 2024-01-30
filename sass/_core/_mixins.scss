@@ -10,26 +10,26 @@
 }
 
 //レスポンシブの指定
-@mixin res_min($size: $break) {
+@mixin res_min($size: map-get($BP, MD)) {
   @media only screen and (min-width: #{$size + 'px'}) {
     @content;
   }
 }
-@mixin res_max($size: $break) {
+@mixin res_max($size: map-get($BP, MD)) {
   @media only screen and (max-width: #{$size + 'px'}) {
     @content;
   }
 }
 
 //max-width
-@mixin maxW($size: $maxSize) {
+@mixin maxW($size: map-get($maxSize, base)) {
   width: 100%;
   max-width: calc(#{$size + px} + 16%);
   padding-left: 8%;
   padding-right: 8%;
   margin-left: auto;
   margin-right: auto;
-  @include res_min( $break ){
+  @include res_min( map-get($BP, MD) ){
     max-width: calc(#{$size + px} + 100px);
     padding-left: 50px;
     padding-right: 50px;
@@ -37,7 +37,7 @@
 }
 
 //flexbox
-@mixin flex($wrap: wrap, $justify: flex-start, $alignItems: center){
+@mixin flex($wrap: wrap, $justify: flex-start, $alignItems: stretch){
   display: flex;
   flex-wrap: $wrap;
   justify-content: $justify;

@@ -16,9 +16,9 @@ a {
     color: $linkHoverColor;
   }
   // ウェブアイコン使用時
-  i {
-    margin: 0 4px;
-  }
+  // i {
+  //   margin: 0 4px;
+  // }
   // transform使用時にchromeでズレが生じるのを防ぐ
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
@@ -27,7 +27,7 @@ a {
 a img {
   opacity: 1;
 }
-@include res_min( $break ) {
+@include res_min( map-get($BP, MD) ) {
   a img {
    @include transition(opacity);
     -webkit-backface-visibility: hidden;
@@ -68,7 +68,7 @@ a img {
   @include flex(wrap, center, stretch);
   gap: 1em;
 }
-@include res_min( $break ) {
+@include res_min( map-get($BP, MD) ) {
   .button-wrap {
     gap: 1.5em 2em;
   }
@@ -174,7 +174,7 @@ a img {
     }
   }
 }
-@include res_min( $break ) {
+@include res_min( map-get($BP, MD) ) {
   .button {
     // 基本
     border-radius: 4px;
@@ -215,7 +215,7 @@ a img {
         background-image: url(./assets/images/common/icon-arrow3.svg);
       }
     }
-    @include res_min( $break ) {
+    @include res_min( map-get($BP, MD) ) {
     &--inpuiry,
     &--inpuiry-other {
       padding: 1em 22px;
@@ -381,7 +381,7 @@ a[target="_blank"] {
     text-decoration: none;
   }
 }
-// @include res_min( $break ) {
+// @include res_min( map-get($BP, MD) ) {
 //   .link-tel {
 //     pointer-events: none;
 //   }

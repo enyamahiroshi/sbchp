@@ -29,7 +29,7 @@ body {
   word-wrap : break-word;
   overflow-wrap : break-word;
 }
-@include res_min( $break ) {
+@include res_min( map-get($BP, MD) ) {
   body {
     font-size: 1.6rem;
   }
@@ -85,7 +85,7 @@ p {
   }
   margin-top: 1.5em;
 }
-@include res_min( $break ) {
+@include res_min( map-get($BP, MD) ) {
   p {
     margin-top: 2em;
   }
@@ -106,7 +106,7 @@ svg {
   vertical-align: bottom;
   line-height: 1;
 }
-@include res_min( $break ) {
+@include res_min( map-get($BP, MD) ) {
   // img,
   // svg {
   //   width: auto;

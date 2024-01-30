@@ -27,7 +27,6 @@
             <div class="post-category"><?php single_term_title(); ?></div>
             <a href="<?php the_permalink(); ?>" class="post-title"><?php the_title(); ?></a>
             <div class="post-date"><?php the_time('Y.m.d'); ?></div>
-            </a>
           </article>
           <?php endwhile; ?>
         </div>

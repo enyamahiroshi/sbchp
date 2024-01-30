@@ -27,7 +27,7 @@
     color: $textBaseColor;
   }
 }
-@include res_min( $break ) {
+@include res_min( map-get($BP, MD) ) {
   .post-category {
     padding: 1px 5px;
   }
@@ -44,7 +44,7 @@
     font-size: 1.2rem;
   }
 }
-@include res_min( $break ) {
+@include res_min( map-get($BP, MD) ) {
   .post-date {
     margin-right: 0;
     font-size: 1.4rem;
@@ -69,7 +69,7 @@
     font-size: 1.3rem;
   }
 }
-@include res_min( $break ) {
+@include res_min( map-get($BP, MD) ) {
   .post-title {
     font-size: 1.6rem;
     // 実績紹介、クルマの知恵袋
@@ -154,7 +154,7 @@
     }
   }
 }
-@include res_min( $break ) {
+@include res_min( map-get($BP, MD) ) {
   .post-list {
     .post {
       padding: 12px 0;
@@ -177,7 +177,7 @@
       .post {
         padding: 10px;
       }
-      @include res_min( $break2 ) {
+      @include res_min( map-get($BP, MD)2 ) {
       grid-template-columns: repeat(6, 1fr);
       gap: min(1.8vw, 20px);
       .post {
@@ -191,7 +191,7 @@
       }
     }
     &.post-list--works {
-      @include res_min( $break2 ) {
+      @include res_min( map-get($BP, MD)2 ) {
       grid-template-columns: repeat(5, 1fr);
       }
     }
@@ -204,7 +204,7 @@
   }
 
   //最新記事表示箇所の変更
-  @include res_min( $break2 ) {
+  @include res_min( map-get($BP, MD)2 ) {
   .sec-latest-works {
     .post-list--works {
       grid-template-columns: repeat(5, 1fr);
@@ -259,7 +259,7 @@
     }
   }
 }
-@include res_min( $break ) {
+@include res_min( map-get($BP, MD) ) {
   .category-list {
     justify-content: center;
     flex-direction: row;
@@ -360,7 +360,7 @@
     }
   }
 }
-@include res_min( $break ) {
+@include res_min( map-get($BP, MD) ) {
   .navigation.pagination {
     margin-top: 60px;
     .nav-links {
@@ -488,7 +488,7 @@
     }
   }
 }
-@include res_min( $break-sp1 ) {
+@include res_min( map-get($BP, SM) ) {
   .post-navi {
     .prev-post,
     .next-post {
@@ -510,7 +510,7 @@
       }
     }
   }
-  @include res_min( $break ) {
+  @include res_min( map-get($BP, MD) ) {
     .post-navi {
       @include flex(nowrap, space-between, stretch);
       padding-top: 40px;

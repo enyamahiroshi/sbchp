@@ -1,11 +1,22 @@
 // ----------------------------------------------------------------
 // * Valiables
 // ---------------------------------------------------------------
-$break-sp1: 375;
-$break: 768;
-$break2: 1200;
-$break3: 1500;
-$maxSize: 1200;
+//ブレークポイント設定
+$BP: (
+  SM: 400,
+  MD: 768,
+  LG: 1024,
+  XL: 1400
+);
+
+//Maxサイズ設定
+$maxSize: (
+  xs: 800,
+   s: 1000,
+base: 1260,
+   l: 1400,
+  xl: 1920
+);
 
 $ff-go: 'Zen Kaku Gothic New', sans-serif; // R:400, M:500, B:700
 $ff-go2: 'Noto Sans CJK JP', sans-serif; // R:400, M:500, B:700, BLK:900
@@ -25,6 +36,7 @@ $keyColor: #FFE033;
 $linkColor: $textBaseColor;
 $linkHoverColor: $textBaseColor;
 
+$sbcBlack: #1A1A1A;
 $sbcRed: #E62310;
 $sbcGreen: #009544;
 $sbcBlue: #006EBB;

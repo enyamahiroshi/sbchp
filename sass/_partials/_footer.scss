@@ -9,7 +9,7 @@
   border-top: 1px solid $mainColor;
   text-align: center;
 }
-@include res_min( $break3 ) {
+@include res_min( map-get($BP, MD) ) {
   .footer {
     padding: 30px 40px 20px;
     text-align: left;
@@ -36,7 +36,7 @@
     display: none;
   }
 }
-@include res_min( $break3 ) {
+@include res_min( map-get($BP, MD) ) {
   .footer__head {
     @include flex(nowrap, space-between, stretch);
     .footer__head__logo {
@@ -160,7 +160,7 @@
     }
   }
 }
-@include res_min( $break3 ) {
+@include res_min( map-get($BP, MD) ) {
   .footer__foot {
     @include flex(nowrap, flex-start, flex-end);
     margin-top: 25px;
