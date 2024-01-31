@@ -1,0 +1,56 @@
+@use '../_core/valiables' as *;
+@use '../_core/mixins' as *;
+
+// ----------------------------------------------------------------
+// パンくず(Aoo in one SEO)
+
+// ▼テーマファイルへ
+// <?php //パンくず
+// echo '<div class="bread-nav">';
+// if( function_exists( 'aioseo_breadcrumbs' ) ){ aioseo_breadcrumbs(); }
+// echo '</div>';
+// ?>
+
+// ▼書き出されるコード
+// <div class="aioseo-breadcrumbs">
+//   <span class="aioseo-breadcrumb"><a href="" title="HOME">HOME</a></span>
+//   <span class="aioseo-breadcrumb-separator">›</span>
+//   <span class="aioseo-breadcrumb">◯◯◯◯◯◯◯</span>
+// </div>
+// ----------------------------------------------------------------
+.bread-nav{
+  padding: 9px 12px;
+  background-color: $sbcBeige1;
+}
+.aioseo-breadcrumbs{
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0;
+  @include flex(wrap, flex-start, center);
+  gap: 6px;
+  overflow: hidden;
+  .aioseo-breadcrumb{
+    a {
+      &:link, &:visited {
+        text-decoration: none;
+        color: $sbcBlack;
+      }
+      &:hover, &:active {
+        opacity: 1;
+        color: $sbcLinkColor;
+      }
+    }
+  }
+  .aioseo-breadcrumb-separator{
+  }
+}
+@include res_min( map-get($BP, MD) ) {
+  .bread-nav{
+    padding: 9px 12px;
+    background-color: $sbcBeige1;
+  }
+  .aioseo-breadcrumbs{
+    @include maxW();
+  }
+}

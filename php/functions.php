@@ -1,11 +1,8 @@
 <?php
 get_template_part( 'setting/system' );
 get_template_part( 'setting/include_files' );
-// get_template_part( 'setting/custom-post-type' );
-// get_template_part( 'setting/custom-usr-setting' ); //モデルハウス担当者のユーザー権限設定
-// get_template_part( 'setting/customize-dashbord' );
-// get_template_part( 'setting/customize-plugins' );
-// get_template_part( 'setting/customize-block-editer' );
+get_template_part( 'setting/custom-post-type' );
+get_template_part( 'setting/customize-plugins' );
 get_template_part( 'block/breadcrumb' );
 get_template_part( 'block/prevnext-fn' );
 get_template_part( 'block/form-seni' );
@@ -13,11 +10,13 @@ get_template_part( 'block/form-seni' );
 /* -------------------------------------------------------------
 //  特定ユーザーグループのメニュー設定
 // ------------------------------------------------------------*/
-add_action('admin_menu', 'hidden_menu');
-function hidden_menu()
-{
+if ( !( current_user_can( 'administrator' ) || current_user_can( 'editor' ) ) ) {
+  function hidden_menu()
+  {
     remove_menu_page('edit.php'); //投稿
     remove_menu_page('edit.php?post_type=oyakudachi-column'); //カスタム投稿
+  }
+  add_action('admin_menu', 'hidden_menu');
 }
 
 /* -------------------------------------------------------------

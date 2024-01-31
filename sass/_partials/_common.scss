@@ -148,8 +148,8 @@
 // ページヘッダー
 .page-header {
   @include flex(nowrap, center, center);
-  margin-left: -20px;
-  margin-right: -20px;
+  margin-left: -12px;
+  margin-right: -12px;
   height: clamp(90px, 26vw, 327px);
   background-image: url(./assets/images/page-header/pheader005.jpg); // 基本画像
   background-repeat: no-repeat;

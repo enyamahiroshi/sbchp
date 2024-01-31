@@ -28,7 +28,7 @@ Author URI:
 @use '_scripts/swiper';
 // @use '_scripts/scroll-hint';
 
-// @use '_plugins/yoastseo-pankuzu'; //パンくずリスト（YoastSEO）
+@use '_plugins/allinone-pankuzu'; //パンくずリスト
 // @use '_plugins/add-to-any'; //シェアボタン（AddToAny）
 
 // @import は @use の後に書かないとエラーになる（読み込みは先頭）

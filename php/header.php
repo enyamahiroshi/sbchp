@@ -47,4 +47,9 @@
     <span>今すぐ</span><em>見学予約</em><span>をする</span>
   </a>
 
+  <?php //パンくず
+  echo '<div class="bread-nav">';
+  if( function_exists( 'aioseo_breadcrumbs' ) ){ aioseo_breadcrumbs(); }
+  echo '</div>';
+  ?>
   <main class="main">
