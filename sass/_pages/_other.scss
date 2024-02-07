@@ -1,0 +1,36 @@
+@use '../_core/valiables' as *;
+@use '../_core/mixins' as *;
+
+/* ----------------------------------------------------------------
+  プライバシーポリシー
+---------------------------------------------------------------- */
+.src-privacy-policy{
+  margin-top: 20px;
+}
+@include res_min( map-get($BP, MD) ) {
+  .src-privacy-policy{
+    margin-top: 60px;
+  }
+}
+
+.privacy-policy{
+  .list-number{
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+  .box-border-1{
+    margin-top: 30px;
+  }
+}
+@include res_min( map-get($BP, MD) ) {
+  .privacy-policy{
+    margin-bottom: 40px;
+    .list-number{
+      margin-top: 60px;
+      margin-bottom: 60px;
+    }
+    .box-border-1{
+      margin-top: 40px;
+    }
+  }
+}

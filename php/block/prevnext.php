@@ -21,9 +21,9 @@
     $next_post = get_next_post(true);
   }
   $previous_id = $previous_post->ID;
-  $previous_date = mysql2date('Y.m.d', $previous_post->post_date);
+  $previous_date = mysql2date('Y年m月d日', $previous_post->post_date);
   $next_id = $next_post->ID;
-  $next_date = mysql2date('Y.m.d', $next_post->post_date);
+  $next_date = mysql2date('Y年m月d日', $next_post->post_date);
   $catch_thumbnail_size = 'medium';
 ?>
 <aside class="post-navi">

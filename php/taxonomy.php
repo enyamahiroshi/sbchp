@@ -26,7 +26,7 @@
             <a href="<?php the_permalink(); ?>" class="post-eyecatch"><img src="<?php echo $thumbNail; ?>" alt=""></a>
             <div class="post-category"><?php single_term_title(); ?></div>
             <a href="<?php the_permalink(); ?>" class="post-title"><?php the_title(); ?></a>
-            <div class="post-date"><?php the_time('Y.m.d'); ?></div>
+            <time class="post-date"><?php the_time('Y年m月d日'); ?></time>
           </article>
           <?php endwhile; ?>
         </div>

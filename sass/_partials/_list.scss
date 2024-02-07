@@ -4,40 +4,290 @@
 /* ----------------------------------------------------------------
   リスト
 ---------------------------------------------------------------- */
-.list01 {
-  .list01__item {
-    margin-top: 10px;
-    padding: 0.5em 1.2em;
-    background-color: #fff;
-    border: 1px solid rgba(51,51,51,.65);
-    border-radius: 3px;
-    font-size: 1.6rem;
-    line-height: 1.4;
-    @include flex(nowrap, center, center);
-    &::before {
-      content: '';
-      flex: 0 0 26px;
-      height: 26px;
-      background-image: url(./assets/images/common/icon-chceck.svg);
-      background-repeat: no-repeat;
-      background-position: right center;
-      background-size: 100%;
-      margin-right: 14px;
+
+//moreボタン
+.link-list-more{
+  margin-top: 1em;
+}
+
+//リスト：モデルハウスTOPICS - 各モデルハウスページなど
+.list-modelhouse-topics{
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: 100%;
+  gap: 16px;
+  .list-item {
+    .post-group {
+      display: grid;
+      grid-template-columns: 23% 1fr;
+      -moz-column-gap: 12px;
+           column-gap: 12px;
+      .post-image {
+        background: $sbcBeige1;
+        aspect-ratio: 1 / 1;
+        img{
+          width: 100%;
+          height: 100%;
+          -o-object-fit: cover;
+             object-fit: cover;
+        }
+      }
+      .post-detail {
+        .post-title {
+          margin-top: -0.25em;
+          font-size: 1.6rem;
+          font-weight: 500;
+        }
+        .post-meta-date {
+          margin-top: 0.2em;
+          font-size: 1.2rem;
+          line-height: 1.3;
+        }
+        .post-meta-modelhouse-name {
+          margin-top: 0.5em;
+          font-size: 1.2rem;
+          line-height: 1.3;
+        }
+      }
     }
   }
 }
 @include res_min( map-get($BP, MD) ) {
-  .list01 {
-    @include flex(wrap, center, stretch);
-    gap: 25px;
-    .list01__item {
-      margin-top: 0;
-      padding: 0.5em 1.8em;
-      border-radius: 5px;
-      height: 60px;
-      font-size: 2.5rem;
-      line-height: 1.3;
-      white-space: nowrap;
+  .list-modelhouse-topics{
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px 12px;
+    .list-item {
+      .post-group {
+        display: grid;
+        grid-template-columns: 23% 1fr;
+        -moz-column-gap: 12px;
+             column-gap: 12px;
+        .post-detail {
+          .post-title {
+            font-size: 1.8rem;
+          }
+          .post-meta-date {
+            margin-top: 0.1em;
+          }
+          .post-meta-modelhouse-name {
+            margin-top: 0.3em;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+//リスト：モデルハウスTOPICS - 各パーク
+.list-modelhouse-topics-park{
+  @extend .list-modelhouse-topics;
+  .list-item {
+    padding-bottom: 15px;
+    border-bottom: 1px solid $sbcBeige2;
+    .post-group {
+      grid-template-columns: 26% 1fr;
+      gap: 8px 15px;
+      .post-detail-wrap{
+        display: contents;
+      }
+      .post-detail {
+        .post-title {
+          font-size: 1.8rem;
+          font-weight: 700;
+        }
+        .post-meta-date {
+          font-size: 1.3rem;
+          line-height: 1.5;
+        }
+        .post-meta-modelhouse-name {
+          margin-top: 0.3em;
+          font-size: 1.4rem;
+        }
+      }
+      .post-overview{
+        grid-row: 2;
+        grid-column: 1 / span 2;
+        font-size: 1.4rem;
+        line-height: 150%;
+      }
+    }
+  }
+}
+@include res_min( map-get($BP, MD) ) {
+  .list-modelhouse-topics-park{
+    grid-template-columns: 100%;
+    gap: 12px;
+    .list-item {
+      .post-group {
+        grid-template-columns: 105px calc(100% - 105px - 13px);
+        -moz-column-gap: 13px;
+             column-gap: 13px;
+        .post-detail-wrap{
+          display: block;
+        }
+        .post-detail {
+          .post-meta-date {
+            margin-top: 0.3em;
+            font-size: 1.4rem;
+          }
+        }
+        .post-overview{
+          margin-top: 0.4em;
+          font-size: 1.6rem;
+          p{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+//モデルハウス一覧
+.list-modelhouse {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 16px;
+	.list-item {
+		.post-group {
+      padding-bottom: 10px;
+      height: 100%;
+      @include flex(nowrap, flex-end, stretch);
+      flex-direction: column;
+      background-color: $sbcWhite;
+      border-radius: 8px;
+      overflow: hidden;
+			.post-image {
+        aspect-ratio: 175 / 129;
+        img{
+          width: 100%;
+          height: 100%;
+          -o-object-fit: cover;
+             object-fit: cover;
+        }
+			}
+      .modelhouse-logo {
+        margin-top: 7px;
+        padding: 0 7px;
+        vertical-align: bottom;
+        white-space: nowrap;
+        overflow: hidden;
+        img{
+          width: auto;
+          max-width: 100%;
+          max-height: 25px;
+        }
+      }
+      .modelhouse-name {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        padding: 0 7px;
+        font-size: 1.6rem;
+        font-weight: 700;
+        line-height: 1.4;
+      }
+      .more-text {
+        margin-top: auto;
+        padding: 0 7px;
+        font-size: 1.3rem;
+        letter-spacing: 0;
+        white-space: nowrap;
+        @include flex(nowrap, flex-end, center);
+        &::before{
+          content: '';
+          margin-right: 6px;
+          width: 100%;
+          height: 1px;
+          background-color: $sbcBeige2;
+        }
+        &::after{
+          content: '';
+          margin-left: 3px;
+          flex: 0 0 14px;
+          height: 20px;
+          background-color: $sbcOrange;
+          -webkit-mask-image: url(./assets/images/common/ico-arrow-r.svg);
+                  mask-image: url(./assets/images/common/ico-arrow-r.svg);
+          -webkit-mask-repeat: no-repeat;
+                  mask-repeat: no-repeat;
+          -webkit-mask-position: center;
+                  mask-position: center;
+          -webkit-mask-size: 100%;
+                  mask-size: 100%;
+        }
+      }
+		}
+	}
+}
+@include res_min( map-get($BP, LG) ) {
+  .list-modelhouse {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    @include res_min( map-get($BP, XXL) ) {
+      grid-template-columns: repeat(auto-fill, minmax(306px, 1fr));
+    }
+    gap: 20px;
+    .list-item {
+      .post-group {
+        padding-bottom: 12px;
+        .modelhouse-logo {
+          margin-top: 10px;
+          padding: 0 10px;
+          img{
+            max-height: 27px;
+          }
+        }
+        .modelhouse-name {
+          margin-top: 8px;
+          margin-bottom: 8px;
+          padding: 0 10px;
+          font-size: 1.8rem;
+        }
+        .more-text {
+          padding: 0 10px;
+          font-size: 1.4rem;
+        }
+      }
+    }
+  }
+}
+
+
+//番号リスト
+.list-number{
+  counter-reset: counter-num;
+  dt{
+    counter-increment: counter-num;
+    margin-top: 20px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    &::before{
+      content: counter(counter-num) ".";
+      display: inline-block;
+      text-align: right;
+      margin-right: 0.5em;
+    }
+  }
+  dd{
+    margin-top: 5px;
+    margin-left: 1.5em;
+  }
+}
+@include res_min( map-get($BP, MD) ) {
+  .list-number{
+    dt{
+      margin-top: 40px;
+      font-size: 2rem;
+      &::before{
+        margin-right: 0.5em;
+      }
+    }
+    dd{
+      margin-top: 8px;
+      margin-left: 1.6em;
     }
   }
 }

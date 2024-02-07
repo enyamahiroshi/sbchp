@@ -40,33 +40,17 @@ a img {
 
 
 /* ----------------------------------------------------------------
-  アイコンタイプ
----------------------------------------------------------------- */
-// 左に > アイコン
-.link_type_arrow_left1 {
-  padding: 0 0 0 18px;
-  position: relative;
-  &::before {
-    content: '';
-    width: 7px;
-    height: 100%;
-    background-image: url(./assets/images/common/ico_arrow_r_white.svg);
-    background-repeat: no-repeat;
-    background-position: left top;
-    background-size: 100% auto;
-    position: absolute;
-    top: 0.4em;
-    left: 0;
-  }
-}
-
-
-/* ----------------------------------------------------------------
   ボタンタイプ
 ---------------------------------------------------------------- */
 .button-wrap {
-  @include flex(wrap, center, stretch);
+  @include flex(wrap, center, center);
   gap: 1em;
+  &.--left{
+    justify-content: flex-start;
+  }
+  &.--right{
+    justify-content: flex-end;
+  }
 }
 @include res_min( map-get($BP, MD) ) {
   .button-wrap {
@@ -74,170 +58,224 @@ a img {
   }
 }
 
-.button {
-  // 基本
-  border-radius: 3px;
-  font-size: 1.3rem;
-  line-height: 1.3;
-  letter-spacing: 0.03em;
-  text-align: center;
-  position: relative;
-  &:link, &:visited {
-    color: #fff;
-    background-color: $mainColor;
-  }
-  &:hover, &:active {
-    opacity: 0.8;
-    text-decoration: none;
-  }
-
-  // 個別
-  &--01 {
-    padding: 13px 30px;
-    margin-top: 40px;
-    border-radius: 4px;
-    font-size: 1.8rem;
-  }
-  &--02 {
-    padding: 10px 1em;
-    margin-top: 30px;
-    width: 89.5%;
-    border-radius: 4px;
-    font-size: 1.5rem;
-  }
-  &--03,
-  &--03_white {
-    padding: 5px 8px;
-    &::after {
-      content: '';
-      display: inline-block;
-      margin-left: 6px;
-      width: 9px;
-      height: 1em;
-      vertical-align: bottom;
-      background-image: url(./assets/images/common/icon-arrow3.svg);
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: 100% auto;
-    }
-  }
-  &--03_white {
-    &:link, &:visited {
-      color: $mainColor;
-      background-color: #fff;
-    }
-    &::after {
-      background-image: url(./assets/images/common/icon-arrow4.svg);
-    }
-  }
-  &--inpuiry,
-  &--inpuiry-other {
-    padding: 12px 8px;
-    width: 100%;
-    font-size: 1.5rem;
-    &::after {
-      content: '';
-      display: inline-block;
-      margin-left: 9px;
-      width: 9px;
-      height: 1em;
-      vertical-align: -0.15em;
-      background-image: url(./assets/images/common/icon-triangle-yellow.svg);
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: 100% auto;
-    }
-    &:hover, &:active {
-      opacity: 1;
-      background-color: #fff;
-      color: $mainColor;
-      &::after {
-        background-image: url(./assets/images/common/icon-triangle-blue.svg);
-      }
-    }
-  }
-  &--inpuiry-other {
-    &:link, &:visited {
-      color: $mainColor;
-      background-color: $gray;
-      &::after {
-        background-image: url(./assets/images/common/icon-triangle-blue.svg);
-      }
-    }
-    &:hover, &:active {
-      opacity: 1;
-      background-color: #fff;
-      color: $mainColor;
-      &::after {
-        background-image: url(./assets/images/common/icon-triangle-blue.svg);
-      }
-    }
+//共通
+.button{
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  font-weight: 500;
+  line-height: 1;
+  &:hover, &:active{
+    opacity: 1;
+    color: $sbcWhite;
   }
 }
 @include res_min( map-get($BP, MD) ) {
-  .button {
-    // 基本
-    border-radius: 4px;
-    font-size: 2rem;
-    letter-spacing: 0.05em;
+  .button{
+    border-radius: 6px;
+  }
+}
 
-    // 個別
-    &--01 {
-      padding: 18px 40px;
-      margin-top: 70px;
-      font-size: 2rem;
+//営業日カレンダー（標準）
+.button-calender{
+  gap: 10px;
+  padding: 13px 40px;
+  border-radius: 5px;
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 1.3;
+  &::before{
+    content: '';
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    background-color: $sbcBlack;
+    -webkit-mask-image: url(./assets/images/common/ico-calendar.svg);
+            mask-image: url(./assets/images/common/ico-calendar.svg);
+    -webkit-mask-position: center;
+            mask-position: center;
+    -webkit-mask-size: cover;
+            mask-size: cover;
+  }
+  &:link, &:visited{
+    background-color: $sbcBeige1;
+  }
+  &:hover, &:active{
+    background-color: $sbcLinkColor;
+    &::before{
+      background-color: $sbcWhite;
     }
-    &--02 {
-      padding: 12px 1.5em;
-      margin-top: 70px;
-      width: auto;
-      font-size: 1.6rem;
+  }
+}
+
+//営業日カレンダー（小）
+.button-calender-s{
+  @extend .button-calender;
+  gap: 6px;
+  padding: 7px 15px;
+  border-radius: 4px;
+  font-size: 1.4rem;
+  letter-spacing: 0;
+  &::before{
+    width: 17px;
+    height: 17px;
+  }
+}
+
+//見学予約
+.button-reserve-l{
+  gap: 8px;
+  padding: 13px 10px;
+  font-size: 2rem;
+  letter-spacing: 0;
+  &:link, &:visited{
+    background-color: $sbcLinkColor;
+    color: $sbcWhite;
+  }
+  &:hover, &:active{
+    background-color: $sbcLinkColorAwai;
+  }
+  &::before{
+    content: '';
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    background-color: $sbcWhite;
+    -webkit-mask-image: url(./assets/images/common/ico-calendar.svg);
+            mask-image: url(./assets/images/common/ico-calendar.svg);
+    -webkit-mask-position: center;
+            mask-position: center;
+    -webkit-mask-size: cover;
+            mask-size: cover;
+    @include transition();
+  }
+}
+
+//電話
+.button-tel{
+  @extend .button-calender;
+  gap: 10px;
+  padding: 0 5px;
+  height: 44px;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 0.09rem;
+  white-space: nowrap;
+  &::before{
+    width: 18px;
+    height: 18px;
+    background-color: $sbcGray5;
+    -webkit-mask-image: url(./assets/images/common/ico-tel.svg);
+            mask-image: url(./assets/images/common/ico-tel.svg);
+  }
+}
+
+//外部サイトへ
+.button-blank{
+  @extend .button-tel;
+  gap: 7px;
+  font-size: 1.6rem;
+  &::before {
+    content: '';
+    width: 1em;
+    height: 1em;
+    background-color: $sbcGray5;
+    -webkit-mask-image: url(./assets/images/common/ico-blank.svg);
+            mask-image: url(./assets/images/common/ico-blank.svg);
+    -webkit-mask-position: center;
+            mask-position: center;
+    -webkit-mask-size: cover;
+            mask-size: cover;
+  }
+  &:hover, &:active{
+    background-color: $sbcLinkColor;
+    &::before{
+      background-color: $sbcWhite;
     }
-    &--03,
-    &--03_white {
-      padding: 0;
-      font-size: 1.4rem;
-      &:link, &:visited {
-        color: $textBaseColor;
-        background-color: transparent;
-      }
-      &::after {
-        margin-left: 7px;
-        width: 14px;
-        background-image: url(./assets/images/common/icon-arrow5.svg);
-      }
-    }
-    &--03_white {
-      &:link, &:visited {
-        color: #fff;
-      }
-      &::after {
-        background-image: url(./assets/images/common/icon-arrow3.svg);
-      }
-    }
-    @include res_min( map-get($BP, MD) ) {
-    &--inpuiry,
-    &--inpuiry-other {
-      padding: 1em 22px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.4);
-      border-radius: 4px 0 0 4px;
-      width: auto;
-      font-size: 1.8rem;
-      line-height: 1;
-      -webkit-writing-mode: vertical-rl;
-          -ms-writing-mode: tb-rl;
-              writing-mode: vertical-rl;
-      white-space: nowrap;
-      &::after {
-        margin-left: 0;
-        margin-top: 8px;
-        background-position: left calc(50% + 1px) top;
-        width: 1em;
-        height: 11px;
-        vertical-align: 0;
-        background-size: auto 100%;
-      }
-    }
+  }
+}
+
+//Mapボタン
+.button-map{
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 5px 4px;
+  border-radius: 3px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0;
+  &:link, &:visited{
+    background-color: $sbcBeige3;
+    color: $sbcWhite;
+  }
+  &:hover, &:active{
+    opacity: 1;
+    background-color: $sbcBlack;
+  }
+}
+
+//一覧を見る
+.button-arrow-right{
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  &::after{
+    content: '';
+    margin-top: 2px;
+    width: 16px;
+    height: 16px;
+    background-color: $sbcOrange;
+    -webkit-mask-image: url(./assets/images/common/ico-arrow-r.svg);
+            mask-image: url(./assets/images/common/ico-arrow-r.svg);
+    -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+            mask-position: center;
+    -webkit-mask-size: 100%;
+            mask-size: 100%;
+  }
+}
+
+//クリックして拡大ボタン等
+.button-plus{
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 30px 4px;
+  border: 1px solid $sbcBeige3;
+  border-radius: 15px;
+  font-size: 1.4rem;
+  line-height: 1;
+  @include transition();
+  &::after{
+    content: '';
+    margin-top: 2px;
+    width: 20px;
+    height: 20px;
+    background-color: $sbcBlack;
+    -webkit-mask-image: url(./assets/images/common/ico-loupe.svg);
+            mask-image: url(./assets/images/common/ico-loupe.svg);
+    -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+            mask-position: center;
+    -webkit-mask-size: 100%;
+            mask-size: 100%;
+  }
+  &:link, &:visited{
+    background-color: $sbcBeige3;
+    color: $sbcWhite;
+  }
+  &:hover, &:active{
+    opacity: 1;
+    border-color: $sbcBlack;
+    background-color: $sbcBlack;
+    color: $sbcWhite;
+    &::after{
+      background-color: $sbcWhite;
     }
   }
 }
@@ -359,30 +397,29 @@ a img {
   その他
 ---------------------------------------------------------------- */
 // blank
-a[target="_blank"] {
-  position: relative;
-  &::after {
-    content: '';
-    display: inline-block;
-    margin-left: 5px;
-    width: 13px;
-    height: 13px;
-    background-image: url(./assets/images/common/icon-blank.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100%;
-  }
-}
+// a[target="_blank"]:not(.not-icon) {
+//   position: relative;
+//   &::before {
+//     content: '';
+//     width: 1em;
+//     height: 1em;
+//     background-color: $sbcGray5;
+//     -webkit-mask-image: url(./assets/images/common/ico-blank.svg);
+//             mask-image: url(./assets/images/common/ico-blank.svg);
+//     -webkit-mask-position: center;
+//             mask-position: center;
+//     -webkit-mask-size: cover;
+//             mask-size: cover;
+//   }
+// }
 
 // telリンク
 .link-tel {
-  &:hover, &:focus {
-    outline: none;
-    text-decoration: none;
+  line-height: 1.2;
+  &:link, &:visited{
+    border-bottom: 1px solid $sbcGray4;
+  }
+  &:hover, &:active{
+    font-weight: 700;
   }
 }
-// @include res_min( map-get($BP, MD) ) {
-//   .link-tel {
-//     pointer-events: none;
-//   }
-// }

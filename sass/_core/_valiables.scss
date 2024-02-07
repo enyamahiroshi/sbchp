@@ -6,21 +6,21 @@ $BP: (
   SM: 400,
   MD: 768,
   LG: 1024,
-  XL: 1400
+  XL: 1260,
+  XXL: 1400
 );
 
 //Maxサイズ設定
 $maxSize: (
-  xs: 800,
-   s: 1000,
-base: 1260,
-   l: 1400,
-  xl: 1920
+  xs: 500,
+   s: 800,
+base: 1000,
+   l: 1260,
+  xl: 1400
 );
 
 $ff-go: 'Zen Kaku Gothic New', sans-serif; // R:400, M:500, B:700
 $ff-go2: 'Noto Sans CJK JP', sans-serif; // R:400, M:500, B:700, BLK:900
-// $ff-go: 'Noto Sans JP', sans-serif;
 // $ff-go: Helvetica, "Helvetica Neue", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro W3", sans-serif;
 // $ff-go: "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", sans-serif;
 // $ff-min: '游明朝', '游明朝体', 'Yu Mincho', YuMincho, serif;

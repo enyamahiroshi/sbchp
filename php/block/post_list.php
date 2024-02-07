@@ -18,7 +18,7 @@ $cat_name = $category[0]->cat_name;
 $cat_slug = $category[0]->category_nicename;
 ?>
   <li class="post-list__item">
-    <div class="post-date"><?php the_time('Y.m.d'); ?></div>
+    <time class="post-date"><?php the_time('Y年m月d日'); ?></time>
     <?php /* <div class="post-category post-category--<?php echo $cat_slug; ?>"><?php echo $cat_name; ?></div> */ ?>
     <a href="<?php the_permalink(); ?>" class="post-link"><?php the_title(); ?></a>
   </li>

@@ -1,0 +1,137 @@
+@use '../_core/valiables' as *;
+@use '../_core/mixins' as *;
+
+/* ----------------------------------------------------------------
+  イベント＆NEWSページ
+---------------------------------------------------------------- */
+.sec-list-event-news{
+  margin-top: 30px;
+}
+@include res_min( map-get($BP, MD) ) {
+  .sec-list-event-news{
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+}
+
+//リスト
+.list-event-news{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+  .list-item {
+    min-width: 100%;
+    .list-item__link {
+      display: flex;
+      padding: 10px 10px 15px;
+      flex-direction: column;
+      align-items: flex-start;
+      border: 1px solid $sbcBeige3;
+      .post-image-container{
+        .post-image{
+          aspect-ratio: 346 / 157;
+          img{
+            width: 100%;
+            height: 100%;
+            -o-object-fit: cover;
+               object-fit: cover;
+          }
+        }
+      }
+      .post-detail{
+        margin-top: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .post-name {
+        order: 2;
+        margin-top: 10px;
+        font-size: 1.8rem;
+        font-weight: 700;
+        line-height: 1.4;
+      }
+      .post-date{
+        order: 1;
+        font-size: 1.5rem;
+      }
+      .post-overview{
+        order: 3;
+        margin-top: 6px;
+        p{
+          &::after{
+            content: '...';
+            display: inline-block;
+          }
+        }
+      }
+      .more-text {
+        order: 4;
+        align-self: flex-end;
+        font-size: 1.4rem;
+        letter-spacing: 0;
+        white-space: nowrap;
+        @include flex(nowrap, flex-end, center);
+        &::after{
+          content: '';
+          margin-left: 3px;
+          flex: 0 0 14px;
+          height: 20px;
+          background-color: $sbcOrange;
+          -webkit-mask-image: url(./assets/images/common/ico-arrow-r.svg);
+                  mask-image: url(./assets/images/common/ico-arrow-r.svg);
+          -webkit-mask-repeat: no-repeat;
+                  mask-repeat: no-repeat;
+          -webkit-mask-position: center;
+                  mask-position: center;
+          -webkit-mask-size: 100%;
+                  mask-size: 100%;
+        }
+      }
+    }
+  }
+}
+@include res_min( map-get($BP, MD) ) {
+  .list-event-news{
+    gap: 20px;
+    .list-item {
+      .list-item__link {
+        padding: 0;
+        flex-direction: row;
+        align-items: stretch;
+        border: none;
+        gap: 21px;
+        .post-image-container{
+          width: 268px;
+          .post-image{
+            aspect-ratio: 1 / 1;
+          }
+        }
+        .post-detail{
+          justify-content: flex-end;
+          margin-top: 0;
+          width: calc(100% - 268px);
+        }
+        .post-name {
+          margin-top: 10px;
+          font-size: 2.4rem;
+        }
+        .post-date{
+          font-size: 1.6rem;
+        }
+        .post-overview{
+          order: 3;
+          margin-top: 16px;
+          margin-bottom: 10px;
+          font-size: 1.6rem;
+        }
+        .more-text {
+          margin-top: auto;
+          margin-bottom: 5px;
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}

@@ -397,7 +397,7 @@
     }
     &:hover, &:active {
       .service-link__content::before {
-        background-image: url(./assets/images/common/icon-arrow8.svg);
+        background-image: url(./assets/images/common/ico-arrow8.svg);
       }
     }
     .service-link__content {
@@ -413,7 +413,7 @@
         content: '';
         width: 20px;
         height: 100%;
-        background-image: url(./assets/images/common/icon-arrow7.svg);
+        background-image: url(./assets/images/common/ico-arrow7.svg);
         background-repeat: no-repeat;
         background-position: center;
         background-size: 100%;
@@ -703,49 +703,7 @@
 }
 
 
-/* ----------------------------------------------------------------
-  post
----------------------------------------------------------------- */
-.sec-post {
-  .post-header {
-    .post-title {
-      font-size: 2rem;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-      line-height: 1.64;
-    }
-    .post-meta {
-      margin-top: 10px;
-      .post-date {
-        margin-right: 5px;
-        font-size: 1.3rem;
-      }
-    }
-  }
-  .post-body {
-    margin-top: 40px;
-  }
-}
-@include res_min( map-get($BP, MD) ) {
-  .sec-post {
-    .post-header {
-      .post-title {
-        font-size: 2.6rem;
-        line-height: 1.75;
-      }
-      .post-meta {
-        margin-top: 10px;
-        .post-date {
-          margin-right: 8px;
-          font-size: 1.4rem;
-        }
-      }
-    }
-    .post-body {
-      margin-top: 20px;
-    }
-  }
-}
+
 
 
 /* ----------------------------------------------------------------
@@ -773,35 +731,6 @@
       background: transparent;
       font-size: 1.8rem;
       line-height: 2;
-    }
-  }
-}
-
-
-/* ----------------------------------------------------------------
-  プライバシーポリシー
----------------------------------------------------------------- */
-.privacypolicy {
-  margin-top: 40px;
-  .title03 {
-    &:not(:first-of-type) {
-      margin-top: 25px;
-    }
-  }
-  p {
-    margin-top: 15px;
-  }
-}
-@include res_min( map-get($BP, MD) ) {
-  .privacypolicy {
-    margin-top: 70px;
-    .title03 {
-      &:not(:first-of-type) {
-        margin-top: 40px;
-      }
-    }
-    p {
-      margin-top: 25px;
     }
   }
 }

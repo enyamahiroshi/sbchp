@@ -18,12 +18,20 @@ Author URI:
 @use '_partials/link';
 @use '_partials/list';
 @use '_partials/headline';
-@use '_partials/post';
 @use '_partials/header';
 @use '_partials/footer';
-@use '_partials/pages';
+// @use '_partials/pages';
 @use '_partials/form';
-@use '_partials/editor';
+// @use '_partials/editor';
+@use '_partials/post';
+
+@use '_pages/park'; //各ハウジングパーク案内ページ
+@use '_pages/design'; //デザインから選ぶページ
+@use '_pages/modelhouse'; //各モデルハウスページ
+@use '_pages/event-news'; //イベント＆NEWSページ
+@use '_pages/oyakudachi-column';
+@use '_pages/single';
+@use '_pages/other';
 
 @use '_scripts/swiper';
 // @use '_scripts/scroll-hint';

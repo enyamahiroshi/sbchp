@@ -321,7 +321,7 @@ textarea {
         }
         &::after {
           background-color: #fff;
-          background-image: url(./assets/images/common/icon-checkmark.svg);
+          background-image: url(./assets/images/common/ico-checkmark.svg);
           background-repeat: no-repeat;
           background-position: center center;
           background-size: 100%;
@@ -403,7 +403,7 @@ textarea {
       content: '';
       width: 40px;
       height: 100%;
-      background-image: url(./assets/images/common/icon-arrow3.svg);
+      background-image: url(./assets/images/common/ico-arrow3.svg);
       background-repeat: no-repeat;
       background-position: center center;
       background-size: 10px;
@@ -489,7 +489,7 @@ textarea {
     @include transition();
     width: 100%;
     background-color: $keyColor;
-    background-image: url(./assets/images/common/icon-arrow01.svg);
+    background-image: url(./assets/images/common/ico-arrow01.svg);
     background-repeat: no-repeat;
     background-position: right 18px center;
     background-size: auto 11px;
@@ -502,7 +502,7 @@ textarea {
     // 戻る
     &.button-back {
       background-color: #ccc;
-      background-image: url(./assets/images/common/icon-arrow02.svg);
+      background-image: url(./assets/images/common/ico-arrow02.svg);
       background-position: left 18px center;
     }
     // 送信

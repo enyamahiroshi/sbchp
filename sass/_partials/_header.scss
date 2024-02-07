@@ -15,7 +15,7 @@ $headerHighPC: 96;
   position: relative;
   left: 0;
   top: 0;
-  z-index: 9;
+  z-index: 20;
 
   padding: 0 0 0 16px;
   width: 100%;
@@ -24,13 +24,15 @@ $headerHighPC: 96;
   box-shadow: 0 2px 3px rgba(0,0,0,0);
 
   .header__logo-wrap{
+    margin-right: 1em;
+    align-self: stretch;
+    flex: 0 1 auto;
+    display: flex;
+    align-items: center;
     .header__logo {
-      flex: 0 1 auto;
-      margin-right: 1em;
       line-height: 1;
       img {
         width: auto;
-        height: auto;
         max-height: 16px;
       }
     }
@@ -67,8 +69,8 @@ $headerHighPC: 96;
       width: 6.6px;
       height: 11px;
       background-color: $sbcWhite;
-      -webkit-mask-image: url(./assets/images/common/icon-arrow.svg);
-              mask-image: url(./assets/images/common/icon-arrow.svg);
+      -webkit-mask-image: url(./assets/images/common/ico-arrow.svg);
+              mask-image: url(./assets/images/common/ico-arrow.svg);
       -webkit-mask-repeat: no-repeat;
               mask-repeat: no-repeat;
       -webkit-mask-position: center;
@@ -78,12 +80,14 @@ $headerHighPC: 96;
     }
   }
 }
-@include res_min( map-get($BP, XL) ) {
+@include res_min( map-get($BP, XXL) ) {
   .header {
     padding: 0 70px 0 34px;
     height: #{$headerHighPC + px};
-
     .header__logo-wrap{
+      margin-right: 0;
+      display: block;
+      align-self: center;
       .header__logo {
         img {
           height: 26px;
@@ -194,7 +198,7 @@ $headerHighPC: 96;
     overflow: hidden;
   }
 }
-@include res_min( map-get($BP, XL) ) {
+@include res_min( map-get($BP, XXL) ) {
   .global-menu {
     align-self: stretch;
     opacity: 1;
@@ -299,7 +303,7 @@ $headerHighPC: 96;
     }
   }
 }
-@include res_min( map-get($BP, XL) ) {
+@include res_min( map-get($BP, XXL) ) {
   .menu-bar {
     display: none;
   }
@@ -325,7 +329,7 @@ body.is-fixed  {
   box-shadow: 0 2px 3px rgba(0,0,0,0.1);
   transform: translateY(0);
 }
-@include res_min( map-get($BP, XL) ) {
+@include res_min( map-get($BP, XXL) ) {
   body.is-hide,
   body.is-fixed  {
     padding-top: #{$headerHighPC + px};

@@ -17,7 +17,7 @@
   <header class="header">
     <div class="header__logo-wrap">
       <a href="<?php echo esc_url( home_url() ); ?>/" class="header__logo">
-        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/common/logo-main.svg" alt="SBCハウジングパーク">
+        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/common/logo-main.svg" alt="SBCハウジングパーク" width=262" height="26">
       </a>
       <div class="site-copy">長野県の住宅総合展示場_長野市・上田市・佐久市に3会場</div>
     </div>
@@ -43,7 +43,7 @@
     <button class="menu-bar js-tgl-menu" type="button"><span class="menu-bar-line"></span></button>
   </header>
 
-  <a href="<?php echo esc_url( home_url() ); ?>/" class="button-reserve --fixed">
+  <a href="<?php echo esc_url( home_url() ); ?>/" class="button-reserve button-reserve--fixed">
     <span>今すぐ</span><em>見学予約</em><span>をする</span>
   </a>
 

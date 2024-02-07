@@ -15,7 +15,6 @@
   .pc { display: inline; }
 }
 
-
 // SNSボタン
 .sns-links {
   @include flex(nowrap, center, stretch);
@@ -27,12 +26,12 @@
     -webkit-mask-size: cover;
             mask-size: cover;
     &--facebook{
-      -webkit-mask-image: url(./assets/images/common/icon-facebook.svg);
-              mask-image: url(./assets/images/common/icon-facebook.svg);
+      -webkit-mask-image: url(./assets/images/common/ico-facebook.svg);
+              mask-image: url(./assets/images/common/ico-facebook.svg);
     }
     &--instagram{
-      -webkit-mask-image: url(./assets/images/common/icon-instagram.svg);
-              mask-image: url(./assets/images/common/icon-instagram.svg);
+      -webkit-mask-image: url(./assets/images/common/ico-instagram.svg);
+              mask-image: url(./assets/images/common/ico-instagram.svg);
     }
     &:hover{
       background-color: $sbcLinkColor;
@@ -48,13 +47,12 @@
   }
 }
 
-
 //見学予約ボタン：PC時は右にfixed
-.button-reserve.--fixed{
+.button-reserve.button-reserve--fixed{
   display: none;
 }
-@include res_min( map-get($BP, XL) ) {
-  .button-reserve.--fixed{
+@include res_min( map-get($BP, XXL) ) {
+  .button-reserve.button-reserve--fixed{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -62,7 +60,7 @@
     position: fixed;
     right: 50px;
     top: 165px;
-    z-index: 10;
+    z-index: 21;
     flex-direction: column;
     gap: 14px;
     width: 168px;
@@ -90,8 +88,8 @@
           width: 6.6px;
           height: 11px;
           background-color: $sbcWhite;
-          -webkit-mask-image: url(./assets/images/common/icon-arrow.svg);
-                  mask-image: url(./assets/images/common/icon-arrow.svg);
+          -webkit-mask-image: url(./assets/images/common/ico-arrow.svg);
+                  mask-image: url(./assets/images/common/ico-arrow.svg);
           -webkit-mask-repeat: no-repeat;
                   mask-repeat: no-repeat;
           -webkit-mask-position: center;
@@ -122,13 +120,13 @@
   }
 }
 
-
 //メインコンテンツ
-.main {
+.main{
   margin: 0 12px;
+  padding-bottom: 40px;
 }
 @include res_min( map-get($BP, MD) ) {
-  .main {
+  .main{
     margin: 0;
   }
 }
@@ -142,114 +140,161 @@
     & > .inner {
       @include maxW();
     }
+    &.sec-s{
+      & > .inner {
+        @include maxW( map-get($maxSize, s) );
+      }
+    }
+    &.sec-l{
+      & > .inner {
+        @include maxW( map-get($maxSize, l) );
+      }
+    }
+    &.sec-full{
+      & > .inner {
+        max-width: none;
+        padding-left: 32px;
+        padding-right: 32px;
+      }
+    }
   }
 }
 
+
 // ページヘッダー
 .page-header {
-  @include flex(nowrap, center, center);
-  margin-left: -12px;
-  margin-right: -12px;
-  height: clamp(90px, 26vw, 327px);
-  background-image: url(./assets/images/page-header/pheader005.jpg); // 基本画像
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  .page-header__title {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.6rem;
-    color: #fff;
-    line-height: 1.4;
-    letter-spacing: 0.015em;
-    position: relative;
-    z-index: 1;
-    &::before {
-      content: '';
-      width: calc(100% + 2.6em);
-      height: 35px;
-      background-color: $mainColor;
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: skewX(-20deg) translate(calc(-50% - 0.22em),-47%);
-      z-index: -1;
+  .inner{
+    @include flex(nowrap, flex-end, flex-end);
+    padding-bottom: 6px;
+    border-bottom: 1px solid $sbcBeige2;
+    .page-header__sub{
+      font-size: 1.2rem;
+      font-style: normal;
+      font-weight: 400;
     }
-  }
-
-  // 各ページごと
-  .service &,
-  .service-child & {
-    background-image: url(./assets/images/page-header/pheader001.jpg);
-  }
-  .works &,
-  .tax-works_category & {
-    background-image: url(./assets/images/page-header/pheader002.jpg);
-    background-position: right 35% center;
-  }
-  .history & {
-    background-image: url(./assets/images/page-header/pheader004.jpg);
-  }
-  .blog & {
-    background-position: right 30% center;
-  }
-  .kurumano-chie-bukuro &,
-  .tax-kurumano-chie-bukuro_category & {
-    background-image: url(./assets/images/page-header/pheader006.jpg);
-    background-position: right 10% center;
-  }
-  .recruit &,
-  .category-recruit & {
-    background-image: url(./assets/images/page-header/pheader003.jpg);
-    background-position: right center;
+    .page-header__title {
+      margin-left: auto;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 0;
+      //個別
+      &.page-header__title--modelhouse{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        margin-bottom: 4px;
+        gap: 13px;
+        .img-park_logo{
+          width: auto;
+          height: 12px;
+        }
+      }
+      &.page-header__title--event-news{
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+        gap: 8px;
+        font-size: 2rem;
+        img{
+          margin-top: 2px;
+          width: auto;
+          height: 11px;
+        }
+      }
+    }
   }
 }
 @include res_min( map-get($BP, MD) ) {
   .page-header {
-    margin-left: 0;
-    margin-right: 0;
-    .page-header__title {
-      font-size: 3rem;
-      &::before {
-        width: calc(100% + 2.2em);
-        height: 60px;
+    @include maxW();
+    .inner{
+      @include flex(nowrap, flex-end, flex-end);
+      padding-bottom: 16px;
+      .page-header__title {
+        font-size: 2rem;
+        line-height: 1.2;
+        //個別
+        &.page-header__title--modelhouse{
+          flex-direction: row;
+          align-items: center;
+          margin-bottom: -5px;
+          gap: 15px;
+          .img-park_logo{
+            height: 17px;
+          }
+        }
+        &.page-header__title--event-news{
+          gap: 11px;
+          img{
+            width: auto;
+            height: 12px;
+          }
+        }
       }
     }
-    // 各ページごと
-    .works &,
-    .tax-works_category & {
-      background-position: center;
-    }
-    .blog & {
-      background-position: right 30% center;
-    }
-    .kurumano-chie-bukuro &,
-    .tax-kurumano-chie-bukuro_category & {
-      background-position: right center;
+  }
+}
+
+
+/* ------------------------------------
+//  テキストサイズ
+// ----------------------------------*/
+.text-s{
+  @include textStyleS;
+}
+
+
+/* ------------------------------------
+//  レイアウト
+// ----------------------------------*/
+//2カラム
+.column-layout-two{
+  display: grid;
+  grid-template-columns: 100%;
+  .column-layout-two__first{}
+  .column-layout-two__second{}
+}
+@include res_min( map-get($BP, LG) ) {
+  .column-layout-two{
+    grid-template-columns: 65% 1fr;
+    gap: 4%;
+    @include res_min( map-get($BP, XL) ) {
+      grid-template-columns: 73% 1fr;
+      gap: 4.76%;
     }
   }
 }
 
 
-//googlemap
-.g-map {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  iframe {
-    width: 100%;
-    height: 100%;
-    -o-object-fit: cover;
-       object-fit: cover;
+/* ------------------------------------
+//  ボックス
+// ----------------------------------*/
+.box-border-1{
+  padding: 15px;
+  border: 1px solid $sbcBeige2;
+  h2{
+    margin-bottom: 0.5em;
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+  .corporate-info__data{
+    margin-top: 1em;
+    .corporate-tel{
+      display: inline-block;
+      margin-right: 1em;
+    }
+    .corporate-fax{
+      display: inline-block;
+    }
   }
 }
-
-
-//キャプション
-.caption01 {
-  margin-top: 4px;
-  font-size: 1.4rem;
-  line-height: 1.5;
+@include res_min( map-get($BP, MD) ) {
+  .box-border-1{
+    padding: 20px 25px;
+    h2{
+      font-size: 2rem;
+    }
+  }
 }
 
 
@@ -257,55 +302,55 @@
 //  テーブル
 // ----------------------------------*/
 //標準
-.tbl01 {
-  width: 100%;
-  table-layout: fixed;
-  .tbl-th,
-  .tbl-td {
-    padding: 10px 0;
-    vertical-align: top;
-    line-height: 1.4;
-    border-bottom: 1px solid #DFDFDF;
-  }
-  .tbl-th {
-    width: 25%;
-  }
-  .tbl-td {
-    & > * {
-      margin-top: 10px;
-    }
-  }
+// .tbl01 {
+//   width: 100%;
+//   table-layout: fixed;
+//   .tbl-th,
+//   .tbl-td {
+//     padding: 10px 0;
+//     vertical-align: top;
+//     line-height: 1.4;
+//     border-bottom: 1px solid #DFDFDF;
+//   }
+//   .tbl-th {
+//     width: 25%;
+//   }
+//   .tbl-td {
+//     & > * {
+//       margin-top: 10px;
+//     }
+//   }
 
-  //個別
-  &--company {
-    margin-top: 30px;
-  }
-}
-@include res_min( map-get($BP, MD) ) {
-  .tbl01 {
-    .tbl-th,
-    .tbl-td {
-      padding: 16px 0;
-      line-height: 2;
-    }
-    .tbl-th {
-      width: 25%;
-    }
-    .tbl-td {
-      & > * {
-        margin-top: 10px;
-      }
-    }
+//   //個別
+//   &--company {
+//     margin-top: 30px;
+//   }
+// }
+// @include res_min( map-get($BP, MD) ) {
+//   .tbl01 {
+//     .tbl-th,
+//     .tbl-td {
+//       padding: 16px 0;
+//       line-height: 2;
+//     }
+//     .tbl-th {
+//       width: 25%;
+//     }
+//     .tbl-td {
+//       & > * {
+//         margin-top: 10px;
+//       }
+//     }
 
-    //個別
-    &--company {
-      margin-top: 30px;
-      .g-map {
-        max-width: 630px;
-      }
-    }
-  }
-}
+//     //個別
+//     &--company {
+//       margin-top: 30px;
+//       .g-map {
+//         max-width: 630px;
+//       }
+//     }
+//   }
+// }
 
 
 /* ------------------------------------

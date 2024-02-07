@@ -5,73 +5,81 @@
   フッターのレイアウト
 ---------------------------------------------------------------- */
 .footer {
-  padding: 40px 20px 15px;
-  border-top: 1px solid $mainColor;
-  text-align: center;
+  padding: 30px 20px 15px;
+  border-top: 1px solid $sbcBeige2;
 }
-@include res_min( map-get($BP, MD) ) {
+@include res_min( map-get($BP, LG) ) {
   .footer {
-    padding: 30px 40px 20px;
-    text-align: left;
+    @include maxW( map-get($maxSize, xl) );
+    padding-top: 50px;
   }
 }
 
-.footer__head {
-  .footer__head__logo {
-    .footer__head__logo__catchcopy {
-      font-size: 1.1rem;
-      font-weight: 400;
-      color: #444444;
-      letter-spacing: 0;
-      line-height: 1;
-    }
-    .footer__head__logo__image {
-      margin-top: 8px;
-      img {
-        width: 143px;
-      }
-    }
+//ナビまわりのレイアウト
+.footer__menu{
+  .footer__menu__nav{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    -moz-column-gap: 25px;
+         column-gap: 25px;
   }
-  .footer-navi {
-    display: none;
+  .sns-links{
+    margin-top: 40px;
   }
 }
-@include res_min( map-get($BP, MD) ) {
-  .footer__head {
-    @include flex(nowrap, space-between, stretch);
-    .footer__head__logo {
-      flex: 0 0 auto;
-      margin-right: 20px;
-      .footer__head__logo__catchcopy {
-        font-size: 1.2rem;
+@include res_min( map-get($BP, LG) ) {
+  .footer__menu{
+    .footer__menu__nav{
+      @include flex(nowrap, center, stretch);
+      -moz-column-gap: 0;
+           column-gap: 0;
+    }
+    .sns-links{
+      margin-top: 50px;
+    }
+  }
+
+  @include res_min( map-get($BP, XXL) ) {
+    .footer__menu{
+      @include flex(nowrap, center, center);
+      .footer__menu__nav{
       }
-      .footer__head__logo__image {
-        margin-top: 10px;
-        img {
-          width: 183px;
-        }
+      .sns-links{
+        margin-top: 0;
+        margin-left: 35px;
       }
     }
-    .footer-navi {
-      display: block;
-      .menu {
-        @include flex(wrap, flex-end, stretch);
-        row-gap: 20px;
-        -moz-column-gap: min(2vw, 16px);
-             column-gap: min(2vw, 16px);
-        .menu-item {
-          line-height: 1;
-          a {
+  }
+
+}
+
+
+//ナビメニューのデザイン
+.footer-nav{
+  .menu {
+    .menu-item {
+      &:not(:first-of-type){
+        margin-top: 1.3em;
+      }
+      line-height: 1.4;
+      a {
+      }
+      //ラベルのみで使用する
+      &.page-label{
+        & > a{
+          pointer-events: none;
+        }
+      }
+      //サブメニューがある場合
+      &.menu-item-has-children{
+        .sub-menu{
+          display: none;
+
+          margin-left: 1em;
+          .menu-item {
+            margin-top: 1em;
             font-size: 1.4rem;
-            font-weight: 400;
-            letter-spacing: 0.03em;
-            &:link, &:visited {
-              color: $textBaseColor;
-            }
-            &:hover, &:active {
-              opacity: 1;
-              font-weight: 500;
-              color: $mainColor;
+            a{
             }
           }
         }
@@ -79,179 +87,123 @@
     }
   }
 }
-
-.footer__foot {
-  margin-top: 25px;
-  .footer__foot__info {
-    .footer__foot__info__address {
-      p {
-        font-size: 1.4rem;
-        line-height: 1.3;
+@include res_min( map-get($BP, LG) ) {
+  .footer-nav{
+    &:first-of-type{
+      .menu .menu-item:first-of-type {
+        border-left: 1px solid $sbcGray4;
       }
     }
-    .footer__foot__info__number {
-      p {
-        margin-top: 20px;
-      }
-    }
-  }
-	.footer__foot__group {
-    margin-top: 36px;
-    p {
-      font-size: 1.2rem;
-      line-height: 1;
-    }
-		.footer__foot__group__icon {
-      @include flex(wrap, center, center);
-      gap: 10px;
-      margin-top: 10px;
-      .footer__foot__group__icon__momosebody {
-        img {
-          width: auto;
-          height: 21px;
-          vertical-align: top;
+    .menu {
+      @include flex(nowrap, flex-start, stretch);
+      .menu-item {
+        padding: 0 10px;
+        @include res_min( map-get($BP, XL) ) {
+          padding: 0 20px;
         }
-      }
-      .footer__foot__group__icon__centralparts {
-        img {
-          width: auto;
-          height: 23px;
-          vertical-align: top;
-        }
-      }
-		}
-	}
-  .bottun-footer {
-    display: inline-block;
-    padding: 7px 8px;
-    margin-top: 15px;
-    width: 69%;
-    max-width: 400px;
-    border-radius: 2px;
-    line-height: 1.3;
-    text-align: center;
-    &:link, &:visited {
-      border: 1px solid $textBaseColor;
-    }
-    &:hover, &:active {
-      opacity: 1;
-      background-color: $mainColor;
-      color: #fff;
-    }
-  }
-  .footer__foot__other {
-    margin-top: 35px;
-    .sns-links {
-      gap: min(12vw, 40px);
-      .sns-links__item {
-        svg {
-          width: 30px;
-          path {
-            fill: $mainColor;
-          }
-        }
-      }
-    }
-    .footer__foot__copyrights {
-      margin-top: 35px;
-      font-size: 1rem;
-      line-height: 1;
-      color: #444444;
-    }
-  }
-}
-@include res_min( map-get($BP, MD) ) {
-  .footer__foot {
-    @include flex(nowrap, flex-start, flex-end);
-    margin-top: 25px;
-    .footer__foot__info {
-      .footer__foot__info__address {
-        @include flex(nowrap, flex-start, center);
-        -moz-column-gap: 8px;
-             column-gap: 8px;
-        p {
-          font-size: 1.6rem;
-          white-space: nowrap;
-        }
-      }
-      .footer__foot__info__number {
-        @include flex(nowrap, flex-start, center);
-        -moz-column-gap: 16px;
-             column-gap: 16px;
-        margin-top: 13px;
-        & > * {
-          font-size: 1.8rem;
-          font-weight: 600;
-          letter-spacing: 0.02em;
-          line-height: 1;
-        }
-        p {
+        border-right: 1px solid $sbcGray4;
+        &:not(:first-of-type){
           margin-top: 0;
         }
-        .bottun-footer {
-          padding: 0;
-          border: none;
-          font-size: 1.8rem;
-          font-weight: 600;
-          letter-spacing: 0.02em;
-        }
-      }
-    }
-    .footer__foot__group {
-      margin: 0 auto -5px 45px;
-      .footer__foot__group__icon {
-        justify-content: flex-start;
-        .footer__foot__group__icon__momosebody {
-          img {
-            height: 25px;
+        //ラベルのみで使用する
+        &.page-label{
+          & > a{
+            pointer-events: none;
           }
         }
-        .footer__foot__group__icon__centralparts {
-          img {
-            height: 27px;
+        //サブメニューがある場合
+        &.menu-item-has-children{
+          .sub-menu{
+            display: none;
+
+            margin-left: 1em;
+            .menu-item {
+              margin-top: 1em;
+            }
           }
         }
       }
     }
-    .bottun-footer {
-      padding: 3px 5px;
-      margin-top: 0;
-      width: auto;
-      font-size: 1.1rem;
+  }
+}
+
+
+//会社情報
+.corporate-info {
+  margin-top: 35px;
+  text-align: center;
+	.corporate-info__data {
+    line-height: 1;
+		.corporate-name {
+      font-size: 1.8rem;
+      font-weight: 700;
+		}
+		.corporate-address {
+      margin-top: 20px;
+      font-size: 1.3rem;
+		}
+		.corporate-tel {
+      margin-top: 20px;
+      font-size: 1.8rem;
+      font-weight: 700;
+
+		}
+		.corporate-fax {
+      margin-top: 15px;
+      font-weight: 500;
+		}
+	}
+	.corporate-info__other {
+    margin-top: 30px;
+		.corporate-pp {
+      font-size: 1.4rem;
+		}
+		.corporate-copyright {
+      margin-top: 15px;
+      font-size: 1.2rem;
       line-height: 1;
-      span {
-        display: none;
+		}
+	}
+}
+@include res_min( map-get($BP, LG) ) {
+  .corporate-info {
+    margin-top: 50px;
+    text-align: left;
+    @include flex(nowrap, space-between, flex-end);
+    .corporate-info__data {
+      .corporate-name {
+      }
+      .corporate-address {
+        display: inline-block;
+        margin-top: 15px;
+        margin-right: 8px;
+        font-size: 1.3rem;
+        font-weight: 500;
+      }
+      .corporate-tel {
+        display: inline-block;
+        margin-top: 0;
+        margin-right: 8px;
+        font-size: 1.3rem;
+        font-weight: 500;
+      }
+      .corporate-fax {
+        display: inline-block;
+        margin-top: 0;
+        margin-right: 8px;
+        font-size: 1.3rem;
       }
     }
-    .footer__foot__other {
-      margin-top: 0;
-      .sns-links {
-        justify-content: flex-end;
-        gap: 16px;
-        .sns-links__item {
-          svg {
-            width: 20px;
-          }
-          &:link, &:visited {
-            svg {
-              path {
-                fill: $textBaseColor;
-              }
-            }
-          }
-          &:hover, &:active {
-            opacity: 1;
-            svg {
-              path {
-                fill: $mainColor;
-              }
-            }
-          }
-        }
+    .corporate-info__other {
+      margin-top: 30px;
+      @include flex(nowrap, flex-end, center);
+      gap: 16px;
+      .corporate-pp {
+        line-height: 1;
       }
-      .footer__foot__copyrights {
-        margin-top: 16px;
-        font-size: 1.1rem;
+      .corporate-copyright {
+        margin-top: 0;
+        line-height: 1;
       }
     }
   }

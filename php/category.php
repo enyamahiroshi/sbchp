@@ -34,7 +34,7 @@
             <?php endif; ?>
             <div class="post__data">
               <div class="post__data__meta">
-                <time class="post-date"><?php the_time('Y.m.d'); ?></time>
+                <time class="post-date"><?php the_time('Y年m月d日'); ?></time>
                 <a href="<?php echo esc_url( home_url() ); ?>/information/<?php echo $cat_slug; ?>" class="post-category"><?php echo $cat_name; ?></a>
               </div>
               <a href="<?php the_permalink(); ?>" class="post-title"><?php the_title(); ?></a>

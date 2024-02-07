@@ -61,14 +61,15 @@ add_filter( 'post_rewrite_rules', 'add_article_post_rewrite_rules' );
 
 // 記事編集画面の不要項目を非表示
 function remove_block_editor_options() {
-  // remove_post_type_support( 'post', 'author' );              // 投稿者
-  // remove_post_type_support( 'post', 'post-formats' );        // 投稿フォーマット
-  // remove_post_type_support( 'post', 'revisions' );           // リビジョン
-  // remove_post_type_support( 'post', 'thumbnail' );           // アイキャッチ
-  remove_post_type_support( 'post', 'excerpt' );             // 抜粋
-  remove_post_type_support( 'post', 'comments' );            // コメント
-  remove_post_type_support( 'post', 'trackbacks' );          // トラックバック
-  remove_post_type_support( 'post', 'custom-fields' );       // カスタムフィールド
+	remove_post_type_support('post', 'editor'); // エディタ
+  // remove_post_type_support( 'post', 'author' ); // 投稿者
+  // remove_post_type_support( 'post', 'post-formats' ); // 投稿フォーマット
+  // remove_post_type_support( 'post', 'revisions' ); // リビジョン
+  // remove_post_type_support( 'post', 'thumbnail' ); // アイキャッチ
+  remove_post_type_support( 'post', 'excerpt' ); // 抜粋
+  remove_post_type_support( 'post', 'comments' ); // コメント
+  remove_post_type_support( 'post', 'trackbacks' ); // トラックバック
+  remove_post_type_support( 'post', 'custom-fields' ); // カスタムフィールド
   // unregister_taxonomy_for_object_type( 'category', 'post' ); // カテゴリー
   unregister_taxonomy_for_object_type( 'post_tag', 'post' ); // タグ
 }
