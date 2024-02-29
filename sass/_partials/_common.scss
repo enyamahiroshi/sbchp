@@ -34,6 +34,7 @@
               mask-image: url(./assets/images/common/ico-instagram.svg);
     }
     &:hover{
+      opacity: 1;
       background-color: $sbcLinkColor;
     }
   }
@@ -68,12 +69,19 @@
     border-radius: 50%;
     letter-spacing: 0.05em;
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
+    transition: 0.4s;
+    transform: scale(1);
+    transform-style: preserve-3d;
+    & *{
+      transform-style: preserve-3d;
+    }
     &:link, &:visited{
       background-color: $sbcRed;
       color: $sbcWhite;
     }
     &:hover, &:active{
-
+      opacity: 1;
+      transform: scale(1.03);
     }
     span{
       display: flex;
@@ -229,6 +237,17 @@
             width: auto;
             height: 12px;
           }
+        }
+      }
+    }
+    //個別
+    &.page-header--reserve{
+      .inner{
+        justify-content: flex-start;
+        .page-header__title--reserve {
+          margin-left: 0;
+          padding-bottom: 5px;
+          font-size: 3.8rem
         }
       }
     }

@@ -12,12 +12,19 @@
 </head>
 
 <body id="top" <?php body_class(); ?>>
+<?php if( is_front_page() ): ?>
+<div class="loader-bg">
+  <div class="loader">
+    <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/common/img-yume-red.png" alt="夢" width="330" height="320">
+  </div>
+</div>
+<?php endif; ?>
 
   <?php //header ?>
   <header class="header">
     <div class="header__logo-wrap">
       <a href="<?php echo esc_url( home_url() ); ?>/" class="header__logo">
-        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/common/logo-main.svg" alt="SBCハウジングパーク" width=262" height="26">
+        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/common/logo-main.svg" alt="SBCハウジングパーク" width="262" height="26">
       </a>
       <div class="site-copy">長野県の住宅総合展示場_長野市・上田市・佐久市に3会場</div>
     </div>
@@ -37,19 +44,23 @@
         <a href="http://" target="_blank" rel="noopener noreferrer" class="sns-links__item sns-links__item--instagram"> </a>
       </aside>
     </section>
-    <a href="<?php echo esc_url( home_url() ); ?>/" class="button-reserve">
+    <a href="<?php echo esc_url( home_url() ); ?>/reserve" class="button-reserve">
       <em>見学予約</em>
     </a>
     <button class="menu-bar js-tgl-menu" type="button"><span class="menu-bar-line"></span></button>
   </header>
 
-  <a href="<?php echo esc_url( home_url() ); ?>/" class="button-reserve button-reserve--fixed">
+  <?php if( !is_page( array('reserve', 'confirm') ) ): ?>
+  <a href="<?php echo esc_url( home_url() ); ?>/reserve" class="button-reserve button-reserve--fixed">
     <span>今すぐ</span><em>見学予約</em><span>をする</span>
   </a>
+  <?php endif; ?>
 
-  <?php //パンくず
+  <?php //パンくず(トップ以外)
+  if( !is_front_page() ){
   echo '<div class="bread-nav">';
   if( function_exists( 'aioseo_breadcrumbs' ) ){ aioseo_breadcrumbs(); }
   echo '</div>';
+  }
   ?>
   <main class="main">

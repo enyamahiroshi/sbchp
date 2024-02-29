@@ -63,9 +63,31 @@
       }
       line-height: 1.4;
       a {
+        &:hover, &:active{
+          color: $sbcRed;
+        }
       }
       //ラベルのみで使用する
       &.page-label{
+        position: relative;
+        padding-right: 1em;
+        &::after{
+          content: '';
+          width: 9px;
+          height: 4px;
+          background-color: $sbcBlack;
+          -webkit-mask-image: url(./assets/images/common/ico-arrow-2.svg);
+                  mask-image: url(./assets/images/common/ico-arrow-2.svg);
+          -webkit-mask-repeat: no-repeat;
+                  mask-repeat: no-repeat;
+          -webkit-mask-position: center;
+                  mask-position: center;
+          -webkit-mask-size: auto 100%;
+                  mask-size: auto 100%;
+          position: absolute;
+          right: 0;
+          top: 9px;
+        }
         & > a{
           pointer-events: none;
         }
@@ -73,14 +95,29 @@
       //サブメニューがある場合
       &.menu-item-has-children{
         .sub-menu{
-          display: none;
+          // display: none;
+          height: 0;
+          opacity: 0;
+          visibility: hidden;
+          @include transition();
 
+          margin-top: 1em;
           margin-left: 1em;
           .menu-item {
-            margin-top: 1em;
+            margin-top: 0.8em;
             font-size: 1.4rem;
             a{
+              color: $sbcBlack;
+              &:hover, &:active{
+                color: $sbcRed;
+              }
             }
+          }
+          //開閉
+          &.is-action{
+            height: auto;
+            opacity: 1;
+            visibility: visible;
           }
         }
       }
@@ -90,35 +127,92 @@
 @include res_min( map-get($BP, LG) ) {
   .footer-nav{
     &:first-of-type{
-      .menu .menu-item:first-of-type {
-        border-left: 1px solid $sbcGray4;
+      .menu{
+        position: relative;
+        &::before{
+          content: '';
+          width: 1px;
+          height: 1em;
+          background-color: $sbcGray4;
+          position: absolute;
+          left: 0;
+          top: 4px;
+        }
       }
     }
     .menu {
       @include flex(nowrap, flex-start, stretch);
       .menu-item {
         padding: 0 10px;
+        position: relative;
         @include res_min( map-get($BP, XL) ) {
           padding: 0 20px;
         }
-        border-right: 1px solid $sbcGray4;
+        // border-right: 1px solid $sbcGray4;
         &:not(:first-of-type){
           margin-top: 0;
         }
+        &::before{ //マウスオーバー時のちらつき防止エリア
+          content: '';
+          width: 100%;
+          height: 1em;
+          background-color: transparent;
+          position: absolute;
+          left: 0;
+          bottom: -1em;
+        }
+        &::after{
+          content: '';
+          width: 1px;
+          height: 1em;
+          background-color: $sbcGray4;
+          position: absolute;
+          right: 0;
+          top: 4px;
+        }
         //ラベルのみで使用する
         &.page-label{
-          & > a{
-            pointer-events: none;
+          cursor: pointer;
+          position: relative;
+          &::after{
+            width: 1px;
+            height: 1em;
+            background-color: $sbcGray4;
+            -webkit-mask-image: none;
+                    mask-image: none;
+            position: absolute;
+            right: 0;
+            top: 4px;
           }
         }
         //サブメニューがある場合
         &.menu-item-has-children{
           .sub-menu{
-            display: none;
-
             margin-left: 1em;
+            background-color: $sbcWhite;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 0;
+            margin-left: 0;
+            padding: 20px 30px 20px;
+            background-color: $sbcWhite;
+            border-radius: 8px;
+            box-shadow: 0px 1px 12px 0px rgba(0, 0, 0, 0.15);
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translate(-50%, 35px);
+            z-index: 10;
             .menu-item {
-              margin-top: 1em;
+              margin-top: 0;
+              padding: 0;
+              border: none;
+              white-space: nowrap;
+              &::before,
+              &::after{
+                content: none;
+              }
             }
           }
         }

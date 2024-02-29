@@ -1,6 +1,16 @@
 <?php
 $post_type = get_queried_object(); // 現在のページの投稿タイプを取得
 $post_type_slug = $post_type->name; //投稿タイプのスラッグ
+
+//登録しているカスタム投稿タイプのリスト
+$args = array(
+  'public'   => true,
+  '_builtin' => false,
+);
+$cp_types = get_post_types( $args );
+$filtered_types = array();
+$post_types = array();
+
 //パーク情報をスラッグで処理
 switch ($post_type_slug) {
   case 'nag-c': //長野中央ハウジングパーク
@@ -10,24 +20,34 @@ switch ($post_type_slug) {
     $park_open = "10:00～17:00";
     $park_logo_image = 'logo-nagano-hp.svg';
     $park_map_image = 'park/nag-c/img-facility-map-nagano.png';
-
-    $post_types = array( //モデルハウスTOPICS一覧取得クエリ用
-      'modelhouse-a'
-    );
-    break;
+    //特定の投稿タイプのみを配列に代入
+    foreach ( $cp_types as $cp_type ) {
+      if ( strpos( $cp_type, '_nag-c' ) !== false ) {
+        $filtered_types[] = $cp_type;
+      }
+    }
+    //各スラッグ名のみを格納
+    foreach ( $filtered_types as $post_type ) {
+      $post_types[] = $post_type;
+    }
+  break;
   case 'ueda': //上田ハウジングパーク
     $park_add = "〒386-0001  長野県上田市上田1360-1";
     $park_googlemap = "https://maps.app.goo.gl/FvTYKNW1bJ8ZBSLZA";
     $park_tel = "0268-21-0633";
     $park_open = "10:00～17:00";
     $park_logo_image = 'logo-ueda-hp.svg';
-    $park_modelhouse_all_topics = 'model-house-topics/ueda-hp-topics';
-    $park_googlemap = 'model-house-topics/ueda-hp-topics';
     $park_map_image = 'park/ueda/img-facility-map-ueda.png';
-
-    $post_types = array( //モデルハウスTOPICS一覧取得クエリ用
-      'modelhouse-a'
-    );
+    //特定の投稿タイプのみを配列に代入
+    foreach ( $cp_types as $cp_type ) {
+      if ( strpos( $cp_type, '_ueda' ) !== false ) {
+        $filtered_types[] = $cp_type;
+      }
+    }
+    //各スラッグ名のみを格納
+    foreach ( $filtered_types as $post_type ) {
+      $post_types[] = $post_type;
+    }
     break;
   case 'saku': //佐久平ハウジングパーク
     $park_add = "〒385-0028  長野県佐久市佐久平駅東20-2";
@@ -35,12 +55,17 @@ switch ($post_type_slug) {
     $park_tel = "0267-66-6650";
     $park_open = "10:00～17:00";
     $park_logo_image = 'logo-saku-hp.svg';
-    $park_modelhouse_all_topics = 'model-house-topics/saku-hp-topics';
     $park_map_image = 'park/saku/img-facility-map-saku.png';
-
-    $post_types = array( //モデルハウスTOPICS一覧取得クエリ用
-      'modelhouse-a'
-    );
+    //特定の投稿タイプのみを配列に代入
+    foreach ( $cp_types as $cp_type ) {
+      if ( strpos( $cp_type, '_saku' ) !== false ) {
+        $filtered_types[] = $cp_type;
+      }
+    }
+    //各スラッグ名のみを格納
+    foreach ( $filtered_types as $post_type ) {
+      $post_types[] = $post_type;
+    }
     break;
   default:
     break;
@@ -103,9 +128,15 @@ switch ($post_type_slug) {
         ?>
         <li class="list-item">
           <a href="<?php the_permalink(); ?>" class="post-group">
+            <?php if (has_post_thumbnail()) : ?>
             <figure class="post-image">
-              <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/sample/img-modelhouse.jpg" alt="">
+              <?php the_post_thumbnail(); ?>
             </figure>
+            <?php else: ?>
+            <figure class="post-image no-image">
+              <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/common/img-no-image.png" alt="no image">
+            </figure>
+            <?php endif; ?>
             <div class="modelhouse-logo">
               <?php echo wp_get_attachment_image($logo_data,'large'); ?>
             </div>
@@ -124,7 +155,7 @@ switch ($post_type_slug) {
       <div class="column-layout-two">
         <?php //モデルハウスTOPICS ?>
         <section class="column-layout-two__first">
-          <h2 class="title-1">モデルハウスTOPICS</h2>
+          <h2 class="title-3">モデルハウスTOPICS</h2>
           <?php //ループクエリ
           $args = array(
             'post_type' => $post_types,

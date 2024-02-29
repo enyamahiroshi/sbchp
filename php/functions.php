@@ -3,9 +3,8 @@ get_template_part( 'setting/system' );
 get_template_part( 'setting/include_files' );
 get_template_part( 'setting/custom-post-type' );
 get_template_part( 'setting/customize-plugins' );
-get_template_part( 'block/breadcrumb' );
-get_template_part( 'block/prevnext-fn' );
-get_template_part( 'block/form-seni' );
+/** Form related */
+require_once (realpath(dirname(__FILE__) . '/libs/require.php'));
 
 /* -------------------------------------------------------------
 //  特定ユーザーグループのメニュー設定
@@ -18,6 +17,7 @@ if ( !( current_user_can( 'administrator' ) || current_user_can( 'editor' ) ) ) 
   }
   add_action('admin_menu', 'hidden_menu');
 }
+
 
 /* -------------------------------------------------------------
 //  メインループの表示件数を制御

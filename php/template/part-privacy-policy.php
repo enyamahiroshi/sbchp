@@ -1,5 +1,5 @@
   <section class="privacy-policy">
-    <h2 class="title-2">個人情報保護方針</h2>
+    <h2 class="title-4">個人情報保護方針</h2>
     <p>SBCハウジング（以下、当社）では、個人情報の重要性を認識し、以下の基準に従って、適切な管理、保護に努めます。</p>
 
     <dl class="list-number">

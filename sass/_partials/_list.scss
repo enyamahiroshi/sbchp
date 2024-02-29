@@ -79,6 +79,37 @@
 }
 
 
+//リスト：モデルハウスTOPICS - トップなどでサムネイル無しのリスト
+.list-modelhouse-topics-no-thumbs{
+  .list-item {
+    padding: 8px 0;
+    border-bottom: 1px dotted $sbcBeige2;
+    .post-group {
+      display: block;
+      .post-detail {
+        .post-title {
+          font-size: 1.8rem;
+          font-weight: 700;
+          line-height: 1.4;
+        }
+        .post-meta-date {
+          margin-top: 0.3em;
+          font-size: 1.2rem;
+          line-height: 1.3;
+        }
+        .post-meta-modelhouse-name {
+          margin-top: 0.3em;
+          font-size: 1.2rem;
+          line-height: 1.3;
+        }
+      }
+    }
+  }
+}
+@include res_min( map-get($BP, MD) ) {
+}
+
+
 //リスト：モデルハウスTOPICS - 各パーク
 .list-modelhouse-topics-park{
   @extend .list-modelhouse-topics;
@@ -163,11 +194,18 @@
       overflow: hidden;
 			.post-image {
         aspect-ratio: 175 / 129;
+        overflow: hidden;
         img{
           width: 100%;
           height: 100%;
           -o-object-fit: cover;
              object-fit: cover;
+        }
+        &.no-image{
+          border: 2px solid $sbcWhite;
+          img{
+            border-radius: 6px 6px 0 0;
+          }
         }
 			}
       .modelhouse-logo {
@@ -178,15 +216,15 @@
         overflow: hidden;
         img{
           width: auto;
-          max-width: 100%;
+          max-width: 88%;
           max-height: 25px;
         }
       }
       .modelhouse-name {
-        margin-top: 5px;
+        margin-top: 8px;
         margin-bottom: 5px;
         padding: 0 7px;
-        font-size: 1.6rem;
+        font-size: 1.4rem;
         font-weight: 700;
         line-height: 1.4;
       }
@@ -227,7 +265,7 @@
   .list-modelhouse {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     @include res_min( map-get($BP, XXL) ) {
-      grid-template-columns: repeat(auto-fill, minmax(306px, 1fr));
+      // grid-template-columns: repeat(auto-fill, minmax(306px, 1fr));
     }
     gap: 20px;
     .list-item {
@@ -237,6 +275,7 @@
           margin-top: 10px;
           padding: 0 10px;
           img{
+            max-width: 100%;
             max-height: 27px;
           }
         }
@@ -244,11 +283,11 @@
           margin-top: 8px;
           margin-bottom: 8px;
           padding: 0 10px;
-          font-size: 1.8rem;
+          font-size: 1.6rem;
         }
         .more-text {
           padding: 0 10px;
-          font-size: 1.4rem;
+          font-size: 1.2rem;
         }
       }
     }

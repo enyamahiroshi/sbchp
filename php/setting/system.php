@@ -100,7 +100,7 @@ if ( !current_user_can( 'administrator' ) ) {
     remove_menu_page( 'tools.php' );                  // ツール
     // remove_menu_page( 'options-general.php' );        // 設定
     //以下プラグイン毎
-    // remove_menu_page('wpcf7'); //contactform7
+    remove_menu_page('wpcf7'); //contactform7
 
     //▼下でインストールプラグインのスラッグ名をダンプ表示できる
     // global $menu;

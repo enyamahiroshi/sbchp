@@ -14,6 +14,7 @@
       $kaisaibi = SCF::get('scf_kaisaibi');
       $main_image = SCF::get('scf_group_modelhouse_topics_overview_image');
       $main_text = SCF::get('scf_group_modelhouse_topics_overview_text');
+      $main_text = mb_substr($main_text, 0, 50);
       $group_block = SCF::get('scf_group_modelhouse_topics_block');
       ?>
       <li class="list-item">

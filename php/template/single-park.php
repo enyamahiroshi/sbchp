@@ -88,7 +88,7 @@ $group_block = SCF::get('scf_group_modelhouse_block');
 
 		<?php //モデルハウス 各種問い合わせボタン ?>
 		<div class="button-wrap-modelhouse">
-			<a href="" class="button button-reserve-l">見学予約</a>
+			<a href="<?php echo esc_url( home_url() ); ?>/reserve" class="button button-reserve-l">見学予約</a>
 			<?php if($tel){ echo '<a href="tel:'.$tel.'" class="button button-tel">'.$tel.'</a>'; } ?>
 			<?php if($website){ echo '<a href="'.$website.'" target="_blank" rel="noopener noreferrer" class="button button-blank">メーカーサイト</a>'; } ?>
 		</div>

@@ -84,3 +84,44 @@
   }
 
 }
+
+
+//カテゴリーラベル
+.post-category{
+  padding: 6px 10px;
+  min-width: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 1;
+  background-color: $sbcBeige1;
+  //個別
+  &.cat-news{
+    background-color: $sbcOrange;
+  }
+  &.cat-nag-c{
+    background-color: $sbcNagano;
+  }
+  &.cat-ueda{
+    background-color: $sbcUeda;
+  }
+  &.cat-saku{
+    background-color: $sbcSaku;
+  }
+}
+@include res_min( map-get($BP, MD) ) {
+  .post-category{
+    padding: 8px 10px;
+    min-width: 130px;
+    font-size: 1.5rem;
+  }
+}
+
+
+//現在記事はありません
+.no-posts{
+  padding: 16px 0;
+}

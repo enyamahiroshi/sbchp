@@ -16,6 +16,9 @@ add_action( 'wp_enqueue_scripts', 'import_files_to_header' );
 function import_files_to_footer() {
   wp_enqueue_script( 'jquery' );
   wp_enqueue_script( 'main', get_stylesheet_directory_uri() . '/assets/js/main.min.js', true, array());
+  if ( is_front_page() ){
+    wp_enqueue_script( 'loading', get_stylesheet_directory_uri() . '/assets/js/loading.min.js', true, array());
+  }
   if ( is_post_type_archive( array('nag-c','ueda','saku') ) || is_singular( array('nag-c','ueda','saku') ) ) {
     wp_enqueue_script( 'swiper', get_stylesheet_directory_uri() . '/assets/js/swiper/swiper-element-bundle.min.js', true, array());
     wp_enqueue_script( 'run-swiper', get_stylesheet_directory_uri() . '/assets/js/swiper/run-swiper.min.js', true, array());

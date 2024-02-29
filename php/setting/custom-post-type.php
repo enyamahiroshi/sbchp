@@ -9,13 +9,20 @@ $defaultPostPermalink;   // 投稿の表示名
 $defaultPotSlug       = 'イベント&NEWS';
 $defaultPostPermalink = 'information';
 
-function edit_admin_menus() {
+function change_post_menu_label() {
   global $menu;
   global $submenu;
-  $menu[5][0] = $GLOBALS['defaultPotSlug'];
-  $submenu['edit.php'][5][0] = 'すべての記事';
+  // `$menu` 配列の要素数をチェックする
+  if (isset($menu[5])) {
+    $menu[5][0] = 'information';
+  }
+  // `$submenu` 配列の要素数をチェックする
+  if (isset($submenu['edit.php'])) {
+    $submenu['edit.php'][5][0] = 'すべての記事';
+    $submenu['edit.php'][10][0] = '新規追加';
+  }
 }
-add_action('admin_menu', 'edit_admin_menus');
+add_action( 'admin_menu', 'change_post_menu_label' );
 
 // カテゴリー、タグを表示しない
 function my_unregister_taxonomies() {

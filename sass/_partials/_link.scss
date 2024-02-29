@@ -23,6 +23,14 @@ a {
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
 }
+header,
+footer {
+  a{
+    &:hover, &:active {
+      opacity: 1;
+    }
+  }
+}
 //画像リンク
 a img {
   opacity: 1;
@@ -66,6 +74,10 @@ a img {
   border-radius: 4px;
   font-weight: 500;
   line-height: 1;
+  @include transition();
+  &:link, &:visited{
+    background-color: $sbcGray5;
+  }
   &:hover, &:active{
     opacity: 1;
     color: $sbcWhite;
@@ -74,6 +86,100 @@ a img {
 @include res_min( map-get($BP, MD) ) {
   .button{
     border-radius: 6px;
+  }
+}
+
+//フォームのボタンなど
+.button-arrow{
+  padding: 12px 33px 14px 37px;
+  min-height: 56px;
+  font-family: $ff-go;
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: $sbcWhite;
+  border-radius: 8px;
+  @include res_min( map-get($BP, MD) ) {
+    border-radius: 8px;
+  }
+  background-color: $sbcBlue;
+  gap: 20px;
+  &::after{
+    content: '';
+    width: 7px;
+    height: 14px;
+    flex-shrink: 0;
+    background-color: $sbcWhite;
+    -webkit-mask-image: url(./assets/images/common/ico-arrow-3.svg);
+            mask-image: url(./assets/images/common/ico-arrow-3.svg);
+    -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+            mask-position: center;
+    -webkit-mask-size: 100%;
+            mask-size: 100%;
+    @include transition();
+  }
+  &:link, &:visited{
+    background-color: $sbcBlue;
+  }
+  &:hover, &:active{
+    background-color: $sbcWhite;
+    color: $sbcBlack;
+    &::after{
+      background-color: $sbcBlack;
+    }
+  }
+  //逆向き
+  &.--reverse{
+    padding: 12px 37px 14px 33px;
+    background-color: $sbcBlack;
+    &::before{
+      content: '';
+      width: 7px;
+      height: 14px;
+      flex-shrink: 0;
+      background-color: $sbcWhite;
+      -webkit-mask-image: url(./assets/images/common/ico-arrow-3.svg);
+              mask-image: url(./assets/images/common/ico-arrow-3.svg);
+      -webkit-mask-repeat: no-repeat;
+              mask-repeat: no-repeat;
+      -webkit-mask-position: center;
+              mask-position: center;
+      -webkit-mask-size: 100%;
+              mask-size: 100%;
+      @include transition();
+      transform: scale(-1,-1);
+    }
+    &::after{
+      content: none;
+    }
+    &:link, &:visited{
+      background-color: $sbcBlack;
+    }
+    &:hover, &:active{
+      background-color: $sbcWhite;
+      color: $sbcBlack;
+      &::before{
+        background-color: $sbcBlack;
+      }
+    }
+  }
+}
+
+//グレー
+.button-gray{
+  padding: 13px 10px;
+  font-size: 1.6rem;
+  font-weight: 500;
+  &:link, &:visited{
+    background-color: $sbcGray5;
+    color: $sbcWhite;
+  }
+  &:hover, &:active{
+    background-color: $sbcLinkColor;
+    &::before{
+      background-color: $sbcWhite;
+    }
   }
 }
 
@@ -149,6 +255,17 @@ a img {
     -webkit-mask-size: cover;
             mask-size: cover;
     @include transition();
+  }
+}
+
+.button-reserve-s{
+  @extend .button-reserve-l;
+  gap: 5px;
+  font-size: 1.6rem;
+  &::before{
+    margin-top: 1px;
+    width: 18px;
+    height: 18px;
   }
 }
 

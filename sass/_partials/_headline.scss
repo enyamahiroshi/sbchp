@@ -42,26 +42,91 @@
   }
 }
 
-.title-1 {
+
+.title-1{
+  font-size: 2.3rem;
+  font-weight: 700;
+  line-height: 1.4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  &::after{
+    content: attr(data-sub);
+    font-size: 1.4rem;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 0;
+  }
+}
+@include res_min( map-get($BP, MD) ) {
+  .title-1{
+    font-size: 3.4rem;
+    &::after{
+      font-size: 1.8rem;
+    }
+    @include res_min( map-get($BP, LG) ) {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      &::after{
+        order: 3;
+      }
+      &::before{
+        content: '';
+        order: 2;
+        width: 1px;
+        height: 0.8em;
+        background-color: $sbcBlack;
+      }
+    }
+  }
+}
+
+.title-2 {
+  @include flex(nowrap, flex-start, center);
+  padding-bottom: 5px;
+  border-bottom: 1px solid $sbcBeige2;
+  font-size: 1.8rem;
+  font-weight: 700;
+  img{
+    margin-top: 2px;
+    margin-right: 5px;
+    width: auto;
+    height: 9px;
+  }
+}
+@include res_min( map-get($BP, MD) ) {
+  .title-2 {
+    padding-bottom: 8px;
+    font-size: 2.4rem;
+    img{
+      margin-right: 7px;
+      height: 14px;
+    }
+  }
+}
+
+.title-3 {
   padding-bottom: 5px;
   border-bottom: 1px solid $sbcBeige2;
   font-size: 1.8rem;
   font-weight: 700;
 }
 @include res_min( map-get($BP, MD) ) {
-  .title-1 {
+  .title-3 {
     padding-bottom: 8px;
     font-size: 2rem;
   }
 }
 
-.title-2{
+.title-4{
   margin-bottom: 0.5em;
   font-size: 2rem;
   font-weight: 700;
 }
 @include res_min( map-get($BP, MD) ) {
-  .title-2{
+  .title-4{
     font-size: 2.4rem;
   }
 }

@@ -66,6 +66,11 @@
         font-size: 1.2rem;
       }
     }
+    &.data-house{
+      p{
+        font-size: 1.4rem;
+      }
+    }
 	}
 }
 @include res_min( map-get($BP, LG) ) {

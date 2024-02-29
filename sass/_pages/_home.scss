@@ -1,0 +1,427 @@
+@use '../_core/valiables' as *;
+@use '../_core/mixins' as *;
+
+/* ----------------------------------------------------------------
+  ローディング
+---------------------------------------------------------------- */
+.loader-bg {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  background-color: $sbcYumecolor;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  display: none;
+  margin: 0 auto;
+  width: 200px;
+  position: relative;
+  -webkit-animation: loadAni 2s forwards cubic-bezier(0.33, 0.17, 0.1, 0.99);
+  animation: loadAni 2s forwards cubic-bezier(0.32, 0.17, 0.1, 0.99);
+  opacity: 0;
+  transform: scale(0);
+  -webkit-filter: blur(20px);
+  filter: blur(20px);
+}
+
+@-webkit-keyframes loadAni {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+    -webkit-filter: blur(20px);
+    filter: blur(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    -webkit-filter: blur(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes loadAni {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+    -webkit-filter: blur(20px);
+    filter: blur(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    -webkit-filter: blur(0);
+    filter: blur(0);
+  }
+}
+
+
+/* ----------------------------------------------------------------
+  HOME
+---------------------------------------------------------------- */
+.mv{
+  margin-left: -12px;
+  margin-right: -12px;
+  aspect-ratio: 390 / 234;
+  overflow: hidden;
+  img{
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+}
+@include res_min( map-get($BP, MD) ) {
+  .mv{
+    margin-left: 0;
+    margin-right: 0;
+    @include res_min( map-get($BP, LG) ) {
+      aspect-ratio: 1690 / 635;
+    }
+  }
+}
+
+//イベント＆NEWSリスト
+.sec-event-news{
+  margin-top: 20px;
+}
+@include res_min( map-get($BP, MD) ) {
+  .sec-event-news{
+    margin-top: 30px;
+  }
+}
+
+.list-event-news-smart{
+  .list-item{
+    padding: 8px 0;
+    border-bottom: 1px dotted $sbcBeige2;
+    .post-group{
+      @include flex(nowrap, flex-start, center);
+      gap: 10px;
+      .post-detail {
+        display: flex;
+        flex-direction: column;
+        .post-date {
+          font-size: 1.4rem;
+        }
+        .post-title {
+          font-size: 1.5rem;
+          font-weight: 700;
+          line-height: 1.4;
+        }
+      }
+    }
+  }
+}
+@include res_min( map-get($BP, MD) ) {
+  .list-event-news-smart{
+    margin-top: 8px;
+    .list-item{
+      .post-group{
+        display: inline-flex;
+        gap: 15px;
+        .post-detail {
+          flex-direction: row;
+          align-items: center;
+          gap: 10px;
+          .post-date {
+            font-size: 1.6rem;
+            white-space: nowrap;
+          }
+          .post-title {
+            font-size: 1.8rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+//展示場を選ぶ
+.sec-park-list{
+  margin-top: 20px;
+  margin-left: -12px;
+  margin-right: -12px;
+  padding: 20px 12px;
+  background-color: $sbcSkyBlue;
+  .title-1{
+    color: $sbcWhite;
+  }
+}
+@include res_min( map-get($BP, MD) ) {
+  .sec-park-list{
+    margin-top: 30px;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 50px 0 60px;
+    .title-1{
+      @include res_min( map-get($BP, LG) ) {
+        &::before{
+          background-color: $sbcWhite;
+        }
+      }
+    }
+  }
+}
+
+//展示場リスト
+.park-list{
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 100%;
+  gap: 15px;
+  //各パーク
+  .park{
+    padding: 10px 0 0;
+    background-color: $sbcWhite;
+    border-radius: 6px;
+    overflow: hidden;
+    //イメージ画像
+    .park-image{
+      margin: 0 10px;
+      aspect-ratio: 346 / 109;
+      img{
+        width: 100%;
+        height: 100%;
+        -o-object-fit: cover;
+           object-fit: cover;
+      }
+    }
+    //パーク名
+    .park-name{
+      margin: 5px 10px 6px;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 0;
+      text-align: center;
+      span{
+        margin-right: 0.2em;
+        font-size: 2.6rem;
+      }
+      //個別
+      &.--nag-c{
+        span{
+          color: $sbcRed;
+        }
+      }
+      &.--ueda{
+        span{
+          color: $sbcGreen;
+        }
+      }
+      &.--saku{
+        span{
+          color: $sbcBlue;
+        }
+      }
+    }
+    //住所等
+    .park-overview{
+      margin: 5px 15px 0;
+      padding-top: 15px;
+      gap: 5px;
+      border-top: 4px solid #000;
+      //個別
+      &.--nag-c{
+        border-block-color: $sbcRed;
+      }
+      &.--ueda{
+        border-block-color: $sbcGreen;
+      }
+      &.--saku{
+        border-block-color: $sbcBlue;
+      }
+    }
+    //ボタン
+    .park-button{
+      margin: 15px 15px 0;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      .button{
+        height: 42px;
+      }
+    }
+    //title
+    .title-3{
+      margin: 15px 15px 0;
+      font-size: 1.6rem;
+    }
+    //list
+    .list-modelhouse-topics-no-thumbs{
+      margin: 5px 15px 0;
+    }
+    //一覧
+    .button-wrap{
+      margin: 15px 15px 12px;
+    }
+
+    //開閉コンテンツ
+    .detail-container{
+      display: none;
+    }
+    .button-tgl-open_close{
+      width: 100%;
+      height: 45px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 11px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      background-color: $sbcOrange;
+      &::after{
+        content: '';
+        width: 12px;
+        height: 8px;
+        background-color: $sbcBlack;
+        -webkit-mask-image: url(./assets/images/common/ico-arrow-2.svg);
+                mask-image: url(./assets/images/common/ico-arrow-2.svg);
+        -webkit-mask-repeat: no-repeat;
+                mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+                mask-position: center;
+        -webkit-mask-size: auto 100%;
+                mask-size: auto 100%;
+      }
+    }
+  }
+}
+@include res_min( map-get($BP, MD) ) {
+  .park-list{
+    margin-top: 30px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    @include res_min( map-get($BP, LG) ) {
+      margin-top: 40px;
+      grid-template-columns: repeat(3, 1fr);
+      @include res_min( map-get($BP, XL) ) {
+        gap: 36px;
+      }
+    }
+    //各パーク
+    .park{
+      border-radius: 10px;
+      @include res_min( map-get($BP, LG) ) {
+        padding: 20px 0 0;
+        border-radius: 14px;
+      }
+      //イメージ画像
+      .park-image{
+        @include res_min( map-get($BP, LG) ) {
+          margin: 0 20px;
+        }
+        aspect-ratio: 354 / 200;
+      }
+      //パーク名
+      .park-name{
+        @include res_min( map-get($BP, LG) ) {
+          margin: 10px 20px 8px;
+        }
+        white-space: nowrap;
+        @include res_min( map-get($BP, XL) ) {
+          font-size: 2.5rem;
+        }
+        span{
+          @include res_min( map-get($BP, XL) ) {
+            font-size: 3.1rem;
+          }
+        }
+      }
+      //住所等
+      .park-overview{
+        @include res_min( map-get($BP, LG) ) {
+          flex-direction: column;
+          align-items: flex-start;
+          @include res_min( map-get($BP, XL) ) {
+            margin: 0 20px;
+          }
+        }
+      }
+      //ボタン
+      .park-button{
+        gap: 15px;
+        @include res_min( map-get($BP, XL) ) {
+          margin: 12px 20px 0;
+          gap: 20px;
+        }
+        .button{
+          @include res_min( map-get($BP, LG) ) {
+            white-space: nowrap;
+          }
+        }
+      }
+      //title
+      .title-3{
+        @include res_min( map-get($BP, XL) ) {
+          margin: 15px 20px 0;
+        }
+      }
+      //list
+      .list-modelhouse-topics-no-thumbs{
+        @include res_min( map-get($BP, XL) ) {
+          margin: 5px 20px 0;
+        }
+      }
+      //一覧
+      .button-wrap{
+        margin-bottom: 15px;
+        @include res_min( map-get($BP, XL) ) {
+          margin: 15px 20px;
+        }
+      }
+
+
+      //開閉コンテンツ
+      .detail-container{
+        display: block;
+      }
+      .button-tgl-open_close{
+        display: none;
+      }
+    }
+  }
+}
+
+
+//お役立ちコラムリスト
+.sec-oyakudachi-column-title{
+  margin-top: 35px;
+}
+@include res_min( map-get($BP, MD) ) {
+  .sec-oyakudachi-column-title{
+    margin-top: 50px;
+    @include res_min( map-get($BP, LG) ) {
+      margin-top: 80px;
+    }
+  }
+}
+
+.sec-oyakudachi-column-home{
+  margin-top: 20px;
+  margin-left: -12px;
+  margin-right: -12px;
+  margin-bottom: -40px;
+  background-color: #E0D8C4;
+  .list-oyakudachi-column{
+    padding: 30px 12px;
+  }
+}
+@include res_min( map-get($BP, MD) ) {
+  .sec-oyakudachi-column-home{
+    margin-top: 40px;
+    @include res_min( map-get($BP, LG) ) {
+      margin-top: 50px;
+    }
+    margin-left: 0;
+    margin-right: 0;
+    .list-oyakudachi-column{
+      padding: 60px 0 40px;
+    }
+  }
+}

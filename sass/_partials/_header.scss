@@ -136,7 +136,7 @@ $headerHighPC: 96;
     padding: 20px 25px 0;
     background-color: $sbcWhite;
     border-radius: 10px 10px 0 0;
-    overflow: hidden;
+    // overflow: hidden;
     .menu {
       .menu-item {
         border-bottom: 1px solid $sbcBeige2;
@@ -216,9 +216,11 @@ $headerHighPC: 96;
       border-radius: 0;
       .menu {
         @include flex(nowrap, flex-end, stretch);
-        gap: 29px;
+        gap: min(1.8vw, 29px);
         .menu-item {
           border-bottom: none;
+          white-space: nowrap;
+          position: relative;
           a {
             @include flex(nowrap, flex-start, center);
             height: #{$headerHighPC + px};
@@ -227,30 +229,62 @@ $headerHighPC: 96;
             &::before {
               content: none;
             }
+            &:hover, &:active{
+              color: $sbcRed;
+            }
           }
           //ラベルのみで使用する
           &.page-label{
             cursor: pointer;
+            & > a{
+              display: inline-flex;
+              align-items: center;
+              gap: 10px;
+              &::after{
+                content: '';
+                margin-top: 2px;
+                width: 10px;
+                height: 6px;
+                background-color: $sbcBlack;
+                -webkit-mask-image: url(./assets/images/common/ico-arrow-2.svg);
+                        mask-image: url(./assets/images/common/ico-arrow-2.svg);
+                -webkit-mask-repeat: no-repeat;
+                        mask-repeat: no-repeat;
+                -webkit-mask-position: center;
+                        mask-position: center;
+                -webkit-mask-size: auto 100%;
+                        mask-size: auto 100%;
+              }
+            }
           }
           //サブメニューがある場合
           &.menu-item-has-children{
             .sub-menu{
-              display: none;
+              opacity: 0;
+              visibility: hidden;
+              @include transition();
 
+              display: flex;
+              flex-direction: column;
+              gap: 14px;
               margin-top: 0;
               margin-left: 0;
+              padding: 25px 35px 30px;
+              background-color: $sbcWhite;
+              border-radius: 8px;
+              box-shadow: 0px 1px 12px 0px rgba(0, 0, 0, 0.15);
+              position: absolute;
+              left: 50%;
+              transform: translate(-50%, -20px);
+              z-index: 10;
               .menu-item {
+                white-space: nowrap;
                 &:last-of-type{
                   border-bottom: none;
                 }
                 a{
-                  font-size: 1.5rem;
-                  font-weight: 500;
-                  &::before {
-                    width: 7px;
-                    height: 1px;
-                    top: 23px;
-                  }
+                  height: auto;
+                  font-size: 1.7rem;
                 }
               }
             }

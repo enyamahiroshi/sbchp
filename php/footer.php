@@ -44,12 +44,5 @@
     </div>
   </footer>
 <?php wp_footer(); ?>
-
-<?php
-  global $template;
-  $temp_name = basename($template);
-  echo '現在使用しているテンプレートファイル：'.$temp_name;
-?>
-
 </body>
 </html>

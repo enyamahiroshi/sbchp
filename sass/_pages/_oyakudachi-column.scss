@@ -46,7 +46,10 @@
 @include res_min( map-get($BP, MD) ) {
   .list-oyakudachi-column{
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 50px;
+    gap: 25px;
+    @include res_min( map-get($BP, LG) ) {
+      gap: 40px;
+    }
     .list-item{
       background-color: $sbcWhite;
       border-radius: 16px;

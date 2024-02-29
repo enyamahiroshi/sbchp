@@ -1,0 +1,690 @@
+@use '../_core/valiables' as *;
+@use '../_core/mixins' as *;
+
+/* -----------------------------------------
+// リセット
+// ---------------------------------------*/
+input[type="text"],input[type="password"],textarea,select { outline: none; }
+// ie11のinputに出る×印を消す
+input[type=text]::-ms-clear,input[type=password]::-ms-reveal { display: none; }
+// iOSでinputが角丸になるのを防止
+input[type="button"],input[type="text"],input[type="email"],input[type="url"],input[type="tel"],input[type="submit"],textarea { -webkit-appearance: none; -moz-appearance: none; appearance: none; border-radius: 0; }
+
+//プレースホルダーの色
+$phcolor: #bbbbbb;
+$phweight: inherit;
+
+:placeholder-shown { color: $phcolor !important; font-weight: $phweight !important; }
+/* Google Chrome, Safari, Opera 15+, Android, iOS */
+::-webkit-input-placeholder { color: $phcolor !important; font-weight: $phweight !important; }/* Firefox 18- */:-moz-placeholder { color: $phcolor !important; font-weight: $phweight !important; opacity: 1; }/* Firefox 19+ */::-moz-placeholder { color: $phcolor !important; font-weight: $phweight !important; opacity: 1; }
+
+/* -----------------------------------------
+// 基本設定
+// ---------------------------------------*/
+form {
+  padding: 0;
+  margin: 0;
+}
+label {
+  letter-spacing: 0;
+}
+input:is([type="email"],[type="number"],[type="password"],[type="search"],[type="tel"],[type="text"],[type="url"],[type="date"]),
+select,
+textarea {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: 1.5;
+  letter-spacing: 0;
+  padding: 8px 15px;
+  background-color: #fff;
+  border: 1px solid $sbcBeige2;
+  border-radius: 5px;
+  &:focus {
+    outline: none;
+    // border: 1px solid $mainColor;
+    // background-color: #f1f1f1;
+  }
+  @include res_min( map-get($BP, MD) ) {
+    // padding: 6px 8px;
+  }
+}
+textarea {
+  min-height: 10em;
+  @include res_min( map-get($BP, MD) ) {
+    min-height: 15em;
+  }
+}
+
+
+.form-contents{
+
+
+/* -----------------------------------------
+// フォームアイテム inputレベル
+// ---------------------------------------*/
+  //inputサイズ
+    .size-XS{
+      max-width: 90px;
+    }
+  @include res_min( map-get($BP, MD) ) {
+    .size-S{
+      max-width: 270px;
+    }
+    .size-M{
+      max-width: 480px;
+    }
+    .size-L{
+      max-width: 550px;
+    }
+  }
+
+  //ラベル
+  .form-item-block-label{
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1.4;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    //必須
+    &.required{
+      &::after{
+        content: '必須';
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.3rem;
+        font-weight: 700;
+        line-height: 1;
+        color: $sbcWhite;
+        white-space: nowrap;
+        background-color: $sbcRed;
+        border-radius: 3px;
+        padding: 0 8px;
+        height: 23px;
+      }
+    }
+    //任意
+    &.any{
+      &::after{
+        content: '任意';
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.3rem;
+        font-weight: 700;
+        line-height: 1;
+        color: $sbcWhite;
+        white-space: nowrap;
+        background-color: $sbcBeige3;
+        border-radius: 3px;
+        padding: 0 8px;
+        height: 23px;
+      }
+    }
+  }
+
+  //補足説明（inputの下など）
+  .form-item-explanation{
+    flex: 0 0 100%;
+    font-size: 1.3rem;
+    color: $sbcGray5;
+  }
+
+  //ラジオボタン・チェックボックス - 共通
+  //チェック時に枠線をつける
+  .status-checked{
+    width: 100%;
+    height: 100%;
+    border: 3px solid $sbcBlue;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    @include transition();
+  }
+
+  //ラジオボタン - カスタマイズ
+  .form-item-wrap-radio{
+    line-height: 1.5;
+    letter-spacing: 0;
+    position: relative;
+    fieldset{
+      display: grid;
+      grid-template-columns: 100%;
+      gap: 8px;
+    }
+    .form-item{
+      //ボタンのカスタマイズ
+      input { display: none; }
+      //チェックなし時
+      .form-item-label{
+        padding: 8px 15px 8px 40px;
+        width: 100%;
+        @include res_min( map-get($BP, MD) ) {
+          max-width: 480px;
+        }
+        background-color: $sbcWhite;
+        border: 1px solid $sbcBeige2;
+        border-radius: 8px;
+        font-weight: 500;
+        position: relative;
+        cursor: pointer;
+        //ボタンを装飾
+        &::before {
+          content: "";
+          width: 16px;
+          height: 16px;
+          background-color: $sbcWhite;
+          border: 1px solid $sbcBeige3;
+          border-radius: 50%;
+          position: absolute;
+          left: 15px;
+          top: calc(8px + 0.25em);
+        }
+      }
+      //チェックあり有り時
+      input:checked + .form-item-label{
+        &::after {
+          content: "";
+          width: 16px;
+          height: 16px;
+          background-color: $sbcBlue ;
+          border-radius: 50%;
+          position: absolute;
+          left: 15px;
+          top: calc(8px + 0.25em);
+          transform: scale(0.6);
+        }
+        .status-checked{
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  //チェックボックス - カスタマイズ
+  .form-item-wrap-checkbox{
+    line-height: 1.5;
+    letter-spacing: 0;
+    position: relative;
+    fieldset{
+      display: grid;
+      grid-template-columns: 100%;
+      gap: 8px;
+    }
+    .form-item{
+      //ボタンのカスタマイズ
+      input { display: none; }
+      //チェックなし時
+      .form-item-label{
+        padding: 8px 15px 8px 40px;
+        width: 100%;
+        @include res_min( map-get($BP, MD) ) {
+          max-width: 480px;
+        }
+        background-color: $sbcWhite;
+        border: 1px solid $sbcBeige2;
+        border-radius: 8px;
+        font-weight: 500;
+        position: relative;
+        cursor: pointer;
+        //ボタンを装飾
+        &::before {
+          content: "";
+          width: 18px;
+          height: 18px;
+          background-color: $sbcWhite;
+          border: 1px solid $sbcBeige3;
+          border-radius: 3px;
+          position: absolute;
+          left: 15px;
+          top: calc(8px + 0.25em);
+        }
+      }
+      //チェックあり有り時
+      input:checked + .form-item-label{
+        &::after {
+          content: "";
+          width: 18px;
+          height: 18px;
+          background-color: $sbcBlue ;
+          background-color: $sbcBlue;
+          -webkit-mask-image: url(./assets/images/common/ico-check.svg);
+                  mask-image: url(./assets/images/common/ico-check.svg);
+          -webkit-mask-repeat: no-repeat;
+                  mask-repeat: no-repeat;
+          -webkit-mask-position: center;
+                  mask-position: center;
+          -webkit-mask-size: 13px;
+                  mask-size: 13px;
+          position: absolute;
+          left: 15px;
+          top: calc(8px + 0.25em);
+        }
+        .status-checked{
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  //セレクトボックス - カスタマイズ
+  select{ // 初期化
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    position: relative;
+    // color: rgba(51,51,51,0.3);
+    &-ms-expand {
+      display: none;
+    }
+  }
+  // セレクトボックスに下矢印をつけるカスタマイズ
+  .form-item-wrap-select{
+    .form-item-select{
+      position: relative;
+      @include res_min( map-get($BP, MD) ) {
+        max-width: 305px;
+      }
+      select{
+        padding-right: 50px;
+        padding-left: 16px;
+        min-height: 43px;
+      }
+      //矢印
+      &::before {
+        content: '';
+        width: 40px;
+        height: 100%;
+        background-image: url(./assets/images/common/ico-arrow-2.svg);
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 8px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 1;
+        pointer-events: none;
+        cursor: pointer;
+      }
+    }
+  }
+
+  //日付ボックス - カスタマイズ
+  .form-item-wrap-date{
+    .form-item{
+      display: block;
+      input{
+        padding-left: 16px;
+      }
+    }
+  }
+
+
+  /* -----------------------------------------
+  // フォームアイテムレイアウト
+  // ---------------------------------------*/
+  //入力input
+  .form-item{
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    @include res_min( map-get($BP, MD) ) {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .sup-item{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.6rem;
+    }
+  }
+
+  //アイテムセット
+  .form-item-block{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    @include res_min( map-get($BP, MD) ) {
+      flex-direction: row;
+      align-items: flex-start;
+      -moz-column-gap: 25px;
+            column-gap: 25px;
+      .form-item-block-label{
+        margin-top: 0.5em;
+        flex-basis: 30%;
+      }
+      .form-item-block-label + *{
+        flex-basis: 70%;
+      }
+    }
+  }
+
+  //アイテムセットのグループ
+  .form-items-container{
+    margin-top: 40px;
+    & + .form-items-container{
+      padding-top: 40px;
+      border-top: 1px solid $sbcBeige2;
+    }
+    display: grid;
+    grid-template-columns: 100%;
+    row-gap: 30px;
+    @include res_min( map-get($BP, LG) ) {
+      margin-top: 60px;
+      & + .form-items-container{
+        margin-top: 50px;
+        padding-top: 50px;
+        border-top: 1px solid $sbcBeige2;
+      }
+      row-gap: 40px;
+    }
+  }
+
+  //個別に設定
+  .--ninzu{ //来場ご予定人数
+    .form-item{
+      gap: 10px;
+      .sup-item{
+        .input-sup:first-of-type{
+          width: 3.5em;
+        }
+      }
+    }
+    @include res_min( map-get($BP, MD) ) {
+      .form-item{
+        gap: 40px;
+        .sup-item{
+          .input-sup:first-of-type{
+            width: auto;
+          }
+        }
+      }
+    }
+  }
+
+
+  /* -----------------------------------------
+  // 1.展示場を選択
+  // ---------------------------------------*/
+  //展示場セット
+  .select-park{
+    margin-top: 20px;
+    .form-item{
+      //チェックなし時
+      .form-item-label{
+        padding: 12px 12px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+        width: 100%;
+        flex-shrink: 0;
+        border-radius: 10px;
+        border: 1px solid $sbcBeige2;
+        background: $sbcWhite;
+        cursor: pointer;
+        //ボタンを装飾
+        &::before {
+          left: 12px;
+          top: auto;
+          bottom: 21px;
+        }
+      }
+      //チェックあり有り時
+      input:checked + .form-item-label{
+        &::after {
+          left: 12px;
+          top: auto;
+          bottom: 21px;
+        }
+        .status-checked{
+          border-radius: 9px;
+          border-width: 6px;
+        }
+      }
+    }
+    //店舗画像
+    .form-item-image{
+      aspect-ratio: 340 / 80;
+      overflow: hidden;
+      img{
+        width: 100%;
+        height: 100%;
+        -o-object-fit: cover;
+          object-fit: cover;
+      }
+    }
+    //店舗ロゴ
+    .park-logo{
+      margin-left: 24px;
+      line-height: 1;
+      overflow: hidden;
+      img{
+        width: auto;
+        height: 18px;
+      }
+    }
+  }
+  @include res_min( map-get($BP, MD) ) {
+    .select-park{
+      margin-top: 30px;
+      fieldset{
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        @include res_min( map-get($BP, LG) ) {
+          gap: 20px;
+        }
+      }
+      .form-item{
+        //チェックなし時
+        .form-item-label{
+          @include res_min( map-get($BP, LG) ) {
+            gap: 20px;
+          }
+        }
+      }
+      //店舗画像
+      .form-item-image{
+        aspect-ratio: 293 / 166;
+      }
+      //店舗ロゴ
+    .park-logo{
+      img{
+        margin-bottom: 2px;
+        height: 12px;
+        @include res_min( map-get($BP, LG) ) {
+          margin-bottom: 0;
+          height: 18px;
+        }
+      }
+    }
+    }
+  }
+
+  /* -----------------------------------------
+  // 2.モデルハウスを選択
+  // ---------------------------------------*/
+  .select-modelhouse{
+    margin-top: 30px;
+    @include res_min( map-get($BP, MD) ) {
+      margin-top: 40px;
+    }
+    .form-item{
+      //チェックなし時
+      .form-item-label{
+        padding: 0;
+        width: 100%;
+        justify-content: flex-start;
+        //ボタンを装飾
+        &::before {
+          left: 12px;
+          top: 12px;
+        }
+      }
+      //チェックあり有り時
+      input:checked + .form-item-label{
+        &::after {
+          left: 12px;
+          top: 12px;
+        }
+        .status-checked{
+          border-radius: 7px;
+          border-width: 6px;
+        }
+      }
+    }
+  }
+
+  /* -----------------------------------------
+  // 3.見学日と見学開始時間選択
+  // ---------------------------------------*/
+  .select-date{
+    margin-top: 30px;
+    @include res_min( map-get($BP, MD) ) {
+      margin-top: 40px;
+    }
+    //モデルハウス一覧 のスタイルをライド
+    .list-modelhouse{
+      grid-template-columns: repeat(auto-fit, minmax(150px, 310px));
+      place-content: center;
+      gap: 20px;
+      @include res_min( map-get($BP, LG) ) {
+        gap: 25px;
+      }
+      .list-item {
+        padding: 0 0 30px;
+        background-color: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        @include res_min( map-get($BP, MD) ) {
+          display: grid;
+          grid-template-rows: subgrid;
+          grid-row: span 4;
+          gap: 0;
+        }
+        .post-group {
+          justify-content: flex-start;
+          height: auto;
+          padding-bottom: 0;
+          border-radius: 0;
+          .post-image {
+            aspect-ratio: 366 / 160;
+            @include res_min( map-get($BP, MD) ) {
+              aspect-ratio: 175 / 129;
+            }
+          }
+          .modelhouse-logo {
+            margin-top: 15px;
+            padding: 0 15px;
+          }
+          .modelhouse-name {
+            padding: 0 15px;
+            font-size: 1.8rem;
+            @include res_min( map-get($BP, MD) ) {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+    }
+    //共通
+    .list-item__title{
+      padding: 16px 0 15px;
+      background-color: $sbcWhite;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 0;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      em{
+        font-size: 95%;
+        color: $sbcBlack;
+      }
+    }
+    .form-item-label{
+      display: block;
+      margin-bottom: 4px;
+      font-size: 1.4rem;
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+    //ご希望の見学日
+    .form-item-wrap-date,
+    .form-item-wrap-select{
+      padding: 12px 20px 0;
+    }
+  }
+
+  /* -----------------------------------------
+  // 上記の個人情報保護方針に同意するチェックボックス
+  // ---------------------------------------*/
+  .agree-block{
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid $sbcBeige3;
+    display: grid;
+    place-content: center;
+    @include res_min( map-get($BP, MD) ) {
+      margin-top: 50px;
+      padding: 35px;
+    }
+    //チェックボックススタイル調整
+    .form-item{
+      .form-item-label{
+        padding-left: 45px;
+        width: auto;
+        max-width: none;
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+        gap: 8px;
+        @include res_min( map-get($BP, MD) ) {
+          gap: 13px;
+          font-size: 1.8rem;
+        }
+      }
+      //必須マーク
+      .require{
+        display: grid;
+        place-content: center;
+        font-size: 1.3rem;
+        font-weight: 700;
+        line-height: 1;
+        color: $sbcWhite;
+        white-space: nowrap;
+        background-color: $sbcRed;
+        border-radius: 3px;
+        padding: 0 8px;
+        height: 23px;
+      }
+    }
+  }
+
+
+  /* -----------------------------------------
+  // ボタン
+  // ---------------------------------------*/
+  .button-wrap{
+    .button{
+      width: 80%;
+      max-width: 360px;
+      white-space: nowrap;
+      @include res_min( map-get($BP, MD) ) {
+        width: auto;
+      }
+    }
+  }
+
+
+}

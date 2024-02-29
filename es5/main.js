@@ -43,7 +43,7 @@
   const header = $('.header');
   const BtnOpen = $('.js-tgl-menu');
   const className = 'is-open';
-  const NaviLink = $('.menu a[href]');
+  const NaviLink = $('.header-nav .menu a[href]');
   const mediaqueryPoint = '1399px';
   $(window).on('resize', function () {
     if (window.matchMedia( "(min-width: " + mediaqueryPoint + ")" ).matches) {
@@ -88,6 +88,31 @@
 
 
   /* --------------------------------------------------
+    サブメニュー開閉
+  -------------------------------------------------- */
+  const tglSubmenuHeader = $('.header-nav .js-tgl-submenu');
+  tglSubmenuHeader.on('mouseover', function () {
+    $(this).find('.sub-menu').css({ 'opacity': '1', 'visibility': 'visible' });
+  }).on('mouseout', function () {
+    $(this).find('.sub-menu').css({ 'opacity': '0', 'visibility': 'hidden' });
+  });
+
+  const tglSubmenuFooter = $('.footer-nav .js-tgl-submenu');
+  const footerSubmenu = $('.footer-nav .sub-menu');
+  const classAction = 'is-action';
+  tglSubmenuFooter.on('tap click mouseover', function () {
+    footerSubmenu.removeClass(classAction);
+    if ($(this).find('.sub-menu').hasClass(classAction)) {
+      $(this).find('.sub-menu').removeClass(classAction);
+    } else {
+      $(this).find('.sub-menu').addClass(classAction);
+    }
+  }).on('mouseout', function () {
+    footerSubmenu.removeClass(classAction);
+  });
+
+
+  /* --------------------------------------------------
     anchor link
   -------------------------------------------------- */
   const $anchor = 'a[href^="#"]';
@@ -112,6 +137,19 @@
       const positionB = $(targetB).offset().top - headerHeight;
       $("html, body").stop().animate({scrollTop:positionB}, speed, 'swing');
       return false;
+    }
+  });
+
+  /* --------------------------------------------------
+    form: タップして読む
+  -------------------------------------------------- */
+  const tapItem = $('.agree-inc-pp');
+  const visibleCls = 'is-visible';
+  tapItem.on('tap click', function () {
+    if ( $(this).hasClass(visibleCls) ){
+      $(this).removeClass(visibleCls);
+    } else {
+      $(this).addClass(visibleCls);
     }
   });
 
