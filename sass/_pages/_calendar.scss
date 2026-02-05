@@ -1,0 +1,275 @@
+@use "../_core/valiables" as *;
+@use "../_core/mixins" as *;
+
+/* ----------------------------------------------------------------
+  スクロールカレンダー設定
+---------------------------------------------------------------- */
+.tbl-scroll {
+  width: 100%;
+  overflow: scroll;
+  table {
+    width: 200vw;
+    max-width: 1260px;
+    border-collapse: collapse;
+  }
+}
+@include res_min(map-get($BP, LG)) {
+  .tbl-scroll {
+    table {
+      width: 100%;
+    }
+  }
+}
+
+/* ----------------------------------------------------------------
+  営業日カレンダーまわりの設定
+---------------------------------------------------------------- */
+.sec-calendar {
+  padding-top: 30px;
+  text-align: center;
+  @include res_min(map-get($BP, LG)) {
+    padding-top: 60px;
+  }
+  .title-2 {
+    text-align: left;
+  }
+}
+
+//対象月
+.calendar-month {
+  margin-top: 30px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: left;
+  @include res_min(map-get($BP, LG)) {
+    text-align: right;
+  }
+}
+
+//更新日
+.calendar-update {
+  padding-top: 30px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: left;
+  @include res_min(map-get($BP, LG)) {
+    text-align: right;
+  }
+}
+
+//ステータス案内
+.status-explanation {
+  margin: 20px 5px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  @include res_min(map-get($BP, MD)) {
+    margin: 15px auto 0;
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0px 20px;
+  }
+  .cell-status {
+    display: flex;
+    align-items: center;
+    span {
+      margin-right: 5px;
+      @include res_min(map-get($BP, MD)) {
+        margin-right: 0;
+      }
+      flex-basis: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &::before {
+        transform: scale(0.8);
+      }
+      &::after {
+        content: "：";
+      }
+    }
+    p {
+      font-size: 1.4rem;
+      line-height: 1.4;
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+  }
+}
+
+/* ----------------------------------------------------------------
+  営業日カレンダー内の設定
+---------------------------------------------------------------- */
+.tbl-calendar {
+  margin-top: 5px;
+  border: 1px solid $sbcBlue;
+  table-layout: fixed;
+  @include res_min(map-get($BP, LG)) {
+    table-layout: auto;
+  }
+  th,
+  td {
+    border: 1px solid $sbcBlue;
+    text-align: center;
+    vertical-align: center;
+  }
+}
+
+//セル : モデルハウス名等
+.cell-modelhouse {
+  padding: 10px;
+  width: 220px;
+  min-width: 220px;
+  // white-space: nowrap;
+}
+thead .cell-modelhouse {
+  background-color: $sbcBlue;
+  color: $sbcWhite;
+}
+
+//日付
+.cell-date {
+  padding: 10px;
+  width: 4em;
+  font-weight: 700;
+  line-height: 1.3;
+  background-color: #f1fbff;
+  span {
+    display: block;
+  }
+  //本日
+  &.Today {
+    color: #009966;
+  }
+  //土曜日
+  &.Sat {
+    background-color: #9de0ff;
+    color: #004ede;
+  }
+  //日曜日・祝日
+  &.Sun,
+  &.holiday {
+    background-color: #ffcbdf;
+    color: #ff2c7d;
+  }
+}
+
+//ステータス
+.cell-status {
+  // 1 : 通常営業
+  &.normal {
+    span::before {
+      display: block;
+      margin: auto;
+      content: "";
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 3px solid $sbcRed;
+    }
+  }
+  // 2 : 電話
+  &.contact {
+    span::before {
+      display: block;
+      margin: auto;
+      content: "";
+      width: 25px;
+      height: 25px;
+      background-color: $sbcBlack;
+      -webkit-mask-image: url(./assets/images/common/ico-tel.svg);
+      mask-image: url(./assets/images/common/ico-tel.svg);
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-position: center;
+      mask-position: center;
+      -webkit-mask-size: cover;
+      mask-size: cover;
+    }
+  }
+  // 3 : 休業日
+  &.holiday {
+    span::before {
+      display: block;
+      margin: auto;
+      content: "";
+      width: 16px;
+      height: 3px;
+      background-color: $sbcBlack;
+    }
+  }
+  // 4 : 午前営業
+  &.morning {
+    span::before {
+      display: block;
+      margin: auto;
+      content: "AM";
+      font-size: 2rem;
+      font-weight: 700;
+      color: $sbcBlack;
+    }
+  }
+  // 5 : 午後営業
+  &.afternoon {
+    span::before {
+      display: block;
+      margin: auto;
+      content: "PM";
+      font-size: 2rem;
+      font-weight: 700;
+      color: $sbcBlack;
+    }
+  }
+  // データがない場合
+  &.nodata {
+    span::before {
+    }
+  }
+}
+
+/* ----------------------------------------------------------------
+  モデルハウスのロゴ・電話等の設定
+---------------------------------------------------------------- */
+//共通設定
+.cell-modelhouse {
+  //モデルハウスロゴ
+  .cell-md-logo {
+    margin: 5px auto 0;
+    width: 80%;
+    max-width: 150px;
+    line-height: 1;
+    overflow: hidden;
+    img {
+      width: auto;
+      max-height: 22px;
+    }
+  }
+  //モデルハウス名
+  .cell-md-name {
+    margin-top: 6px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+  //モデルハウス営業時間等
+  .cell-md-info {
+    margin-top: 2px;
+    .cell-md-info-tel {
+      font-size: 1.5rem;
+      line-height: 1.4;
+      &::before {
+        content: "TEL.";
+        font-size: 80%;
+      }
+    }
+    .cell-md-info-open {
+      font-size: 1.4rem;
+      line-height: 1.4;
+      &::before {
+        content: "営業時間 ";
+        font-size: 80%;
+      }
+    }
+  }
+}

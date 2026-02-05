@@ -1,5 +1,5 @@
-@use '../_core/valiables' as *;
-@use '../_core/mixins' as *;
+@use "../_core/valiables" as *;
+@use "../_core/mixins" as *;
 
 /* ----------------------------------------------------------------
   フッターのレイアウト
@@ -8,93 +8,86 @@
   padding: 30px 20px 15px;
   border-top: 1px solid $sbcBeige2;
 }
-@include res_min( map-get($BP, LG) ) {
+@include res_min(map-get($BP, LG)) {
   .footer {
-    @include maxW( map-get($maxSize, xl) );
-    padding-top: 50px;
+    padding-top: 45px;
+    .inner {
+      @include maxW(map-get($maxSize, xl));
+    }
   }
 }
 
 //ナビまわりのレイアウト
-.footer__menu{
-  .footer__menu__nav{
+.footer__menu {
+  .footer__menu__nav {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     -moz-column-gap: 25px;
-         column-gap: 25px;
+    column-gap: 25px;
   }
-  .sns-links{
+  .sns-links-wrap {
     margin-top: 40px;
+    display: grid;
+    .sns-links {
+      margin: auto;
+    }
   }
 }
-@include res_min( map-get($BP, LG) ) {
-  .footer__menu{
-    .footer__menu__nav{
+@include res_min(map-get($BP, LG)) {
+  .footer__menu {
+    .footer__menu__nav {
       @include flex(nowrap, center, stretch);
       -moz-column-gap: 0;
-           column-gap: 0;
+      column-gap: 0;
     }
-    .sns-links{
-      margin-top: 50px;
-    }
-  }
-
-  @include res_min( map-get($BP, XXL) ) {
-    .footer__menu{
-      @include flex(nowrap, center, center);
-      .footer__menu__nav{
-      }
-      .sns-links{
-        margin-top: 0;
-        margin-left: 35px;
-      }
+    .sns-links-wrap {
+      margin-top: 40px;
     }
   }
-
 }
 
-
 //ナビメニューのデザイン
-.footer-nav{
+.footer-nav {
   .menu {
     .menu-item {
-      &:not(:first-of-type){
+      &:not(:first-of-type) {
         margin-top: 1.3em;
       }
       line-height: 1.4;
       a {
-        &:hover, &:active{
+        &:hover,
+        &:active {
           color: $sbcRed;
         }
       }
       //ラベルのみで使用する
-      &.page-label{
+      &.page-label {
         position: relative;
         padding-right: 1em;
-        &::after{
-          content: '';
+        &::after {
+          content: "";
           width: 9px;
           height: 4px;
           background-color: $sbcBlack;
           -webkit-mask-image: url(./assets/images/common/ico-arrow-2.svg);
-                  mask-image: url(./assets/images/common/ico-arrow-2.svg);
+          mask-image: url(./assets/images/common/ico-arrow-2.svg);
           -webkit-mask-repeat: no-repeat;
-                  mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
           -webkit-mask-position: center;
-                  mask-position: center;
+          mask-position: center;
           -webkit-mask-size: auto 100%;
-                  mask-size: auto 100%;
+          mask-size: auto 100%;
           position: absolute;
           right: 0;
           top: 9px;
         }
-        & > a{
+        & > a {
           pointer-events: none;
         }
       }
       //サブメニューがある場合
-      &.menu-item-has-children{
-        .sub-menu{
+      &.menu-item-has-children {
+        .sub-menu {
           // display: none;
           height: 0;
           opacity: 0;
@@ -106,15 +99,16 @@
           .menu-item {
             margin-top: 0.8em;
             font-size: 1.4rem;
-            a{
+            a {
               color: $sbcBlack;
-              &:hover, &:active{
+              &:hover,
+              &:active {
                 color: $sbcRed;
               }
             }
           }
           //開閉
-          &.is-action{
+          &.is-action {
             height: auto;
             opacity: 1;
             visibility: visible;
@@ -124,13 +118,13 @@
     }
   }
 }
-@include res_min( map-get($BP, LG) ) {
-  .footer-nav{
-    &:first-of-type{
-      .menu{
+@include res_min(map-get($BP, LG)) {
+  .footer-nav {
+    &:first-of-type {
+      .menu {
         position: relative;
-        &::before{
-          content: '';
+        &::before {
+          content: "";
           width: 1px;
           height: 1em;
           background-color: $sbcGray4;
@@ -145,15 +139,16 @@
       .menu-item {
         padding: 0 10px;
         position: relative;
-        @include res_min( map-get($BP, XL) ) {
+        @include res_min(map-get($BP, XL)) {
           padding: 0 20px;
         }
         // border-right: 1px solid $sbcGray4;
-        &:not(:first-of-type){
+        &:not(:first-of-type) {
           margin-top: 0;
         }
-        &::before{ //マウスオーバー時のちらつき防止エリア
-          content: '';
+        &::before {
+          //マウスオーバー時のちらつき防止エリア
+          content: "";
           width: 100%;
           height: 1em;
           background-color: transparent;
@@ -161,8 +156,8 @@
           left: 0;
           bottom: -1em;
         }
-        &::after{
-          content: '';
+        &::after {
+          content: "";
           width: 1px;
           height: 1em;
           background-color: $sbcGray4;
@@ -171,23 +166,23 @@
           top: 4px;
         }
         //ラベルのみで使用する
-        &.page-label{
+        &.page-label {
           cursor: pointer;
           position: relative;
-          &::after{
+          &::after {
             width: 1px;
             height: 1em;
             background-color: $sbcGray4;
             -webkit-mask-image: none;
-                    mask-image: none;
+            mask-image: none;
             position: absolute;
             right: 0;
             top: 4px;
           }
         }
         //サブメニューがある場合
-        &.menu-item-has-children{
-          .sub-menu{
+        &.menu-item-has-children {
+          .sub-menu {
             margin-left: 1em;
             background-color: $sbcWhite;
             display: flex;
@@ -210,7 +205,7 @@
               border: none;
               white-space: nowrap;
               &::before,
-              &::after{
+              &::after {
                 content: none;
               }
             }
@@ -221,47 +216,45 @@
   }
 }
 
-
 //会社情報
 .corporate-info {
   margin-top: 35px;
   text-align: center;
-	.corporate-info__data {
+  .corporate-info__data {
     line-height: 1;
-		.corporate-name {
-      font-size: 1.8rem;
+    .corporate-name {
+      font-size: 1.6rem;
       font-weight: 700;
-		}
-		.corporate-address {
-      margin-top: 20px;
+    }
+    .corporate-address {
+      margin-top: 15px;
       font-size: 1.3rem;
-		}
-		.corporate-tel {
+    }
+    .corporate-tel {
       margin-top: 20px;
       font-size: 1.8rem;
       font-weight: 700;
-
-		}
-		.corporate-fax {
+    }
+    .corporate-fax {
       margin-top: 15px;
       font-weight: 500;
-		}
-	}
-	.corporate-info__other {
+    }
+  }
+  .corporate-info__other {
     margin-top: 30px;
-		.corporate-pp {
+    .corporate-pp {
       font-size: 1.4rem;
-		}
-		.corporate-copyright {
+    }
+    .corporate-copyright {
       margin-top: 15px;
       font-size: 1.2rem;
       line-height: 1;
-		}
-	}
+    }
+  }
 }
-@include res_min( map-get($BP, LG) ) {
+@include res_min(map-get($BP, LG)) {
   .corporate-info {
-    margin-top: 50px;
+    margin-top: 40px;
     text-align: left;
     @include flex(nowrap, space-between, flex-end);
     .corporate-info__data {
@@ -269,7 +262,7 @@
       }
       .corporate-address {
         display: inline-block;
-        margin-top: 15px;
+        margin-top: 13px;
         margin-right: 8px;
         font-size: 1.3rem;
         font-weight: 500;

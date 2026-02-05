@@ -39,7 +39,7 @@
             ?>
             </div>
             <div class="post-detail">
-              <time class="post-date"><?php the_time('Y年m月d日'); ?></time>
+              <!-- <time class="post-date"><?php the_time('Y年m月d日'); ?></time> -->
               <h3 class="post-title"><?php the_title(); ?></h3>
             </div>
           </a>
@@ -76,14 +76,25 @@
               </li>
             </ul>
             <div class="park-button">
-              <a class="button button-gray" href="<?php echo esc_url( home_url() ); ?>/nag-c">詳細ページへ</a>
+              <a class="button button-gray" href="<?php echo esc_url( home_url() ); ?>/nag-c">モデルハウス一覧</a>
               <a class="button button-reserve-s" href="<?php echo esc_url( home_url() ); ?>/reserve">見学予約</a>
             </div>
             <h4 class="title-3">モデルハウスTOPICS</h4>
             <?php //ループクエリ
-            $post_types = array( //モデルハウスTOPICS一覧取得クエリ用
-              'modelhouse-a'
-            );
+            // 投稿タイプを動的に取得
+            $post_types = array();
+            $suffix = '_nag-c';
+
+            // すべての投稿タイプを取得
+            $all_post_types = get_post_types(array('public' => true, '_builtin' => false), 'names');
+
+            // 特定のサフィックスを含む投稿タイプをフィルタリング
+            foreach ($all_post_types as $post_type) {
+              if (strpos($post_type, $suffix) !== false) {
+                $post_types[] = $post_type;
+              }
+            }
+
             $args = array(
               'post_type' => $post_types,
               'posts_per_page' => '3',
@@ -96,7 +107,7 @@
               <a href="<?php echo esc_url( home_url() ); ?>/model-house-topics/nag-c-hp-topics" class="button-arrow-right">一覧を見る</a>
             </div>
           </div>
-          <button class="button-tgl-open_close js-tgl-park">詳細をみる</button>
+          <button class="button-tgl-open_close js-tgl-park"><span></span></button>
         </section>
         <?php //パーク ?>
         <section class="park">
@@ -112,18 +123,29 @@
               </li>
               <li class="park-overview__data data-house">
                 <span class="icon"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/common/ico-house.svg" alt="" width="23" height="23"></span>
-                <p>モデルハウス14棟</p>
+                <p>モデルハウス15棟</p>
               </li>
             </ul>
             <div class="park-button">
-              <a class="button button-gray" href="<?php echo esc_url( home_url() ); ?>/ueda">詳細ページへ</a>
+              <a class="button button-gray" href="<?php echo esc_url( home_url() ); ?>/ueda">モデルハウス一覧</a>
               <a class="button button-reserve-s" href="<?php echo esc_url( home_url() ); ?>/reserve">見学予約</a>
             </div>
             <h4 class="title-3">モデルハウスTOPICS</h4>
             <?php //ループクエリ
-            $post_types = array( //モデルハウスTOPICS一覧取得クエリ用
-              'modelhouse-a'
-            );
+            // 投稿タイプを動的に取得
+            $post_types = array();
+            $suffix = '_ueda';
+
+            // すべての投稿タイプを取得
+            $all_post_types = get_post_types(array('public' => true, '_builtin' => false), 'names');
+
+            // 特定のサフィックスを含む投稿タイプをフィルタリング
+            foreach ($all_post_types as $post_type) {
+              if (strpos($post_type, $suffix) !== false) {
+                $post_types[] = $post_type;
+              }
+            }
+
             $args = array(
               'post_type' => $post_types,
               'posts_per_page' => '3',
@@ -136,7 +158,7 @@
               <a href="<?php echo esc_url( home_url() ); ?>/model-house-topics/ueda-hp-topics" class="button-arrow-right">一覧を見る</a>
             </div>
           </div>
-          <button class="button-tgl-open_close js-tgl-park">詳細をみる</button>
+          <button class="button-tgl-open_close js-tgl-park"><span></span></button>
         </section>
         <?php //パーク ?>
         <section class="park">
@@ -152,18 +174,29 @@
               </li>
               <li class="park-overview__data data-house">
                 <span class="icon"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/common/ico-house.svg" alt="" width="23" height="23"></span>
-                <p>モデルハウス11棟</p>
+                <p>モデルハウス10棟</p>
               </li>
             </ul>
             <div class="park-button">
-              <a class="button button-gray" href="<?php echo esc_url( home_url() ); ?>/saku">詳細ページへ</a>
+              <a class="button button-gray" href="<?php echo esc_url( home_url() ); ?>/saku">モデルハウス一覧</a>
               <a class="button button-reserve-s" href="<?php echo esc_url( home_url() ); ?>/reserve">見学予約</a>
             </div>
             <h4 class="title-3">モデルハウスTOPICS</h4>
             <?php //ループクエリ
-            $post_types = array( //モデルハウスTOPICS一覧取得クエリ用
-              'modelhouse-a'
-            );
+            // 投稿タイプを動的に取得
+            $post_types = array();
+            $suffix = '_saku';
+
+            // すべての投稿タイプを取得
+            $all_post_types = get_post_types(array('public' => true, '_builtin' => false), 'names');
+
+            // 特定のサフィックスを含む投稿タイプをフィルタリング
+            foreach ($all_post_types as $post_type) {
+              if (strpos($post_type, $suffix) !== false) {
+                $post_types[] = $post_type;
+              }
+            }
+
             $args = array(
               'post_type' => $post_types,
               'posts_per_page' => '3',
@@ -176,7 +209,7 @@
               <a href="<?php echo esc_url( home_url() ); ?>/model-house-topics/saku-hp-topics" class="button-arrow-right">一覧を見る</a>
             </div>
           </div>
-          <button class="button-tgl-open_close js-tgl-park">詳細をみる</button>
+          <button class="button-tgl-open_close js-tgl-park"><span></span></button>
         </section>
       </div>
     </div>
@@ -209,10 +242,10 @@
             <div class="post-detail">
               <h3 class="post-title"><?php the_title(); ?></h3>
               <?php
-              $main_text = SCF::get('scf_text_main');
-              $main_text = mb_substr($main_text, 0, 80);
+              $main_text = SCF::get('scf_text_mainarea');
+              // $main_text = mb_substr($main_text, 0, 80);
               if($main_text){
-                echo '<p class="post-lead">'.$main_text.'</p>';
+                echo '<div class="post-lead">'.$main_text.'</div>';
               }
               ?>
             </div>

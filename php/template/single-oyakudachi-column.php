@@ -17,49 +17,53 @@
 				<?php
 				$main_image = SCF::get('scf_image_main');
 				$main_title = SCF::get('scf_title_main');
-				$main_text = SCF::get('scf_text_main');
+				$main_text = SCF::get('scf_text_mainarea');
 				$group_text = SCF::get('scf_group_text_block');
 				?>
 				<div class="intro-block">
 					<figure class="item-image">
-					<?php //イントロ画像
-					if($main_image){
-						echo wp_get_attachment_image($main_image,'large');
-					} else {
-						echo '<img src="'.get_stylesheet_directory_uri().'/assets/images/common/img-no-image.png" alt="no image">';
-					} ?>
+						<?php
+						if ($main_image) {
+							echo wp_get_attachment_image($main_image, 'large');
+						} else {
+							echo '<img src="' . get_stylesheet_directory_uri() . '/assets/images/common/img-no-image.png" alt="no image">';
+						}
+						?>
 					</figure>
-					<?php //イントロ文章
-					if($main_title || $main_text){
+					<?php
+					if ($main_title || $main_text) {
 						echo '<div class="item-block">';
-						if($main_title){
-							echo '<h2 class="item-block__title">'.$main_title.'</h2>';
+						if ($main_title) {
+							echo '<h2 class="item-block__title">' . esc_html($main_title) . '</h2>';
 						}
-						if($main_text){
-							echo '<p class="item-block__text">'.$main_text.'</p>';
-						}
-						echo '</div>';
-					} ?>
-				</div>
-				<?php //テキストブロック
-				if($group_text){
-					foreach ($group_text as $fields ) {
-						echo '<div class="item-block">';
-						$group_image = $fields['scf_group_text_block_image'];
-						$group_title = $fields['scf_text_block_title'];
-						$group_text = $fields['scf_text_block_text'];
-						if($group_image){
-							echo wp_get_attachment_image($group_image,'large');
-						}
-						if($group_title){
-							echo '<h2 class="item-block__title">'.$group_title.'</h2>';
-						}
-						if($group_text){
-							echo '<p class="item-block__text">'.$group_text.'</p>';
+						if ($main_text) {
+							echo '<div class="item-block__text">' . wp_kses_post($main_text) . '</div>';
 						}
 						echo '</div>';
 					}
-				} ?>
+					?>
+				</div>
+
+				<?php
+				if ($group_text) {
+					foreach ($group_text as $fields) {
+						echo '<div class="item-block">';
+						$group_image = $fields['scf_group_text_block_image'];
+						$group_title = $fields['scf_text_block_title'];
+						$group_text = $fields['scf_text_block_textarea'];
+						if ($group_image) {
+							echo wp_get_attachment_image($group_image, 'large');
+						}
+						if ($group_title) {
+							echo '<h2 class="item-block__title">' . esc_html($group_title) . '</h2>';
+						}
+						if ($group_text) {
+							echo '<div class="item-block__text">' . wp_kses_post($group_text) . '</div>';
+						}
+						echo '</div>';
+					}
+				}
+				?>
 			</div>
 			<?php endif; ?>
 		</div>

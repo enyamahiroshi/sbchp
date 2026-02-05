@@ -59,6 +59,13 @@ textarea {
   }
 }
 
+#app-area{
+  min-height: 5em;
+  @include res_min( map-get($BP, MD) ) {
+    min-height: 7em;
+  }
+}
+
 
 .form-contents{
 
@@ -320,8 +327,16 @@ textarea {
   .form-item-wrap-date{
     .form-item{
       display: block;
-      input{
+      input[type="date"]{
         padding-left: 16px;
+        &::-webkit-datetime-edit-year-field,
+        &::-webkit-datetime-edit-month-field,
+        &::-webkit-datetime-edit-day-field {
+          &:focus{
+            background-color: transparent;
+            color: inherit;
+          }
+        }
       }
     }
   }
@@ -399,14 +414,23 @@ textarea {
         }
       }
     }
+    .form-item-explanation{
+      margin-top: -10px;
+      flex: 0 0 auto;
+    }
     @include res_min( map-get($BP, MD) ) {
       .form-item{
-        gap: 40px;
+        -moz-column-gap: 40px;
+             column-gap: 40px;
         .sup-item{
           .input-sup:first-of-type{
             width: auto;
           }
         }
+      }
+      .form-item-explanation{
+        margin-top: 0;
+        flex: 0 0 100%;
       }
     }
   }
@@ -581,6 +605,11 @@ textarea {
             @include res_min( map-get($BP, MD) ) {
               aspect-ratio: 175 / 129;
             }
+            &.no-image{
+              img{
+                border-radius: 0;
+              }
+            }
           }
           .modelhouse-logo {
             margin-top: 15px;
@@ -623,6 +652,32 @@ textarea {
     .form-item-wrap-date,
     .form-item-wrap-select{
       padding: 12px 20px 0;
+    }
+  }
+
+  //モデルハウス未選択時と選択時のメッセージ表示内容
+  .message-select-data{
+    padding-left: 32px;
+    letter-spacing: 0;
+    @include res_min( map-get($BP, MD) ) {
+      padding-left: 45px;
+    }
+    &::before{
+      content: '※上の「2」で選択したモデルハウスがこちらに表示されます。';
+    }
+    //選択時
+    &.is-selected{
+      margin-top: 20px;
+      @include res_min( map-get($BP, MD) ) {
+        margin-top: 30px;
+        font-size: 1.5rem;
+      }
+      @include res_min( map-get($BP, LG) ) {
+        text-align: center;
+      }
+      &::before{
+        content: '※モデルハウスを取り消す場合は、上の「2」で選択したモデルハウスのチェックを解除してください。';
+      }
     }
   }
 

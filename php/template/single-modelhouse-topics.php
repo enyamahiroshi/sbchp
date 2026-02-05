@@ -14,18 +14,20 @@
 				<h1 class="post-title"><?php the_title(); ?></h1>
 			</header>
 			<div class="post-body">
-				<?php
+				<?php the_content(); ?>
+				<?php /*
 				$kaisaibi = SCF::get('scf_kaisaibi');
 				$main_image = SCF::get('scf_group_modelhouse_topics_overview_image');
 				$main_text = SCF::get('scf_group_modelhouse_topics_overview_text');
+				$main_text = nl2br($main_text);
 				$group_block = SCF::get('scf_group_modelhouse_topics_block');
-				$author_name = get_the_author_meta('display_name'); //ユーザーの「表示名」 = ユーザー作成時にモデルハウス名と設定する
+      	$post_type_label = get_post_type_object(get_post_type())->label; // 投稿タイプのラベル名を取得
 				?>
 				<div class="post-meta">
 					<?php if($kaisaibi): ?>
 					<p class="kaisaibi"><?php echo $kaisaibi; ?></p>
-					<p class="modelhouse-name">[<?php echo $author_name; ?>]</p>
-					<p class="modelhouse-park">SBC長野中央ハウジングパーク</p>
+					<p class="modelhouse-name"><?php echo $post_type_label; ?></p>
+					<!-- <p class="modelhouse-park">SBC長野中央ハウジングパーク</p> -->
 					<?php endif; ?>
 				</div>
 				<div class="intro-block">
@@ -57,11 +59,12 @@
 							echo '<h2 class="item-block__title">'.$fields['scf_group_modelhouse_topics_block_title'].'</h2>';
 						}
 						if($fields['scf_group_modelhouse_topics_block_text']){
-							echo '<p class="item-block__text">'.$fields['scf_group_modelhouse_topics_block_text'].'</p>';
+							echo '<p class="item-block__text">'.nl2br($fields['scf_group_modelhouse_topics_block_text']).'</p>';
 						}
 						echo '</div>';
 					}
 				} ?>
+				*/ ?>
 			</div>
 			<?php endif; ?>
 		</div>

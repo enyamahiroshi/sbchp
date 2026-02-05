@@ -1,93 +1,95 @@
-@use '../_core/valiables' as *;
-@use '../_core/mixins' as *;
+@use "../_core/valiables" as *;
+@use "../_core/mixins" as *;
 
 /* ------------------------------------
 //  記事関連各パーツ
 // ----------------------------------*/
-.post-body{
-
+.post-body {
   //メタ情報
-  .post-meta{
+  .post-meta {
     margin-bottom: 40px;
     padding: 1em 0;
     border-top: 1px solid $sbcBeige2;
     border-bottom: 1px solid $sbcBeige2;
-    & > p{
+    & > p {
       margin-top: 0;
       font-weight: 700;
       line-height: 1.4;
     }
-    .kaisaibi{
-      &::before{
-        content: '開催日：';
+    .kaisaibi {
+      &::before {
+        content: "開催日：";
         letter-spacing: 0;
       }
     }
-    .modelhouse-name{
+    .modelhouse-name {
       margin-top: 0.8em;
     }
-    .modelhouse-park{
+    .modelhouse-park {
       margin-top: 0.2em;
     }
   }
-  @include res_min( map-get($BP, MD) ) {
-    .post-meta{
-      & > p{
+  @include res_min(map-get($BP, MD)) {
+    .post-meta {
+      & > p {
         font-size: 2rem;
       }
     }
   }
 
   //基本ブロック
-  .item-block{
+  .item-block {
     margin-top: 30px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     gap: 1em;
-    .item-block__title{
+    .item-block__title {
       font-size: 2rem;
       font-weight: 700;
     }
-    .item-block__text{}
+    .item-block__text {
+      p + br {
+        display: none;
+      }
+    }
   }
-  @include res_min( map-get($BP, MD) ) {
-    .item-block{
+  @include res_min(map-get($BP, MD)) {
+    .item-block {
       margin-top: 60px;
-      .item-block__title{
+      .item-block__title {
         font-size: 2.4rem;
       }
     }
   }
 
   //イントロ文章
-  .intro-block{
-    .item-image{}
-    .item-block{
+  .intro-block {
+    .item-image {
+    }
+    .item-block {
       margin-top: 20px;
     }
   }
-  @include res_min( map-get($BP, LG) ) {
-    .intro-block{
-      .item-block{
+  @include res_min(map-get($BP, LG)) {
+    .intro-block {
+      .item-block {
         margin-top: 40px;
       }
-      &.intro-block--event-news{
+      &.intro-block--event-news {
         display: grid;
         grid-template-columns: 41.25% 1fr;
         gap: 32px;
-        .item-block{
+        .item-block {
           margin-top: -0.25em;
         }
       }
     }
   }
-
 }
 
-
 //カテゴリーラベル
-.post-category{
+.post-category {
   padding: 6px 10px;
   min-width: 80px;
   display: flex;
@@ -96,32 +98,34 @@
   white-space: nowrap;
   font-size: 1.4rem;
   font-weight: 500;
+  color: $textBaseColor;
   line-height: 1;
+  letter-spacing: 0;
   background-color: $sbcBeige1;
   //個別
-  &.cat-news{
+  &.cat-news {
     background-color: $sbcOrange;
   }
-  &.cat-nag-c{
+  &.cat-nag-c {
     background-color: $sbcNagano;
   }
-  &.cat-ueda{
+  &.cat-ueda {
     background-color: $sbcUeda;
   }
-  &.cat-saku{
+  &.cat-saku {
     background-color: $sbcSaku;
   }
 }
-@include res_min( map-get($BP, MD) ) {
-  .post-category{
+@include res_min(map-get($BP, MD)) {
+  .post-category {
     padding: 8px 10px;
-    min-width: 130px;
+    min-width: 135px;
     font-size: 1.5rem;
   }
 }
 
-
 //現在記事はありません
-.no-posts{
+.no-posts {
+  list-style: none;
   padding: 16px 0;
 }

@@ -20,10 +20,10 @@
             <div class="post-detail">
               <h3 class="post-title"><?php the_title(); ?></h3>
               <?php
-              $main_text = SCF::get('scf_text_main');
+              $main_text = SCF::get('scf_text_mainarea');
               $main_text = mb_substr($main_text, 0, 80);
               if($main_text){
-                echo '<p class="post-lead">'.$main_text.'</p>';
+                echo '<div class="post-lead">'.$main_text.'</div>';
               }
               ?>
             </div>

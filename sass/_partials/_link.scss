@@ -6,14 +6,14 @@
 // ----------------------------------*/
 a {
   @include transition();
-  color: $linkColor;
+  color: $textBaseColor;
   text-decoration: none;
   &:link, &:visited {
     text-decoration: none;
   }
   &:hover, &:active {
-    opacity: 0.8;
-    color: $linkHoverColor;
+    opacity: 1;
+    color: $sbcLinkColor
   }
   // ウェブアイコン使用時
   // i {
@@ -42,6 +42,22 @@ a img {
             backface-visibility: hidden;
     &:hover {
       opacity: 0.8;
+    }
+  }
+}
+
+.block-link{
+  word-break: break-all;
+  a{
+    &:link,
+    &:visited {
+      color: $textBaseColor;
+      text-decoration: underline;
+    }
+    &:hover,
+    &:active {
+      opacity: 1;
+      color: $sbcLinkColor
     }
   }
 }
@@ -240,6 +256,7 @@ a img {
     color: $sbcWhite;
   }
   &:hover, &:active{
+    opacity: 1;
     background-color: $sbcLinkColorAwai;
   }
   &::before{

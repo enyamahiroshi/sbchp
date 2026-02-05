@@ -15,26 +15,35 @@ switch ($page_slug) {
   case 'nag-c-hp-topics': //長野中央ハウジングパーク
     $img_path = 'logo-nagano-hp.svg';
     $park_name = '長野中央ハウジングパーク';
-    $post_types = array( //モデルハウスTOPICS一覧取得クエリ用
-      'modelhouse-a'
-    );
+    $suffix = '_nag-c';
     break;
   case 'ueda-hp-topics': //上田ハウジングパーク
     $img_path = 'logo-ueda-hp.svg';
     $park_name = '上田ハウジングパーク';
-    $post_types = array( //モデルハウスTOPICS一覧取得クエリ用
-      'modelhouse-a'
-    );
+    $suffix = '_ueda';
     break;
   case 'saku-hp-topics': //佐久平ハウジングパーク
     $img_path = 'logo-saku-hp.svg';
     $park_name = '佐久平ハウジングパーク';
-    $post_types = array( //モデルハウスTOPICS一覧取得クエリ用
-      'modelhouse-a'
-    );
+    $suffix = '_saku';
     break;
   default:
+    $suffix = '';
     break;
+}
+
+// 投稿タイプを動的に取得
+$post_types = array();
+if (!empty($suffix)) {
+  // すべての投稿タイプを取得
+  $all_post_types = get_post_types(array('public' => true, '_builtin' => false), 'names');
+
+  // 特定のサフィックスを含む投稿タイプをフィルタリング
+  foreach ($all_post_types as $post_type) {
+    if (strpos($post_type, $suffix) !== false) {
+      $post_types[] = $post_type;
+    }
+  }
 }
 ?>
   <header class="page-header">

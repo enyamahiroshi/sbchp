@@ -9,75 +9,31 @@
   // 見出し
   h1, h2, h3, h4, h5, h6 {
     margin-top: 1em;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.75;
   }
   @include res_min() {
     h1, h2, h3, h4, h5, h6 {
-      margin-top: 2em;
-    }
-  }
-  // h1 {font-size: 2.8rem;}
-  h2 {
-    padding-left: 0.8em;
-    font-size: 2.5rem;
-    position: relative;
-    &::before {
-      content: '';
-      width: 6px;
-      height: calc(100% - 0.25em);
-      border-radius: 3px;
-      background-color: $mainColor;
-      position: absolute;
-      left: 0;
-      top: 0.125em;
-    }
-  }
-  @include res_min() {
-    h2 {
       margin-top: 1.5em;
-      font-size: 3.2rem;
     }
+  }
+  h1 {
+    font-size: 2em;
+  }
+  h2 {
+    font-size: 1.6em;
   }
   h3 {
-    padding-left: 1em;
-    font-size: 2.1rem;
-    position: relative;
-    &::before {
-      content: '';
-      width: 0.5em;
-      height: 0.5em;
-      border-radius: 3px;
-      background-color: $mainColor;
-      position: absolute;
-      left: 0;
-      top: 0.5em;
-    }
-  }
-  @include res_min() {
-    h3 {
-      font-size: 2.8rem;
-    }
+    font-size: 1.25em;
   }
   h4 {
-    font-size: 2rem;
+    font-size: 1em;
   }
   h5 {
-    font-size: 1.9rem;
+    font-size: 1em;
   }
   h6 {
-    font-size: 1.8rem;
-  }
-  @include res_min() {
-    h4 {
-      font-size: 2.6rem;
-    }
-    h5 {
-      font-size: 2.4rem;
-    }
-    h6 {
-      font-size: 2.2rem;
-    }
+    font-size: 1em;
   }
 
   // 段落
@@ -99,7 +55,7 @@
   a {
     &:link,
     &:visited {
-      color: $mainColor;
+      color: $textBaseColor;
       text-decoration: underline;
     }
     &:hover,
@@ -110,15 +66,17 @@
 
   // 画像
   img {
-    // width: auto;
-    // height: auto;
+    width: auto;
+    height: auto;
     max-width: 100%;
-    margin: 1em 0 0;
+    margin-top: 1em;
+    margin-bottom: 1em;
     vertical-align: bottom;
   }
   @include res_min() {
     img {
       margin-top: 1.5em;
+      margin-bottom: 1.5em;
     }
   }
 
@@ -254,13 +212,10 @@
 
   // その他装飾
   strong {
-    font-weight: 400;
-    color: $textBaseColor;
+    font-style: inherit;
   }
   em {
-    font-weight: normal;
-    font-style: italic;
-    color: $textBaseColor;
+    font-style: inherit;
   }
   pre {
     margin: 1em 0;
