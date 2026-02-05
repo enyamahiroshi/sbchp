@@ -179,7 +179,7 @@ add_action('wp_enqueue_scripts', function() {
               'posts_per_page' => -1,
 
               // 一時的にリストから除外（記事ID）
-              'post__not_in' => array(365),
+              'post__not_in' => array(365,9224),
             );
             if ( isset( $args ) ) { $new_Query = new WP_Query($args); }
             ?>
