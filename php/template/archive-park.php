@@ -14,12 +14,19 @@ $post_types = array();
 //パーク情報をスラッグで処理
 switch ($post_type_slug) {
   case 'nag-c': //長野中央ハウジングパーク
+    $slide_images = array(
+      'park/nag-c/img-slide-1.jpg',
+      'park/nag-c/img-slide-2.jpg',
+      'park/nag-c/img-slide-3.jpg',
+      'park/nag-c/img-slide-4.jpg',
+    );
     $park_add = "〒381-0031  長野県長野市西尾張部1030-2";
     $park_googlemap = "https://maps.app.goo.gl/LntD9JcAuCatCTPp7";
     $park_tel = "026-263-8991";
-    $park_open = "10:00～17:00";
+    $park_open = "3～9月 10:00～17:30 / 10月～2月 10:00～17:00";
     $park_logo_image = 'logo-nagano-hp.svg';
-    $park_map_image = 'park/nag-c/img-facility-map-nagano.png';
+    $park_map_image = 'park/nag-c/img-facility-map-nagano.png?20260205';
+    $cal_link = 'nag-c-calendar';
     //特定の投稿タイプのみを配列に代入
     foreach ( $cp_types as $cp_type ) {
       if ( strpos( $cp_type, '_nag-c' ) !== false ) {
@@ -32,12 +39,19 @@ switch ($post_type_slug) {
     }
   break;
   case 'ueda': //上田ハウジングパーク
+    $slide_images = array(
+      'park/ueda/img-slide-1.jpg',
+      'park/ueda/img-slide-2.jpg',
+      'park/ueda/img-slide-3.jpg',
+      'park/ueda/img-slide-4.jpg',
+    );
     $park_add = "〒386-0001  長野県上田市上田1360-1";
     $park_googlemap = "https://maps.app.goo.gl/FvTYKNW1bJ8ZBSLZA";
     $park_tel = "0268-21-0633";
-    $park_open = "10:00～17:00";
+    $park_open = "3～9月 10:00～17:30 / 10月～2月 10:00～17:00";
     $park_logo_image = 'logo-ueda-hp.svg';
-    $park_map_image = 'park/ueda/img-facility-map-ueda.png';
+    $park_map_image = 'park/ueda/img-facility-map-ueda.png?20250731';
+    $cal_link = 'ueda-calendar';
     //特定の投稿タイプのみを配列に代入
     foreach ( $cp_types as $cp_type ) {
       if ( strpos( $cp_type, '_ueda' ) !== false ) {
@@ -50,12 +64,19 @@ switch ($post_type_slug) {
     }
     break;
   case 'saku': //佐久平ハウジングパーク
+    $slide_images = array(
+      // 'park/saku/img-slide-1.jpg',
+      'park/saku/img-slide-2.jpg',
+      'park/saku/img-slide-3.jpg',
+      'park/saku/img-slide-4.jpg',
+    );
     $park_add = "〒385-0028  長野県佐久市佐久平駅東20-2";
     $park_googlemap = "https://maps.app.goo.gl/FPUC8M9kENgQXEuY7";
     $park_tel = "0267-66-6650";
-    $park_open = "10:00～17:00";
+    $park_open = "3～9月 10:00～17:30 / 10月～2月 10:00～17:00";
     $park_logo_image = 'logo-saku-hp.svg';
-    $park_map_image = 'park/saku/img-facility-map-saku.png';
+    $park_map_image = 'park/saku/img-facility-map-saku.png?20250731';
+    $cal_link = 'saku-calendar';
     //特定の投稿タイプのみを配列に代入
     foreach ( $cp_types as $cp_type ) {
       if ( strpos( $cp_type, '_saku' ) !== false ) {
@@ -68,6 +89,7 @@ switch ($post_type_slug) {
     }
     break;
   default:
+    $slide_images = array();
     break;
 }
 ?>
@@ -103,9 +125,9 @@ switch ($post_type_slug) {
 				<?php //パークスライダーMain - 本体 ?>
 				<div class="slider-park-main">
 					<div class='swiper-wrapper'>
-						<div class='swiper-slide'><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/park/<?php echo $post_type_slug; ?>/img-slide-1.jpg" alt=""></div>
-						<div class='swiper-slide'><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/park/<?php echo $post_type_slug; ?>/img-slide-2.jpg" alt=""></div>
-						<div class='swiper-slide'><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/park/<?php echo $post_type_slug; ?>/img-slide-3.jpg" alt=""></div>
+						<?php foreach ($slide_images as $slide_image) : ?>
+						<div class='swiper-slide'><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/<?php echo $slide_image; ?>" alt=""></div>
+						<?php endforeach; ?>
 					</div>
           <div class="swiper-pagination"></div>
 					<div class="swiper-button-prev"></div>
@@ -166,7 +188,7 @@ switch ($post_type_slug) {
           get_template_part('template/loop', 'modelhouse-topics', $args);
           ?>
           <div class="link-list-more button-wrap --right">
-            <a href="<?php echo esc_url( home_url() ); ?>/<?php echo $park_modelhouse_all_topics; ?>" class="button-arrow-right">一覧を見る</a>
+            <a href="<?php echo esc_url( home_url() ); ?>/model-house-topics/<?php echo $post_type_slug; ?>-hp-topics" class="button-arrow-right">一覧を見る</a>
           </div>
         </section>
         <section class="column-layout-two__second">
@@ -174,7 +196,7 @@ switch ($post_type_slug) {
             <h2 class="title-icon title-icon--calendar">営業日カレンダー</h2>
             <p class="text-s">各モデルハウスの営業日をご確認いただけます。</p>
             <div class="button-wrap">
-              <a href="" class="button button-calender">営業日カレンダー</a>
+              <a href="<?php echo esc_url( home_url() ); ?>/calendar/<?php echo $cal_link; ?>" class="button button-calender" target="_blank" rel="noopener noreferrer">営業日カレンダー</a>
             </div>
           </div>
           <div class="block-park-map">

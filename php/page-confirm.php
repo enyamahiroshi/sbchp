@@ -1,7 +1,7 @@
 <?php
 /**
  * From Action
- * 
+ *
  */
 $objApp = new Reserve();
 $objApp->confirm();
@@ -60,7 +60,7 @@ add_action('wp_enqueue_scripts', function() {
           <div class="confirm-item">
             <div class="confirm-item-label">見学希望のモデルハウス - <?php esc_html_e($no); ?>棟目</div>
             <div class="confirm-item-data">
-            <?php esc_html_e($model['name'] ?? ''); ?>
+            <?php esc_html_e(Utils::trimData($model['name'] ?? '')); ?>
             </div>
           </div>
           <div class="confirm-item">
@@ -107,12 +107,6 @@ add_action('wp_enqueue_scripts', function() {
             </div>
           </div>
           <div class="confirm-item">
-            <div class="confirm-item-label">年代</div>
-            <div class="confirm-item-data">
-            <?php esc_html_e($objApp->arrData['app-age'] ?? ''); ?>
-            </div>
-          </div>
-          <div class="confirm-item">
             <div class="confirm-item-label">職業</div>
             <div class="confirm-item-data">
             <?php esc_html_e($objApp->arrData['app-job'] ?? ''); ?>
@@ -149,6 +143,12 @@ add_action('wp_enqueue_scripts', function() {
             <div class="confirm-item-label">ご検討されたい住宅の種類</div>
             <div class="confirm-item-data">
             <?php esc_html_e($objApp->arrData['app-kento'] ?? ''); ?>
+            </div>
+          </div>
+          <div class="confirm-item">
+            <div class="confirm-item-label">計画地域（市町村など）</div>
+            <div class="confirm-item-data">
+            <?php echo nl2br(esc_html($objApp->arrData['app-area'] ?? '')); ?>
             </div>
           </div>
           <div class="confirm-item">

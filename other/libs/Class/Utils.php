@@ -45,8 +45,6 @@ class Utils
                 echo ' checked';
             }
         }
-
-
     }
     public static function selected($index = '', $value = '')
     {
@@ -114,4 +112,17 @@ class Utils
 
         return $return;
     }
+
+    /**
+     * キーからIDを削除
+     *
+     * @param string $string
+     * @return string
+     */
+    public static function trimData($string)
+    {
+        return strstr($string, '-ID-', true);
+    }
+
+
 }

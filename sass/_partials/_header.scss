@@ -1,18 +1,24 @@
-@use '../_core/valiables' as *;
-@use '../_core/mixins' as *;
-
+@use "../_core/valiables" as *;
+@use "../_core/mixins" as *;
 
 $headerHighSP: 50;
 $headerHighPC: 96;
 
+body:not(.calendar-child) {
+  padding-top: #{$headerHighSP + px};
+}
+@include res_min(map-get($BP, LG)) {
+  body:not(.calendar-child) {
+    padding-top: #{$headerHighPC + px};
+  }
+}
 
 /* ----------------------------------------------------------------
   ヘッダーのレイアウト
 ---------------------------------------------------------------- */
 .header {
-  @include transition(transform);
   @include flex(nowrap, flex-end, center);
-  position: relative;
+  position: fixed;
   left: 0;
   top: 0;
   z-index: 20;
@@ -20,10 +26,10 @@ $headerHighPC: 96;
   padding: 0 0 0 16px;
   width: 100%;
   height: #{$headerHighSP + px};
-  background-color: rgba(255,255,255,1);
-  box-shadow: 0 2px 3px rgba(0,0,0,0);
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0);
 
-  .header__logo-wrap{
+  .header__logo-wrap {
     margin-right: 1em;
     align-self: stretch;
     flex: 0 1 auto;
@@ -36,7 +42,7 @@ $headerHighPC: 96;
         max-height: 16px;
       }
     }
-    .site-copy{
+    .site-copy {
       display: none;
     }
   }
@@ -45,7 +51,7 @@ $headerHighPC: 96;
   }
 
   //ヘッダー内の見学予約ボタン
-  .button-reserve{
+  .button-reserve {
     margin-left: auto;
     flex: 0 1 124px;
     align-self: stretch;
@@ -55,36 +61,42 @@ $headerHighPC: 96;
     line-height: 1;
     letter-spacing: 0;
     white-space: nowrap;
-    &:link, &:visited{
+    &:link,
+    &:visited {
       background-color: $sbcRed;
       color: $sbcWhite;
     }
-    em{
+    em {
       font-size: clamp(1.2rem, 4.4vw, 1.6rem);
       font-weight: 500;
     }
-    &::after{
-      content: '';
+    &::after {
+      content: "";
       margin-left: 9px;
       width: 6.6px;
       height: 11px;
       background-color: $sbcWhite;
       -webkit-mask-image: url(./assets/images/common/ico-arrow.svg);
-              mask-image: url(./assets/images/common/ico-arrow.svg);
+      mask-image: url(./assets/images/common/ico-arrow.svg);
       -webkit-mask-repeat: no-repeat;
-              mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
       -webkit-mask-position: center;
-              mask-position: center;
+      mask-position: center;
       -webkit-mask-size: auto 100%;
-              mask-size: auto 100%;
+      mask-size: auto 100%;
     }
   }
 }
-@include res_min( map-get($BP, XXL) ) {
+@include res_min(map-get($BP, LG)) {
   .header {
-    padding: 0 70px 0 34px;
+    -moz-column-gap: 20px;
+    column-gap: 20px;
+    padding: 0 24px 0 20px;
+    @include res_min(map-get($BP, XXL)) {
+      padding: 0 30px 0 34px;
+    }
     height: #{$headerHighPC + px};
-    .header__logo-wrap{
+    .header__logo-wrap {
       margin-right: 0;
       display: block;
       align-self: center;
@@ -94,23 +106,26 @@ $headerHighPC: 96;
           max-height: 26px;
         }
       }
-      .site-copy{
+      .site-copy {
         display: block;
         margin-top: 12px;
-        font-size: 1.4rem;
+        font-size: 1.2rem;
+        @include res_min(map-get($BP, XXXL)) {
+          font-size: 1.4rem;
+        }
         font-weight: 500;
         line-height: 1;
+        letter-spacing: 0.01em;
         white-space: nowrap;
       }
     }
 
     //ヘッダー内の見学予約ボタン
-    .button-reserve{
+    .button-reserve {
       display: none;
     }
   }
 }
-
 
 /* ----------------------------------------------------------------
   グローバルメニュー
@@ -119,7 +134,6 @@ $headerHighPC: 96;
   @include transition(opacity);
   @include flex(nowrap, flex-start, stretch);
   flex-direction: column;
-
   opacity: 0;
   padding: 12px;
   background-color: $sbcBlue;
@@ -128,18 +142,25 @@ $headerHighPC: 96;
   height: calc(100dvh - #{$headerHighSP + px});
   position: absolute;
   left: 0;
-  top:  #{$headerHighSP + px};
+  top: #{$headerHighSP + px};
   pointer-events: none;
   z-index: 8;
+  @include res_min(map-get($BP, LG)) {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
 
-  .header-nav{
+  .header-nav {
     padding: 20px 25px 0;
     background-color: $sbcWhite;
     border-radius: 10px 10px 0 0;
-    // overflow: hidden;
     .menu {
       .menu-item {
         border-bottom: 1px solid $sbcBeige2;
+        letter-spacing: 0.02em;
+        @include res_min(map-get($BP, XXXL)) {
+          letter-spacing: 0.05em;
+        }
         a {
           display: block;
           padding: 11px 10px 11px 30px;
@@ -148,7 +169,7 @@ $headerHighPC: 96;
           line-height: 1.5;
           position: relative;
           &::before {
-            content: '';
+            content: "";
             width: 8px;
             height: 3px;
             background-color: $sbcBlue;
@@ -156,26 +177,27 @@ $headerHighPC: 96;
             left: 11px;
             top: 24px;
           }
-          &:link, &:visited {
+          &:link,
+          &:visited {
             color: $sbcBlack;
           }
         }
         //ラベルのみで使用する
-        &.page-label{
-          & > a{
+        &.page-label {
+          & > a {
             pointer-events: none;
           }
         }
         //サブメニューがある場合
-        &.menu-item-has-children{
-          .sub-menu{
+        &.menu-item-has-children {
+          .sub-menu {
             margin-top: -5px;
             margin-left: 24px;
             .menu-item {
-              &:last-of-type{
+              &:last-of-type {
                 border-bottom: none;
               }
-              a{
+              a {
                 font-size: 1.5rem;
                 font-weight: 500;
                 &::before {
@@ -191,16 +213,37 @@ $headerHighPC: 96;
     }
   }
 
-  .sns-links{
-    padding: 40px 0;
+  .sns-links-wrap {
+    padding: 40px 0 180px;
     background-color: $sbcWhite;
-    border-radius: 0 0 10px 10px;
+    // border-radius: 0 0 10px 10px;
     overflow: hidden;
+    display: grid;
+    @include res_min(map-get($BP, MD)) {
+      padding-bottom: 80px;
+      @include res_min(map-get($BP, LG)) {
+        flex-shrink: 0;
+        flex-grow: 0;
+        margin-left: 20px;
+        padding: 0;
+        @include res_min(map-get($BP, XXL)) {
+          margin-left: 30px;
+        }
+      }
+    }
+    .sns-links-wrap__item {
+      margin: auto;
+      width: 40px;
+      height: 40px;
+    }
   }
 }
-@include res_min( map-get($BP, XXL) ) {
+@include res_min(map-get($BP, LG)) {
   .global-menu {
-    align-self: stretch;
+    align-self: center;
+    @include res_min(map-get($BP, XXL)) {
+      align-self: stretch;
+    }
     opacity: 1;
     padding: 0;
     background-color: transparent;
@@ -209,57 +252,67 @@ $headerHighPC: 96;
     left: 0;
     top: 0;
     pointer-events: visible;
-
-    .header-nav{
+    .header-nav {
       padding: 0;
       background-color: transparent;
       border-radius: 0;
       .menu {
-        @include flex(nowrap, flex-end, stretch);
-        gap: min(1.8vw, 29px);
+        @include flex(wrap, flex-end, stretch);
+        gap: 0 min(1.8vw, 29px);
+        @include res_min(map-get($BP, XXL)) {
+          @include flex(nowrap, flex-end, stretch);
+          gap: min(1.8vw, 29px);
+        }
         .menu-item {
           border-bottom: none;
           white-space: nowrap;
           position: relative;
           a {
             @include flex(nowrap, flex-start, center);
-            height: #{$headerHighPC + px};
+            height: 36px;
+            @include res_min(map-get($BP, XXL)) {
+              height: #{$headerHighPC + px};
+            }
             padding: 0;
-            font-size: 1.7rem;
+            font-size: 1.5rem;
+            @include res_min(map-get($BP, XXL)) {
+              font-size: 1.7rem;
+            }
             &::before {
               content: none;
             }
-            &:hover, &:active{
+            &:hover,
+            &:active {
               color: $sbcRed;
             }
           }
           //ラベルのみで使用する
-          &.page-label{
+          &.page-label {
             cursor: pointer;
-            & > a{
+            & > a {
               display: inline-flex;
               align-items: center;
               gap: 10px;
-              &::after{
-                content: '';
+              &::after {
+                content: "";
                 margin-top: 2px;
                 width: 10px;
                 height: 6px;
                 background-color: $sbcBlack;
                 -webkit-mask-image: url(./assets/images/common/ico-arrow-2.svg);
-                        mask-image: url(./assets/images/common/ico-arrow-2.svg);
+                mask-image: url(./assets/images/common/ico-arrow-2.svg);
                 -webkit-mask-repeat: no-repeat;
-                        mask-repeat: no-repeat;
+                mask-repeat: no-repeat;
                 -webkit-mask-position: center;
-                        mask-position: center;
+                mask-position: center;
                 -webkit-mask-size: auto 100%;
-                        mask-size: auto 100%;
+                mask-size: auto 100%;
               }
             }
           }
           //サブメニューがある場合
-          &.menu-item-has-children{
-            .sub-menu{
+          &.menu-item-has-children {
+            .sub-menu {
               opacity: 0;
               visibility: hidden;
               @include transition();
@@ -279,10 +332,10 @@ $headerHighPC: 96;
               z-index: 10;
               .menu-item {
                 white-space: nowrap;
-                &:last-of-type{
+                &:last-of-type {
                   border-bottom: none;
                 }
-                a{
+                a {
                   height: auto;
                   font-size: 1.7rem;
                 }
@@ -292,13 +345,8 @@ $headerHighPC: 96;
         }
       }
     }
-
-    .sns-links{
-      display: none;
-    }
   }
 }
-
 
 /* ----------------------------------------------------------------
   開閉トグルボタン
@@ -306,7 +354,7 @@ $headerHighPC: 96;
 .menu-bar {
   cursor: pointer;
   background-color: #fff;
-  height:  #{$headerHighSP + px};
+  height: #{$headerHighSP + px};
   position: relative;
   z-index: 9;
   .menu-bar-line {
@@ -317,7 +365,7 @@ $headerHighPC: 96;
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     &::before,
     &::after {
       content: "";
@@ -337,42 +385,19 @@ $headerHighPC: 96;
     }
   }
 }
-@include res_min( map-get($BP, XXL) ) {
+@include res_min(map-get($BP, LG)) {
   .menu-bar {
     display: none;
   }
 }
 
-
 /* ----------------------------------------------------------------
   スクロールでfixed　まとめて指定
 ---------------------------------------------------------------- */
 // グローバルメニュー表示
-body.is-hide,
-body.is-fixed  {
-  padding-top: #{$headerHighSP + px};
-}
-.header.is-hide,
 .header.is-fixed {
-  position: fixed;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
 }
-.header.is-hide {
-  transform: translateY(-#{$headerHighSP + px});
-}
-.header.is-fixed {
-  box-shadow: 0 2px 3px rgba(0,0,0,0.1);
-  transform: translateY(0);
-}
-@include res_min( map-get($BP, XXL) ) {
-  body.is-hide,
-  body.is-fixed  {
-    padding-top: #{$headerHighPC + px};
-  }
-  .header.is-hide {
-    transform: translateY(-#{$headerHighPC + px});
-  }
-}
-
 
 /* ----------------------------------------------------------------
   メニュー開閉時の挙動　まとめて指定
@@ -398,7 +423,7 @@ body.is-open {
   .menu-bar-line {
     background-color: transparent;
     top: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     &::before,
     &::after {
       top: 0;

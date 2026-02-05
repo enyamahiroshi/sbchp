@@ -1,11 +1,11 @@
 <?php
 /**
  * - 見学予約
- * 
- * 
- * 
- * 
- * 
+ *
+ *
+ *
+ *
+ *
  */
 class Reserve
 {
@@ -40,7 +40,7 @@ class Reserve
 
                     $this->arrData = $_POST;
                     $this->arrErr = $this->lfCheckError($this->arrData, true);
-                    
+
 
                     if (isset($this->arrData['model'])) {
                         $i = 0;
@@ -97,6 +97,10 @@ class Reserve
 
                             $objMails = new Mails();
 
+                            foreach ($this->arrData['model'] as $key => $item) {
+                                $this->arrData['model'][$key]['name'] = Utils::trimData($item['name'] ?? '');
+                            }
+
                             $userName = $this->arrData['app-name-sei'] . $this->arrData['app-name-mei'] . '様';
 
                             if ($objMails->reserve($this->arrData['app-email'], $this->arrData, $userName)) {
@@ -139,7 +143,7 @@ class Reserve
      * 会員情報入力チック
      *
      * @param array $arrForm
-     * @param boolean $admin 
+     * @param boolean $admin
      * @return void
      */
     function lfCheckError($arrForm = [], $recaptchaCheck = false)
@@ -149,6 +153,8 @@ class Reserve
         $objErr->doFunc(['展示場', 'park'], ['SELECT_CHECK']);
 
         if (isset($arrForm['model'])) {
+
+            $times = [];
 
             foreach ($arrForm['model'] as $id => $model) {
 
@@ -161,8 +167,22 @@ class Reserve
                     if (!isset($model['time']) || empty($model['time'])) {
                         $objErr->arrErr['model'][$id]['time'] = '入力されていません。';
                     }
+
+                    if (!isset($objErr->arrErr['model'][$id])) {
+                        $times[$id] = $model['date'] . $model['time'];
+                    }
                 }
             }
+
+            /** 同一日の確認 */
+            foreach ($times as $id => $time) {
+                $ckTimes = $times;
+                unset($ckTimes[$id]);
+                if (in_array($time, $ckTimes, true)) {
+                    $objErr->arrErr['model'][$id]['time'] = '同一日時は選択できません';
+                }
+            }
+
         } else {
             $objErr->arrErr['models'] = 'ご見学希望のモデルハウスを選択してください。';
         }
@@ -192,6 +212,8 @@ class Reserve
 
         $objErr->doFunc(['住宅の種類', 'app-kento'], ['SELECT_CHECK']);
 
+        $objErr->doFunc(['計画地域（市町村など）', 'app-area', 1000], ['MAX_LENGTH_CHECK']);
+
         $objErr->doFunc(['建築用土地の有無', 'app-tochi'], ['SELECT_CHECK']);
 
         $objErr->doFunc(['ご相談されたい内容', 'app-naiyo'], ['SELECT_CHECK']);
@@ -201,7 +223,7 @@ class Reserve
         $objErr->doFunc(['個人情報保護方針に同意する', 'app-agree'], ['SELECT_CHECK']);
 
         if ($recaptchaCheck && GOOGLE_SITE_KEY) {
-            if (isset($arrForm['g-recaptcha-response'])) { 
+            if (isset($arrForm['g-recaptcha-response'])) {
                 $result_message = $objErr->reCAPTCHA($arrForm['g-recaptcha-response']);
                 if ($result_message) {
                     Logs::printLog("reCAPTCHA ERROR : " . $result_message);

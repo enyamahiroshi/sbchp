@@ -6,18 +6,15 @@
   const $aadClass = 'is-fixed';
 
   // header
-  const $hideClass = 'is-hide';
-  const $AppearGM = $('body, .header');
+  const $AppearGM = $('.header');
   const $AppearGMTiming = $('.sec:first-of-type').offset().top;
   $(window).on('load scroll', function () {
     if ($(this).scrollTop() > $AppearGMTiming && $AppearGM.hasClass($aadClass) == false) {
-      $AppearGM.removeClass($hideClass);
       $AppearGM.addClass($aadClass);
-    } else if ($(this).scrollTop() > 0 && $(this).scrollTop() < $AppearGMTiming && $AppearGM.hasClass($hideClass) == false) {
-      $AppearGM.addClass($hideClass);
+    } else if ($(this).scrollTop() > 0 && $(this).scrollTop() < $AppearGMTiming) {
       $AppearGM.removeClass($aadClass);
     } else if ($(this).scrollTop() == 0) {
-      $AppearGM.removeClass($hideClass).removeClass($aadClass);
+      $AppearGM.removeClass($aadClass);
     }
   });
 
@@ -42,46 +39,46 @@
   const menuWrap = $('.global-menu');
   const header = $('.header');
   const BtnOpen = $('.js-tgl-menu');
-  const className = 'is-open';
+  const isOpen = 'is-open';
   const NaviLink = $('.header-nav .menu a[href]');
   const mediaqueryPoint = '1399px';
   $(window).on('resize', function () {
     if (window.matchMedia( "(min-width: " + mediaqueryPoint + ")" ).matches) {
-      if (body.hasClass(className)) {
-        body.removeClass(className);
-        header.removeClass(className);
-        menuWrap.removeClass(className);
-        BtnOpen.removeClass(className);
+      if (body.hasClass(isOpen)) {
+        body.removeClass(isOpen);
+        header.removeClass(isOpen);
+        menuWrap.removeClass(isOpen);
+        BtnOpen.removeClass(isOpen);
       }
     }
   });
   BtnOpen.on('tap click', function () {
     if (window.matchMedia( "(max-width: " + mediaqueryPoint + ")" ).matches) {
-      if (body.hasClass(className)) {
-        body.removeClass(className);
-        header.removeClass(className);
-        menuWrap.removeClass(className);
-        BtnOpen.removeClass(className);
+      if (body.hasClass(isOpen)) {
+        body.removeClass(isOpen);
+        header.removeClass(isOpen);
+        menuWrap.removeClass(isOpen);
+        BtnOpen.removeClass(isOpen);
       } else {
-        body.addClass(className);
-        header.addClass(className);
-        menuWrap.addClass(className);
-        BtnOpen.addClass(className);
+        body.addClass(isOpen);
+        header.addClass(isOpen);
+        menuWrap.addClass(isOpen);
+        BtnOpen.addClass(isOpen);
       }
     }
   });
   NaviLink.on('tap click', function () {
     if (window.matchMedia( "(max-width: " + mediaqueryPoint + ")" ).matches) {
-      if (body.hasClass(className)) {
-        body.removeClass(className);
-        header.removeClass(className);
-        menuWrap.removeClass(className);
-        BtnOpen.removeClass(className);
+      if (body.hasClass(isOpen)) {
+        body.removeClass(isOpen);
+        header.removeClass(isOpen);
+        menuWrap.removeClass(isOpen);
+        BtnOpen.removeClass(isOpen);
       } else {
-        body.addClass(className);
-        header.addClass(className);
-        menuWrap.addClass(className);
-        BtnOpen.addClass(className);
+        body.addClass(isOpen);
+        header.addClass(isOpen);
+        menuWrap.addClass(isOpen);
+        BtnOpen.addClass(isOpen);
       }
     }
   });
@@ -98,19 +95,32 @@
   });
 
   const tglSubmenuFooter = $('.footer-nav .js-tgl-submenu');
-  const footerSubmenu = $('.footer-nav .sub-menu');
+  const footerSubmenu = $('.footer-nav .menu .sub-menu');
   const classAction = 'is-action';
-  tglSubmenuFooter.on('tap click mouseover', function () {
-    footerSubmenu.removeClass(classAction);
+  tglSubmenuFooter.on('click mouseover', function () {
     if ($(this).find('.sub-menu').hasClass(classAction)) {
       $(this).find('.sub-menu').removeClass(classAction);
     } else {
+      footerSubmenu.removeClass(classAction);
       $(this).find('.sub-menu').addClass(classAction);
     }
   }).on('mouseout', function () {
     footerSubmenu.removeClass(classAction);
   });
 
+
+  /* --------------------------------------------------
+    展示場開閉
+  -------------------------------------------------- */
+  const tglParkOC = $('.js-tgl-park');
+  $(this).parent('.park').removeClass(isOpen);
+  $(tglParkOC).on('tap click', function () {
+    if ($(this).parent('.park').hasClass(isOpen)) {
+      $(this).parent('.park').removeClass(isOpen);
+    } else {
+      $(this).parent('.park').addClass(isOpen);
+    }
+  });
 
   /* --------------------------------------------------
     anchor link

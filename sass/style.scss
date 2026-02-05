@@ -21,7 +21,7 @@ Author URI:
 @use '_partials/header';
 @use '_partials/footer';
 // @use '_partials/pages';
-// @use '_partials/editor';
+@use '_partials/editor';
 @use '_partials/post';
 
 @use '_pages/home'; //各ハウジングパーク案内ページ
@@ -33,10 +33,11 @@ Author URI:
 @use '_pages/single';
 @use '_pages/reserve';
 @use '_pages/reserve-form-elements';
+@use '_pages/calendar';
 @use '_pages/other';
 
 @use '_scripts/swiper';
-// @use '_scripts/scroll-hint';
+@use '_scripts/scroll-hint';
 
 @use '_plugins/allinone-pankuzu'; //パンくずリスト
 // @use '_plugins/add-to-any'; //シェアボタン（AddToAny）

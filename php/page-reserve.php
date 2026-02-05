@@ -18,10 +18,12 @@ add_action('wp_enqueue_scripts', function() {
 
   <section class="sec sec-form-info">
     <div class="inner">
-      <p class="form-info-intro">気になるハウスメーカーのモデルハウスをまとめて見学予約できるサービスです。<br>下記の申し込みフォームにて<em>同一展示場からご希望のモデルハウスを最大3棟</em>まで選び、ご希望の見学日・時間帯を指定してください。</p>
+      <p class="form-info-intro">気になるハウスメーカーのモデルハウスをまとめて見学予約できるサービスです。<br>下記の申し込みフォームにて<em>同一展示場からご希望のモデルハウスを最大3棟</em>まで選び、ご希望の見学日・時間帯を指定してください。なお、見学時間は<em>1棟あたり90分間隔以上</em>をお勧めします。また、<em>30分以内のご見学及び住宅建築予定が無い方のご見学はプレゼント対象外</em>とさせていただきます。</p>
       <div class="form-info-notes">
-        <p>※見学希望日はお申込日の4日後以降から可能です。</p>
-        <p>※モデルハウスごとに休業日が異なりますのでご注意ください。</p>
+        <p>※キャンペーン開催の場合は、<em class="red">”期間中に見学された方”</em>が特典対象となります。なお、過去に本キャンぺーン特典を受けたご家族は特典対象外とさせていただきます。</p>
+        <p>※各出展メーカーが単独開催する見学キャンペーンとの重複申込みはできません。</p>
+        <p>※見学予約日のご指定前に必ず各展示場の「営業日カレンダー」にて営業日をご確認ください。</p>
+        <p>※12月27日〜翌年1月7日は、年末年始のため見学予約システムでの受付ができません。各社ごとに休業期間が異なりますので見学ご希望のモデルハウスへ直接お問い合わせください。</p>
       </div>
       <div class="form-info-merit-container">
         <h2>見学予約のメリット</h2>
@@ -141,12 +143,12 @@ add_action('wp_enqueue_scripts', function() {
 
             <?php //各展示場 ?>
             <div class="form-item">
-              <input type="radio" name="park" id="park-saku" data-park="--park-in-saku" value="SBC佐久ハウジングパーク"<?php Utils::checked('SBC佐久ハウジングパーク', $objApp->arrData['park'] ?? ''); ?>>
+              <input type="radio" name="park" id="park-saku" data-park="--park-in-saku" value="SBC佐久平ハウジングパーク"<?php Utils::checked('SBC佐久平ハウジングパーク', $objApp->arrData['park'] ?? ''); ?>>
               <label class="form-item-label" for="park-saku">
                 <figure class="form-item-image">
-                  <img class="img-park_logo" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/park/saku/img-slide-1.jpg" alt="SBC佐久ハウジングパーク外観" width="354" height="200">
+                  <img class="img-park_logo" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/park/saku/img-slide-1.jpg" alt="SBC佐久平ハウジングパーク外観" width="354" height="200">
                 </figure>
-                <div class="park-logo"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/common/logo-saku-hp.svg" alt="SBC佐久ハウジングパークロゴ"></div>
+                <div class="park-logo"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/common/logo-saku-hp.svg" alt="SBC佐久平ハウジングパークロゴ"></div>
                 <span class="status-checked"></span>
               </label>
             </div>
@@ -175,6 +177,9 @@ add_action('wp_enqueue_scripts', function() {
             $args = array(
               'post_type' => 'nag-c',
               'posts_per_page' => -1,
+
+              // 一時的にリストから除外（記事ID）
+              'post__not_in' => array(365),
             );
             if ( isset( $args ) ) { $new_Query = new WP_Query($args); }
             ?>
@@ -185,12 +190,14 @@ add_action('wp_enqueue_scripts', function() {
               $logo_data = SCF::get('scf_modelhouse_logo');
               $logo_image_path = wp_get_attachment_image($logo_data,'medium');
               $logo_image_path = !empty($logo_image_path) ? $logo_image_path : '<img width="216" height="60" src="' . get_stylesheet_directory_uri() . '/assets/images/common/logo-sample.png">';
-              $modelhouse_name = SCF::get('scf_modelhouse_name');
+              // $modelhouse_name = SCF::get('scf_modelhouse_name'); //モデルハウスの商品名ではなくモデルハウス名（記事タイトル）を使用に変更
+              $modelhouse_name = get_the_title();
               $slug = get_post(get_the_ID())->post_name . '_' . get_the_ID();
               $modelhouse = !empty($modelhouse_name) ? $modelhouse_name : get_the_title();
+              $keyName = $modelhouse . '-ID-' . get_the_ID();
               ?>
               <li class="list-item form-item" data-model="<?php echo get_the_ID(); ?>">
-                <input type="checkbox" name="model[<?php echo get_the_ID(); ?>][name]" id="mh-<?php echo $slug; ?>" value="<?php esc_attr_e($modelhouse ?? ''); ?>"<?php Utils::checked($modelhouse, $objApp->arrData['models'] ?? []); ?>>
+                <input type="checkbox" name="model[<?php echo get_the_ID(); ?>][name]" id="mh-<?php echo $slug; ?>" value="<?php esc_attr_e($keyName ?? ''); ?>"<?php Utils::checked($keyName, $objApp->arrData['models'] ?? []); ?>>
                 <label class="post-group form-item-label" for="mh-<?php echo $slug; ?>">
                   <?php if (has_post_thumbnail()) : ?>
                   <figure class="post-image">
@@ -226,12 +233,14 @@ add_action('wp_enqueue_scripts', function() {
               $logo_data = SCF::get('scf_modelhouse_logo');
               $logo_image_path = wp_get_attachment_image($logo_data,'medium');
               $logo_image_path = !empty($logo_image_path) ? $logo_image_path : '<img width="216" height="60" src="' . get_stylesheet_directory_uri() . '/assets/images/common/logo-sample.png">';
-              $modelhouse_name = SCF::get('scf_modelhouse_name');
+              // $modelhouse_name = SCF::get('scf_modelhouse_name'); //モデルハウスの商品名ではなくモデルハウス名（記事タイトル）を使用に変更
+              $modelhouse_name = get_the_title();
               $slug = get_post(get_the_ID())->post_name . '_' . get_the_ID();
               $modelhouse = !empty($modelhouse_name) ? $modelhouse_name : get_the_title();
+              $keyName = $modelhouse . '-ID-' . get_the_ID();
               ?>
               <li class="list-item form-item" data-model="<?php echo get_the_ID(); ?>">
-                <input type="checkbox" name="model[<?php echo get_the_ID(); ?>][name]" id="mh-<?php echo $slug; ?>" value="<?php esc_attr_e($modelhouse ?? ''); ?>"<?php Utils::checked($modelhouse, $objApp->arrData['models'] ?? []); ?>>
+                <input type="checkbox" name="model[<?php echo get_the_ID(); ?>][name]" id="mh-<?php echo $slug; ?>" value="<?php esc_attr_e($keyName ?? ''); ?>"<?php Utils::checked($keyName, $objApp->arrData['models'] ?? []); ?>>
                 <label class="post-group form-item-label" for="mh-<?php echo $slug; ?>">
                   <?php if (has_post_thumbnail()) : ?>
                   <figure class="post-image">
@@ -254,9 +263,12 @@ add_action('wp_enqueue_scripts', function() {
             <?php endif; ?>
 
             <?php // モデルハウスの投稿タイプ'saku'の記事リスト
+            // 除外する記事がある場合
+            // $exclude_ids = array( 7071 );
             $args = array(
               'post_type' => 'saku',
               'posts_per_page' => -1,
+              // 'post__not_in' => $exclude_ids,
             );
             if ( isset( $args ) ) { $new_Query = new WP_Query($args); }
             ?>
@@ -267,11 +279,14 @@ add_action('wp_enqueue_scripts', function() {
               $logo_data = SCF::get('scf_modelhouse_logo');
               $logo_image_path = wp_get_attachment_image($logo_data,'medium');
               $logo_image_path = !empty($logo_image_path) ? $logo_image_path : '<img width="216" height="60" src="' . get_stylesheet_directory_uri() . '/assets/images/common/logo-sample.png">';
-              $modelhouse_name = SCF::get('scf_modelhouse_name');
+              // $modelhouse_name = SCF::get('scf_modelhouse_name'); //モデルハウスの商品名ではなくモデルハウス名（記事タイトル）を使用に変更
+              $modelhouse_name = get_the_title();
               $slug = get_post(get_the_ID())->post_name . get_the_ID();
+              $modelhouse = !empty($modelhouse_name) ? $modelhouse_name : get_the_title();
+              $keyName = $modelhouse . '-ID-' . get_the_ID();
               ?>
               <li class="list-item form-item" data-model="<?php echo get_the_ID(); ?>">
-                <input type="checkbox" name="model[<?php echo get_the_ID(); ?>][name]" id="mh-<?php echo $slug; ?>" value="<?php esc_attr_e($modelhouse ?? ''); ?>"<?php Utils::checked($modelhouse, $objApp->arrData['models'] ?? []); ?>>
+                <input type="checkbox" name="model[<?php echo get_the_ID(); ?>][name]" id="mh-<?php echo $slug; ?>" value="<?php esc_attr_e($keyName ?? ''); ?>"<?php Utils::checked($keyName, $objApp->arrData['models'] ?? []); ?>>
                 <label class="post-group form-item-label" for="mh-<?php echo $slug; ?>">
                   <?php if (has_post_thumbnail()) : ?>
                   <figure class="post-image">
@@ -340,12 +355,12 @@ add_action('wp_enqueue_scripts', function() {
                     <div class="modelhouse-logo js-logoImage">
                         <img width="216" height="60" src="" class="attachment-large size-large" alt="">
                     </div>
-                    <h2 class="modelhouse-name js-ModelName"><?php esc_html_e($model['name'] ?? ''); ?></h2>
+                    <h2 class="modelhouse-name js-ModelName"><?php esc_html_e(Utils::trimData($model['name'] ?? '')); ?></h2>
                 </div>
                 <div class="form-item-wrap-date">
                     <div class="form-item">
                     <label class="form-item-label">▼ご希望の見学日</label>
-                    <input type="date" min="<?php esc_attr_e($startDate ?? ''); ?>"  max="<?php esc_attr_e($endDate ?? ''); ?>" name="model[<?php esc_html_e($id); ?>][date]" value="<?php esc_attr_e($model['date'] ?? ''); ?>" class="js-ModelDate">
+                    <input type="text" name="model[<?php esc_html_e($id); ?>][date]" value="<?php esc_attr_e($model['date'] ?? ''); ?>" class="js-datepicker js-ModelDate" placeholder="カレンダーを表示">
                     <?php Utils::printErr($objApp->arrErr['model'][$id]['date'] ?? ''); ?>
                     </div>
                 </div>
@@ -364,8 +379,10 @@ add_action('wp_enqueue_scripts', function() {
             </li>
           <?php $no++; endforeach; endif; ?>
           </ul>
-          
-          <?php Utils::printErr($objApp->arrErr['models'] ?? ''); ?>
+
+          <div class="js-notesMess message-select-data is-selected"></div>
+
+          <?php //Utils::printErr($objApp->arrErr['models'] ?? ''); ?>
 
           <template id="inputTemplate">
             <h3 class="list-item__title">希望日時を選択<em>［1棟目］</em></h3>
@@ -381,7 +398,7 @@ add_action('wp_enqueue_scripts', function() {
               <div class="form-item-wrap-date">
                 <div class="form-item">
                   <label class="form-item-label">▼ご希望の見学日</label>
-                  <input type="date" min="<?php esc_attr_e($startDate ?? ''); ?>" max="<?php esc_attr_e($endDate ?? ''); ?>" name="" class="js-ModelDate">
+                  <input type="text" name="" class="js-datepicker js-ModelDate" placeholder="カレンダーを表示">
                 </div>
               </div>
               <div class="form-item-wrap-select">
@@ -396,7 +413,6 @@ add_action('wp_enqueue_scripts', function() {
                 </div>
               </div>
           </template>
-
 
         </section>
 
@@ -535,6 +551,7 @@ add_action('wp_enqueue_scripts', function() {
               <?php Utils::printErr($objApp->arrErr['app-ninzu-adult'] ?? ''); ?>
               <?php Utils::printErr($objApp->arrErr['app-ninzu-child'] ?? ''); ?>
               </div>
+              <p class="form-item-explanation">※大人は必須です。</p>
             </div>
           </div>
 
@@ -567,6 +584,16 @@ add_action('wp_enqueue_scripts', function() {
                 <?php endforeach; ?>
                 <?php Utils::printErr($objApp->arrErr['app-kento'] ?? ''); ?>
               </fieldset>
+            </div>
+          </div>
+
+          <?php //計画地域（市町村など） ?>
+          <div class="form-item-block">
+            <label class="form-item-block-label any" for="app-area">計画地域（市町村など）</label>
+            <div class="form-item">
+              <textarea name="app-area" id="app-area" maxlength="1000" class="size-L"><?php esc_attr_e($objApp->arrData['app-area'] ?? ''); ?></textarea>
+              <?php Utils::printErr($objApp->arrErr['app-area'] ?? ''); ?>
+              <p class="form-item-explanation">例）「長野市内に」「軽井沢で」などと記入してください。</p>
             </div>
           </div>
 
@@ -668,6 +695,7 @@ window.addEventListener('DOMContentLoaded',function() {
     const objModelhouseList = document.querySelector('.js-modelhouseList');
 
     fromInit();
+    handlerModelhouseMess();
 
     function fromInit() {
         /** 展示場・モデルハウスの初期表示制御 */
@@ -715,6 +743,16 @@ window.addEventListener('DOMContentLoaded',function() {
         }
     }
 
+    function handlerModelhouseMess() {
+        const notesMess = document.querySelector('.js-notesMess');
+        const liElements = objModelhouseList.querySelectorAll('li');
+        if (liElements.length > 0) {
+            notesMess.classList.add('is-selected');
+        } else {
+            notesMess.classList.remove('is-selected');
+        }
+    }
+
     /** 展示場切り替え制御 */
     for (let i = 0; i < parkItem.length; i++) {
         parkItem[i].addEventListener('change', function(e) {
@@ -734,6 +772,8 @@ window.addEventListener('DOMContentLoaded',function() {
             /** 選択した展示場のモデルハウスの表示 */
             const parkArea = this.getAttribute('data-park');
             document.querySelector('.' + parkArea).style.display = 'grid';
+
+            handlerModelhouseMess();
         });
     }
 
@@ -758,7 +798,7 @@ window.addEventListener('DOMContentLoaded',function() {
                 const logoimage = this.nextElementSibling.querySelector('.modelhouse-logo img').getAttribute('src');
 
                 const nameEl = inputTemplate.content.querySelector('.js-ModelName');
-                      nameEl.textContent = this.value;
+                      nameEl.textContent = this.value.replace(/-ID-.*/, '');
 
                 const dateInputEl = inputTemplate.content.querySelector('.js-ModelDate');
                       dateInputEl.setAttribute('name', inputName + '[date]');
@@ -806,6 +846,8 @@ window.addEventListener('DOMContentLoaded',function() {
                 headItem[i].textContent = '［' + $no + '棟目］';
                 $no++;
             }
+
+            handlerModelhouseMess();
         });
     }
 });

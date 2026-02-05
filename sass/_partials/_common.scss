@@ -17,34 +17,43 @@
 
 // SNSボタン
 .sns-links {
-  @include flex(nowrap, center, stretch);
+  @include flex(nowrap, center, flex-start);
+  flex-direction: column;
   gap: 14px;
   .sns-links__item {
-    width: 40px;
-    height: 40px;
-    background-color: $sbcBlack;
-    -webkit-mask-size: cover;
-            mask-size: cover;
-    &--facebook{
-      -webkit-mask-image: url(./assets/images/common/ico-facebook.svg);
-              mask-image: url(./assets/images/common/ico-facebook.svg);
+    a{
+      @include flex(nowrap, flex-start, flex-start);
+      gap: 6px;
+      padding: 5px 8px;
+      border: 1px solid $sbcGray4;
+      border-radius: 4px;
+      font-size: 1.4rem;
+      line-height: 1.4;
+      &:hover,&:active{
+        opacity: 1;
+        background-color: $sbcGray3;
+        color: $textBaseColor;
+      }
     }
     &--instagram{
-      -webkit-mask-image: url(./assets/images/common/ico-instagram.svg);
-              mask-image: url(./assets/images/common/ico-instagram.svg);
-    }
-    &:hover{
-      opacity: 1;
-      background-color: $sbcLinkColor;
+      a{
+        &::before{
+          content: '';
+          width: 20px;
+          height: 20px;
+          background-color: $sbcBlack;
+          -webkit-mask-image: url(./assets/images/common/ico-instagram.svg);
+                  mask-image: url(./assets/images/common/ico-instagram.svg);
+          -webkit-mask-size: 100% 100%;
+                  mask-size: 100% 100%;
+        }
+      }
     }
   }
 }
 @include res_min( map-get($BP, MD) ) {
   .sns-links {
-    .sns-links__item {
-      width: 32px;
-      height: 32px;
-    }
+    flex-direction: row;
   }
 }
 
@@ -52,15 +61,18 @@
 .button-reserve.button-reserve--fixed{
   display: none;
 }
-@include res_min( map-get($BP, XXL) ) {
+@include res_min( map-get($BP, LG) ) {
   .button-reserve.button-reserve--fixed{
     display: flex;
     justify-content: center;
     align-items: center;
     line-height: 1;
     position: fixed;
-    right: 50px;
-    top: 165px;
+    right: min(2.6vw, 40px);
+    top: 200px;
+    @include res_min( map-get($BP, XXL) ) {
+      top: 130px;
+    }
     z-index: 21;
     flex-direction: column;
     gap: 14px;
@@ -125,6 +137,14 @@
       -webkit-mask-image: none;
               mask-image: none;
     }
+  }
+
+  //個別で位置調整
+  .home .button-reserve.button-reserve--fixed{
+    top: 130px;
+  }
+  .choose-from-design-child .button-reserve.button-reserve--fixed{
+    top: 230px;
   }
 }
 
@@ -197,16 +217,19 @@
           height: 12px;
         }
       }
+      &.page-header__title--design,
       &.page-header__title--event-news{
         display: flex;
         align-items: center;
-        white-space: nowrap;
+        flex-wrap: wrap;
+        justify-content: flex-end;
         gap: 8px;
-        font-size: 2rem;
+        font-size: 1.7rem;
+        line-height: 1.2;
         img{
-          margin-top: 2px;
+          margin-top: 1px;
           width: auto;
-          height: 11px;
+          height: 15px;
         }
       }
     }
@@ -215,6 +238,11 @@
 @include res_min( map-get($BP, MD) ) {
   .page-header {
     @include maxW();
+    &.page-header-full{
+      max-width: none;
+      padding-left: 32px;
+      padding-right: 32px;
+    }
     .inner{
       @include flex(nowrap, flex-end, flex-end);
       padding-bottom: 16px;
@@ -231,11 +259,12 @@
             height: 17px;
           }
         }
+        &.page-header__title--design,
         &.page-header__title--event-news{
           gap: 11px;
+          font-size: 2rem;
           img{
-            width: auto;
-            height: 12px;
+            height: 17px;
           }
         }
       }
@@ -256,10 +285,14 @@
 
 
 /* ------------------------------------
-//  テキストサイズ
+//  テキスト
 // ----------------------------------*/
 .text-s{
   @include textStyleS;
+}
+
+.red{
+  color: $red;
 }
 
 
@@ -401,23 +434,33 @@
   @include transition();
   position: fixed;
   right: 15px;
-  bottom: 15px;
+  bottom: 20px;
   z-index: 10;
   opacity: 0;
 
-  width: 45px;
-  height: 45px;
+  width: 41px;
+  height: 51px;
+  background-image: url(./assets/images/common/ico-page-top-s.svg);
+  background-repeat: no-repeat;
+  background-size: 100%;
   &.is-fixed {
     opacity: 1;
   }
 }
 @include res_min( map-get($BP, MD) ) {
   .button-page-top {
-    right: 5%;
-    bottom: 5%;
+    right: 30px;
+    bottom: 25px;
 
-    width: 60px;
-    height: 60px;
+    width: 52px;
+    height: 68px;
+    background-image: url(./assets/images/common/ico-page-top-l.svg);
+    @include transition();
+    transition: all 0.15s linear 0s;
+    &:hover{
+      opacity: 0.7;
+      transform: translateY(-4px);
+    }
   }
 }
 

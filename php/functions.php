@@ -6,9 +6,40 @@ get_template_part( 'setting/customize-plugins' );
 /** Form related */
 require_once (realpath(dirname(__FILE__) . '/libs/require.php'));
 
+
+
+
+
+/* -------------------------------------------------------------
+//  WordPress 6.7で画像が小さく表示される不具合の原因と解決方法
+//  https://yukiyuriweb.com/2024/11/15/how-to-fix-the-issue-of-small-images-displayed-in-wordpress-6-7/
+//  !!!! 将来的にこのバグが解消されたらこれは削除する
+// ------------------------------------------------------------*/
+add_filter(
+  'wp_content_img_tag',
+  static function ( $image ) {
+      return str_replace( 'sizes="auto, ', ' sizes="', $image );
+  }
+);
+add_filter(
+  'wp_get_attachment_image_attributes',
+  static function ( $attr ) {
+      if ( isset( $attr['sizes'] ) ) {
+          $attr['sizes'] = preg_replace( '/^auto, /', '', $attr['sizes'] );
+      }
+      return $attr;
+  }
+);
+
+
+
+
+
+
 /* -------------------------------------------------------------
 //  特定ユーザーグループのメニュー設定
 // ------------------------------------------------------------*/
+//デフォルトの投稿タイプを非表示にする
 if ( !( current_user_can( 'administrator' ) || current_user_can( 'editor' ) ) ) {
   function hidden_menu()
   {
@@ -17,6 +48,24 @@ if ( !( current_user_can( 'administrator' ) || current_user_can( 'editor' ) ) ) 
   }
   add_action('admin_menu', 'hidden_menu');
 }
+
+/* -------------------------------------------------------------
+//  権限：自分がアップロードしたメディアのみ編集可能にする
+// ------------------------------------------------------------*/
+function show_only_writer_image( $where ){
+  global $current_user;
+
+  if ( is_admin() ) {
+      if ( !( current_user_can( 'administrator' ) || current_user_can( 'editor' ) ) ) {
+          if ( isset( $_POST['action'] ) && ( $_POST['action'] == 'query-attachments' ) ) {
+              $where .= ' AND post_author=' . $current_user->data->ID;
+          }
+      }
+  }
+
+  return $where;
+}
+add_filter( 'posts_where', 'show_only_writer_image' );
 
 
 /* -------------------------------------------------------------
@@ -56,7 +105,7 @@ function my_pre_get_posts( $query ) {
   // }
   //カスタム投稿タイプのアーカイブ
   if($query -> is_post_type_archive()){
-  $query -> set('posts_per_page', 10); //表示件数
+  $query -> set('posts_per_page', -1); //表示件数
     // $query -> set('order', 'ASC'); //昇順
     // $query -> set('orderby', 'date'); //日
   }
@@ -104,20 +153,6 @@ add_filter( 'next_post_link', 'add_next_post_link_class' );
 function add_next_post_link_class($output) {
   return str_replace('<a href=', '<a class="next-link" href=', $output);
 }
-
-/* -------------------------------------------------------------
-// MV WP FORM の自動 pタグを削除
-// ------------------------------------------------------------*/
-function mvwpform_autop_filter() {
-  if (class_exists('MW_WP_Form_Admin')) {
-    $mw_wp_form_admin = new MW_WP_Form_Admin();
-    $forms = $mw_wp_form_admin->get_forms();
-    foreach ($forms as $form) {
-      add_filter('mwform_content_wpautop_mw-wp-form-' . $form->ID, '__return_false');
-    }
-  }
-}
-mvwpform_autop_filter();
 
 /* -------------------------------------------------------------
 // 親ページのスラッグを取得 (条件武器で is_parent_slug('xxx') 使用)

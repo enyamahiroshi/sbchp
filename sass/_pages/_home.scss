@@ -7,6 +7,7 @@
 .loader-bg {
   width: 100vw;
   height: 100vh;
+  height: 100svh;
   position: fixed;
   top: 0;
   left: 0;
@@ -245,6 +246,7 @@
       gap: 20px;
       .button{
         height: 42px;
+        white-space: nowrap;
       }
     }
     //title
@@ -263,7 +265,10 @@
 
     //開閉コンテンツ
     .detail-container{
-      display: none;
+      pointer-events: none;
+      opacity: 0;
+      height: 0;
+      @include transition(height);
     }
     .button-tgl-open_close{
       width: 100%;
@@ -288,6 +293,31 @@
                 mask-position: center;
         -webkit-mask-size: auto 100%;
                 mask-size: auto 100%;
+      }
+      span{
+        &::before{
+          content: '詳細をみる';
+        }
+      }
+    }
+
+    //開閉
+    &.is-open{
+       //開閉コンテンツ
+      .detail-container{
+        pointer-events: auto;
+        opacity: 1;
+        height: auto;
+      }
+      .button-tgl-open_close{
+        &::after{
+          transform: rotate(180deg);
+        }
+        span{
+          &::before{
+            content: '閉じる';
+          }
+        }
       }
     }
   }
@@ -376,10 +406,11 @@
         }
       }
 
-
       //開閉コンテンツ
       .detail-container{
-        display: block;
+        pointer-events: auto;
+        opacity: 1;
+        height: auto;
       }
       .button-tgl-open_close{
         display: none;
@@ -414,14 +445,14 @@
 }
 @include res_min( map-get($BP, MD) ) {
   .sec-oyakudachi-column-home{
-    margin-top: 40px;
+    margin-top: 30px;
     @include res_min( map-get($BP, LG) ) {
-      margin-top: 50px;
+      margin-top: 36px;
     }
     margin-left: 0;
     margin-right: 0;
     .list-oyakudachi-column{
-      padding: 60px 0 40px;
+      padding: 60px 0;
     }
   }
 }

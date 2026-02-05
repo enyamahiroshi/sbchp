@@ -1,122 +1,130 @@
-@use '../_core/valiables' as *;
-@use '../_core/mixins' as *;
+@use "../_core/valiables" as *;
+@use "../_core/mixins" as *;
 
 /* ----------------------------------------------------------------
   モデルハウス個別ページ
 ---------------------------------------------------------------- */
 //タイトルセット
-.sec-page-title-modelhouse{}
+.sec-page-title-modelhouse {
+}
+//タイトル
+.title-modelhouse {
+  padding: 25px 8px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  .modelhouse-logo {
+    max-width: 180px;
+    // height: 30px;
+    img {
+      width: auto;
+      max-height: 30px;
+    }
+  }
+  .modelhouse-name {
+    // font-size: 3.2rem;
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+}
+//工法
+.modelhouse-sub-data {
+  padding: 10px 8px 0;
+  border-top: 1px solid $sbcBeige2;
+  font-size: 1.4rem;
+}
+@include res_min(map-get($BP, MD)) {
+  //タイトルセット
+  .sec-page-title-modelhouse {
+  }
   //タイトル
-  .title-modelhouse{
-    padding: 25px 8px 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    .modelhouse-logo{
-      height: 30px;
-      img{
-        width: auto;
-        height: 100%;
+  .title-modelhouse {
+    padding: 30px 0;
+    flex-direction: row;
+    align-items: center;
+    gap: 28px;
+    .modelhouse-logo {
+      max-width: 220px;
+      // height: 38px;
+      img {
+        max-height: 42px;
       }
     }
-    .modelhouse-name{
-      font-size: 3.2rem;
-      font-weight: 700;
-      line-height: 1;
+    .modelhouse-name {
+      // font-size: 3.6rem;
+      font-size: clamp(2.4rem, 3.13vw, 3.2rem);
     }
   }
   //工法
-  .modelhouse-sub-data{
-    padding: 10px 8px 0;
-    border-top: 1px solid $sbcBeige2;
-    font-size: 1.4rem;
+  .modelhouse-sub-data {
+    padding: 9px 0 0;
   }
-@include res_min( map-get($BP, MD) ) {
-  //タイトルセット
-  .sec-page-title-modelhouse{}
-    //タイトル
-    .title-modelhouse{
-      padding: 30px 0;
-      flex-direction: row;
-      align-items: center;
-      gap: 28px;
-      .modelhouse-logo{
-        height: 38px;
-      }
-      .modelhouse-name{
-        font-size: 3.6rem;
-      }
-    }
-    //工法
-    .modelhouse-sub-data{
-      padding: 9px 0 0;
-    }
 }
-
 
 //概要
-.modelhouse-overview{
+.modelhouse-overview {
   margin-top: 20px;
-  .modelhouse-overview-text{
+  .modelhouse-overview-text {
     margin-top: 10px;
   }
 }
-@include res_min( map-get($BP, LG) ) {
-  .modelhouse-overview{
-    margin-top: 10px;
+@include res_min(map-get($BP, LG)) {
+  .modelhouse-overview {
+    margin-top: 30px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     -moz-column-gap: min(2.49vw, 42px);
-         column-gap: min(2.49vw, 42px);
-    .modelhouse-overview-slider{
+    column-gap: min(2.49vw, 42px);
+    .modelhouse-overview-slider {
       grid-row: 1;
       grid-column: 2;
     }
-    .modelhouse-overview-text{
+    .modelhouse-overview-text {
       grid-row: 1;
       grid-column: 1;
-      margin-top:  min(2.96vw, 50px);
+      // margin-top:  min(2.96vw, 50px);
+      margin-top: -0.3em;
     }
   }
 }
 
-
 //お問い合わせボタン郡
-.button-wrap-modelhouse{
+.button-wrap-modelhouse {
   margin-top: 30px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 15px;
-  .button-reserve-l{
+  .button-reserve-l {
     grid-row: 1;
     grid-column: 1 / span 2;
   }
-  .button-tel{
+  .button-tel {
     grid-row: 2;
     grid-column: 1;
   }
-  .button-blank{
+  .button-blank {
     grid-row: 2;
     grid-column: 2;
   }
 }
-@include res_min( map-get($BP, LG) ) {
-  .button-wrap-modelhouse{
+@include res_min(map-get($BP, LG)) {
+  .button-wrap-modelhouse {
     margin-top: 40px;
     grid-template-columns: 52.4% repeat(2, 1fr);
     gap: 14px;
-    .button-reserve-l{
+    .button-reserve-l {
       grid-row: 1;
       grid-column: 1;
       height: 56px;
     }
-    .button-tel{
+    .button-tel {
       grid-row: 1;
       grid-column: 2;
       height: 56px;
     }
-    .button-blank{
+    .button-blank {
       grid-row: 1;
       grid-column: 3;
       height: 56px;
@@ -124,24 +132,23 @@
   }
 }
 
-
 //メインスライダー
-.sec-modelhouse-main-slider{
+.sec-modelhouse-main-slider {
   margin-top: 30px;
   margin-left: -12px;
   margin-right: -12px;
   padding: 12px;
   background-color: $sbcBeige1;
 }
-@include res_min( map-get($BP, MD) ) {
-  .sec-modelhouse-main-slider{
+@include res_min(map-get($BP, MD)) {
+  .sec-modelhouse-main-slider {
     overflow: hidden;
     margin-top: 40px;
     margin-left: 0;
     margin-right: 0;
     padding: 40px 0;
     .slider-modelhouse-main,
-    .slider-modelhouse-main-thumbnail{
+    .slider-modelhouse-main-thumbnail {
       margin-left: auto;
       margin-right: auto;
       max-width: 734px;
@@ -149,14 +156,13 @@
   }
 }
 
-
 //自由文章
-.sec-modelhouse-text-block{
+.sec-modelhouse-text-block {
   margin-top: 30px;
 }
-@include res_min( map-get($BP, LG) ) {
-  .sec-modelhouse-text-block{
-    margin-top: 40px;
+@include res_min(map-get($BP, LG)) {
+  .sec-modelhouse-text-block {
+    margin-top: 80px;
   }
 }
 
@@ -164,43 +170,41 @@
   display: grid;
   grid-template-columns: 1;
   row-gap: 25px;
-	.modelhouse-text-block__body {
+  .modelhouse-text-block__body {
     order: 2;
-    h2{
+    h2 {
       font-size: 2rem;
       font-weight: 700;
     }
-    p{
+    p {
       margin-top: 1em;
     }
-	}
-	.modelhouse-text-block__image {
+  }
+  .modelhouse-text-block__image {
     order: 1;
     text-align: center;
-    img{
+    img {
       width: 90%;
     }
-	}
+  }
 }
-@include res_min( map-get($BP, LG) ) {
+@include res_min(map-get($BP, LG)) {
   .modelhouse-text-block {
-    grid-template-columns: repeat(2, 1fr);
-    row-gap: 0;
-    -moz-column-gap: 37px;
-         column-gap: 37px;
+    grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
+    gap: 40px;
     .modelhouse-text-block__body {
       order: 2;
-      h2{
+      h2 {
         font-size: 2.4rem;
       }
     }
     .modelhouse-text-block__image {
-      img{
+      img {
         width: 100%;
       }
     }
     //交互
-    .sec-modelhouse-text-block:nth-of-type(odd) &{
+    .sec-modelhouse-text-block:nth-of-type(odd) & {
       .modelhouse-text-block__body {
         order: 1;
       }
@@ -211,52 +215,50 @@
   }
 }
 
-
 //リスト：モデルハウスTOPICS
-.sec-list-modelhouse-topics{
+.sec-list-modelhouse-topics {
   margin-top: 50px;
-  .list-modelhouse-topics-wrap{
+  .list-modelhouse-topics-wrap {
     padding: 16px 0;
     border-top: 1px solid $sbcBeige2;
     border-bottom: 1px solid $sbcBeige2;
   }
 }
-@include res_min( map-get($BP, MD) ) {
-  .sec-list-modelhouse-topics{
-    margin-top: 40px;
+@include res_min(map-get($BP, MD)) {
+  .sec-list-modelhouse-topics {
+    margin-top: 80px;
     margin-bottom: 50px;
-    .list-modelhouse-topics-wrap{
+    .list-modelhouse-topics-wrap {
       padding: 20px 0 25px;
     }
   }
 }
 
-
 //モデルハウスTOPICSページ
-.sec-list-modelhouse-topics-page{
+.sec-list-modelhouse-topics-page {
   margin-top: 23px;
 }
-@include res_min( map-get($BP, MD) ) {
-  .sec-list-modelhouse-topics-page{
+@include res_min(map-get($BP, MD)) {
+  .sec-list-modelhouse-topics-page {
     margin-top: 55px;
   }
 }
 
-.title-housingpark{
+.title-housingpark {
   margin-bottom: 30px;
   padding-bottom: 12px;
   line-height: 1;
   border-bottom: 3px solid $sbcRed;
-  img{
+  img {
     width: auto;
     height: 14px;
   }
 }
-@include res_min( map-get($BP, MD) ) {
-  .title-housingpark{
+@include res_min(map-get($BP, MD)) {
+  .title-housingpark {
     padding-bottom: 20px;
     border-bottom-width: 5px;
-    img{
+    img {
       height: 23px;
     }
   }

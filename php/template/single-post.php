@@ -10,18 +10,22 @@
 		<div class="inner">
 			<?php if(have_posts()): the_post(); ?>
 			<header class="post-header post-header--default-post">
+				<?php /*
 				<div class="post-meta">
 					<time class="post-date"><?php the_time('Y年m月d日'); ?></time>
 				</div>
+				*/ ?>
 				<h1 class="post-title"><?php the_title(); ?></h1>
 			</header>
 			<div class="post-body">
 				<?php //カスタムフィールドから取得
 				$main_image = SCF::get('scf_image_main');
 				$main_title = SCF::get('scf_title_main');
-				$main_text = SCF::get('scf_text_main');
+				$main_text = SCF::get('scf_text_mainarea');
+				$main_text = nl2br($main_text);
 				$group_text = SCF::get('scf_group_text_block');
 				?>
+				<?php /*
 				<div class="intro-block intro-block--event-news">
 					<figure class="item-image">
 					<?php //イントロ画像
@@ -38,18 +42,20 @@
 							echo '<h2 class="item-block__title">'.$main_title.'</h2>';
 						}
 						if($main_text){
-							echo '<p class="item-block__text">'.$main_text.'</p>';
+							echo '<div class="item-block__text">'.$main_text.'</div>';
 						}
 						echo '</div>';
 					} ?>
 				</div>
+				*/ ?>
 				<?php //テキストブロック
 				if($group_text){
 					foreach ($group_text as $fields ) {
 						echo '<div class="item-block">';
 						$group_image = $fields['scf_group_text_block_image'];
 						$group_title = $fields['scf_text_block_title'];
-						$group_text = $fields['scf_text_block_text'];
+						$group_text = $fields['scf_text_block_textarea'];
+						$group_text = nl2br($group_text);
 						if($group_image){
 							echo wp_get_attachment_image($group_image,'large');
 						}
@@ -57,7 +63,7 @@
 							echo '<h2 class="item-block__title">'.$group_title.'</h2>';
 						}
 						if($group_text){
-							echo '<p class="item-block__text">'.$group_text.'</p>';
+							echo '<div class="item-block__text">'.$group_text.'</div>';
 						}
 						echo '</div>';
 					}

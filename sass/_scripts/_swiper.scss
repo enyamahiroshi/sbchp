@@ -4,6 +4,37 @@
 // ----------------------------------------------------------------
 // 共通設定
 // ----------------------------------------------------------------
+//スライドするコンテンツ
+.swiper-slide{
+  aspect-ratio: 4 / 3;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  img{
+    width: auto;
+    max-width: none;
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+  }
+}
+.swiper-slide-prev,
+.swiper-slide-next{
+  &::after{
+    background-color: transparent !important;
+  }
+}
+
+//各スライダー別
+.park-main-slider{
+  .swiper-slide{
+    aspect-ratio: 998 / 562;
+  }
+}
+
+
 .slider{
   //左右ボタン
   .swiper-button-next,
@@ -17,7 +48,8 @@
     }
     &:hover{
       &::after{
-        color: $sbcBlack;
+        opacity: 0.6;
+        // color: $sbcBlack;
       }
     }
   }

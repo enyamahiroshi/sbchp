@@ -25,6 +25,7 @@ WEBサイトよりモデルハウス見学予約のお申し込みがありま�
  来場ご予定人数 　： 大人 <?php echo $arrData['app-ninzu-adult']; ?>名<?php if (isset($arrData['app-ninzu-child']) && !empty($arrData['app-ninzu-child'])): ?>　子ども <?php echo $arrData['app-ninzu-child']; ?>名<?php endif; ?><?php echo "\n"; ?>
  ご家族構成 　　　： <?php echo $arrData['app-family']; ?><?php echo "\n"; ?>
  ご検討されたい住宅の種類 ： <?php echo $arrData['app-kento']; ?><?php echo "\n"; ?>
+ 計画地域（市町村など） ： <?php echo Utils::mbWordwrap($arrData['app-area']); ?>
  建築用土地の有無 　： <?php echo $arrData['app-tochi']; ?><?php echo "\n"; ?>
  ご相談されたい内容 ： <?php echo $arrData['app-naiyo']; ?><?php echo "\n"; ?>
 
@@ -32,4 +33,4 @@ WEBサイトよりモデルハウス見学予約のお申し込みがありま�
 
 <?php echo Utils::mbWordwrap($arrData['app-biko']); ?><?php echo "\n"; ?>
 
-－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ 
+－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－

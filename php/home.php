@@ -14,7 +14,7 @@
         <?php //カスタムフィールドから取得
 				$main_image = SCF::get('scf_image_main');
 				$main_title = SCF::get('scf_title_main');
-				$main_text = SCF::get('scf_text_main');
+				$main_text = SCF::get('scf_text_mainarea');
         $main_text = mb_substr($main_text, 0, 100);
 				$group_text = SCF::get('scf_group_text_block');
 				?>
@@ -36,7 +36,7 @@
               <div class="post-overview">
               <?php //イントロ文章
               if($main_text){
-                echo '<p>'.$main_text.'</p>';
+                echo '<div>'.$main_text.'</div>';
               } ?>
               </div>
               <div class="more-text">詳細を見る</div>

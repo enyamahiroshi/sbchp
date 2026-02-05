@@ -19,10 +19,11 @@
   }
   .form-info-notes{
     margin-top: 20px;
-    padding: 12px 15px;
+    padding: 12px 15px 12px calc(15px + 1em);
+    text-indent: -1em;
     @include res_min( map-get($BP, LG) ) {
       margin-top: 30px;
-      padding: 14px 20px;
+      padding: 14px 20px 14px calc(20px + 1em);
     }
     border: 1px dashed $sbcBeige3;
     p{
