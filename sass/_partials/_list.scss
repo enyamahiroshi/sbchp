@@ -274,6 +274,14 @@
         color: $textBaseColor;
       }
     }
+
+    // 一時的に任意のモデルハウスをクリックできないようにする
+    &.tsuchiyahome_nag-c {
+      pointer-events: none !important;
+      a {
+        pointer-events: none !important;
+      }
+    }
   }
 }
 @include res_min(map-get($BP, LG)) {

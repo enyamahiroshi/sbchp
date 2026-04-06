@@ -1,42 +1,41 @@
-@use '../_core/valiables' as *;
-@use '../_core/mixins' as *;
+@use "../_core/valiables" as *;
+@use "../_core/mixins" as *;
 
 /* ----------------------------------------------------------------
   各ハウジングパーク紹介ページ
 ---------------------------------------------------------------- */
 //タイトル
-.page-header--park{
+.page-header--park {
   margin: 20px 8px 0;
-  .park-title{
+  .park-title {
     padding: 30px 0;
     border-top: 1px solid $sbcBeige2;
     border-bottom: 1px solid $sbcBeige2;
     text-align: center;
-    img{
+    img {
       width: auto;
       height: min(5.38vw, 27px);
     }
   }
 }
-@include res_min( map-get($BP, LG) ) {
-  .page-header--park{
+@include res_min(map-get($BP, LG)) {
+  .page-header--park {
     margin: 70px auto 0;
-    .park-title{
+    .park-title {
       padding: 50px 0;
-      img{
+      img {
         height: 40px;
       }
     }
   }
 }
 
-
 //概要
-.sec-park-overview{
+.sec-park-overview {
   margin: 20px 8px;
 }
-@include res_min( map-get($BP, LG) ) {
-  .sec-park-overview{
+@include res_min(map-get($BP, LG)) {
+  .sec-park-overview {
     margin: 50px auto;
   }
 }
@@ -45,54 +44,60 @@
   @include flex(nowrap, flex-start, stretch);
   flex-direction: column;
   gap: 15px;
-	.park-overview__data{
+  .park-overview__data {
     @include flex(nowrap, flex-start, flex-start);
     align-items: center;
     gap: 5px;
-		.icon {
+    .icon {
       flex-shrink: 0;
       flex-grow: 0;
       margin-right: 4px;
       line-height: 1;
-      img{
+      img {
         width: 20px;
         height: 20px;
       }
-		}
-    p{
+    }
+    p {
       line-height: 1.4;
     }
     //個別
-    &.data-address{
+    &.data-address {
       font-size: 1.4rem;
-      .button-map{
+      .button-map {
         white-space: nowrap;
       }
     }
-    &.data-tel{
-      p{
+    &.data-tel {
+      p {
         font-size: 1.2rem;
       }
     }
-    &.data-house{
-      p{
+    &.data-house {
+      p {
         font-size: 1.4rem;
       }
     }
-    &.data-instagram{
-      p{
+    &.data-instagram {
+      p {
         font-size: 1.2rem;
       }
     }
-	}
+    &.data-tel {
+      p {
+        padding-left: 0.15em;
+        font-size: 1.7rem;
+      }
+    }
+  }
 }
-@include res_min( map-get($BP, LG) ) {
+@include res_min(map-get($BP, LG)) {
   .park-overview {
     justify-content: center;
     align-items: center;
     flex-direction: row;
     gap: 25px;
-    .park-overview__data{
+    .park-overview__data {
       white-space: nowrap;
       flex-wrap: nowrap;
       .icon {
@@ -100,22 +105,17 @@
         flex-grow: 0;
         margin-right: 0;
         line-height: 1;
-        img{
+        img {
           width: 24px;
           height: 24px;
         }
       }
       //個別
-      &.data-address{
+      &.data-address {
         font-size: 1.5rem;
       }
-      &.data-tel{
-        p{
-          font-size: 1.3rem;
-        }
-      }
-      &.data-instagram{
-        p{
+      &.data-instagram {
+        p {
           font-size: 1.3rem;
         }
       }
@@ -124,25 +124,25 @@
 }
 
 //メインスライダー
-.sec-park-main-slider{
+.sec-park-main-slider {
   margin-left: -12px;
   margin-right: -12px;
   overflow: hidden;
   padding-bottom: 25px;
-  .slider-park-main{
+  .slider-park-main {
     position: relative;
   }
 }
-@include res_min( map-get($BP, MD) ) {
-  .sec-park-main-slider{
+@include res_min(map-get($BP, MD)) {
+  .sec-park-main-slider {
     padding-bottom: 0;
     margin-left: 0;
     margin-right: 0;
-    .slider-park-main{
+    .slider-park-main {
       margin-left: auto;
       margin-right: auto;
       max-width: 734px;
-      @include res_min( map-get($BP, XXL) ) {
+      @include res_min(map-get($BP, XXL)) {
         max-width: none;
       }
     }
@@ -150,16 +150,16 @@
 }
 
 //モデルハウス一覧
-.sec-list-modelhouse{
+.sec-list-modelhouse {
   margin-top: 30px;
 }
-@include res_min( map-get($BP, MD) ) {
-  .sec-list-modelhouse{
+@include res_min(map-get($BP, MD)) {
+  .sec-list-modelhouse {
     margin-top: 40px;
   }
 }
 
-.title-list-modelhouse{
+.title-list-modelhouse {
   display: inline-flex;
   justify-content: flex-start;
   align-items: center;
@@ -170,22 +170,22 @@
   font-size: 2rem;
   font-weight: 700;
   line-height: 1;
-  .icon{
+  .icon {
     vertical-align: bottom;
-    img{
+    img {
       width: 23px;
     }
   }
 }
-@include res_min( map-get($BP, MD) ) {
-  .title-list-modelhouse{
+@include res_min(map-get($BP, MD)) {
+  .title-list-modelhouse {
     margin-left: 4vw;
-    @include res_min( map-get($BP, LG) ) {
+    @include res_min(map-get($BP, LG)) {
       padding: 15px 36px 11px 26px;
       margin-left: min(12.72vw, 215px);
       font-size: 2.4rem;
-      .icon{
-        img{
+      .icon {
+        img {
           width: 28px;
         }
       }
@@ -193,60 +193,60 @@
   }
 }
 
-.list-modelhouse-wrap{
+.list-modelhouse-wrap {
   padding: 20px 12px;
   margin-left: -12px;
   margin-right: -12px;
   background-color: $sbcBeige1;
 }
-@include res_min( map-get($BP, MD) ) {
-  .list-modelhouse-wrap{
+@include res_min(map-get($BP, MD)) {
+  .list-modelhouse-wrap {
     padding: 30px 20px;
-    @include res_min( map-get($BP, LG) ) {
+    @include res_min(map-get($BP, LG)) {
       padding: 40px 34px;
     }
     margin-left: 0;
     margin-right: 0;
     background-color: $sbcBeige1;
-    @include res_min( map-get($BP, LG) ) {
+    @include res_min(map-get($BP, LG)) {
       padding: 40px 34px;
     }
   }
 }
 
 //パーク下部　インフォメーション
-.sec-park-information{
+.sec-park-information {
   margin-top: 30px;
 }
-@include res_min( map-get($BP, MD) ) {
-  .sec-park-information{
+@include res_min(map-get($BP, MD)) {
+  .sec-park-information {
     margin-top: 40px;
     margin-bottom: 60px;
   }
 }
 
 //ブロック : 営業日カレンダー
-.block-calendar{
+.block-calendar {
   margin-top: 40px;
-  .button-wrap{
+  .button-wrap {
     margin-top: 20px;
   }
 }
-@include res_min( map-get($BP, LG) ) {
-  .block-calendar{
-    .button-wrap{
+@include res_min(map-get($BP, LG)) {
+  .block-calendar {
+    .button-wrap {
       margin-top: 16px;
     }
-    .button-calender{
+    .button-calender {
       width: 100%;
     }
   }
 }
 
 //プロック : 場内マップ
-.block-park-map{
+.block-park-map {
   margin-top: 40px;
-  .link-park-map{
+  .link-park-map {
     margin: 0 auto;
     padding: 12px;
     display: block;
@@ -254,33 +254,34 @@
     max-width: 360px;
     border: 1px solid $sbcBeige2;
     text-align: center;
-    .link-park-map__image{
+    .link-park-map__image {
       margin-bottom: 9px;
     }
-    .button-plus{
+    .button-plus {
       white-space: nowrap;
     }
-    &:hover, &:active{
+    &:hover,
+    &:active {
       opacity: 1;
-      .link-park-map__image{
-        img{
+      .link-park-map__image {
+        img {
           opacity: 1;
         }
       }
-      .button-plus{
+      .button-plus {
         border-color: $sbcBlack;
         background-color: $sbcBlack;
         color: $sbcWhite;
-        &::after{
+        &::after {
           background-color: $sbcWhite;
         }
       }
     }
   }
 }
-@include res_min( map-get($BP, LG) ) {
-  .block-park-map{
-    .link-park-map{
+@include res_min(map-get($BP, LG)) {
+  .block-park-map {
+    .link-park-map {
       width: 100%;
       max-width: none;
     }
