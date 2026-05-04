@@ -1,49 +1,58 @@
-@use '../_core/valiables' as *;
-@use '../_core/mixins' as *;
+@use "../_core/valiables" as *;
+@use "../_core/mixins" as *;
 
 /* -----------------------------------------
 // フォームページのレイアウト：フォームパーツは _reserve-form-elements.scss へ
 // ---------------------------------------*/
-.sec-form-info{
+.sec-form-info {
   margin-top: 20px;
-  @include res_min( map-get($BP, LG) ) {
+  @include res_min(map-get($BP, LG)) {
     margin-top: 30px;
   }
-  em{
+  em {
     font-weight: 700;
   }
-  .form-info-intro{
-    em{
-      background-color: #FFE03A;
+  .form-info-intro {
+    em {
+      background-color: #ffe03a;
     }
   }
-  .form-info-notes{
+
+  .form-info-notes {
     margin-top: 20px;
     padding: 12px 15px 12px calc(15px + 1em);
     text-indent: -1em;
-    @include res_min( map-get($BP, LG) ) {
+    @include res_min(map-get($BP, LG)) {
       margin-top: 30px;
       padding: 14px 20px 14px calc(20px + 1em);
     }
     border: 1px dashed $sbcBeige3;
-    p{
-      margin-top: 0;
-      font-weight: 700;
-    }
-  }
-  .form-info-merit-container{
-    margin-top: 20px;
-    @include res_min( map-get($BP, LG) ) {
-      margin-top: 30px;
-    }
-    h2{
+    .form-info-notes-title {
+      margin-bottom: 0.25em;
       font-size: 1.6rem;
       font-weight: 700;
-      @include res_min( map-get($BP, MD) ) {
+      @include res_min(map-get($BP, MD)) {
+        font-size: 1.8rem;
+      }
+    }
+    p {
+      margin-top: 0;
+      font-weight: 500;
+    }
+  }
+  .form-info-merit-container {
+    margin-top: 20px;
+    @include res_min(map-get($BP, LG)) {
+      margin-top: 30px;
+    }
+    h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      @include res_min(map-get($BP, MD)) {
         font-size: 2rem;
       }
     }
-    .form-info-merit{
+    .form-info-merit {
       margin-top: 10px;
       padding: 20px 16px;
       border-radius: 10px;
@@ -51,54 +60,60 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-      & > div{
+      & > div {
         display: flex;
         gap: 8px;
       }
-      dt{
+      dt {
         flex: 0 0 36px;
-        img{
+        img {
           width: 100%;
         }
       }
-      dd{
+      dd {
         padding: 5px 10px;
         border-radius: 8px;
         background-color: $sbcWhite;
         display: flex;
         align-items: center;
-        p{
+        p {
           font-weight: 700;
           line-height: 1.5;
         }
-        .text-em-red{ color: $sbcRed; }
-        .text-em-green{ color: $sbcGreen; }
-        .text-em-blue{ color: $sbcBlue; }
+        .text-em-red {
+          color: $sbcRed;
+        }
+        .text-em-green {
+          color: $sbcGreen;
+        }
+        .text-em-blue {
+          color: $sbcBlue;
+        }
       }
-      @include res_min( map-get($BP, MD) ) {
+      @include res_min(map-get($BP, MD)) {
         padding: 45px 16px;
         border-radius: 14px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: stretch;
-        & > div{
+        & > div {
           margin: 0 2%;
-          @include res_min( map-get($BP, LG) ) {
+          @include res_min(map-get($BP, LG)) {
             margin: 0 min(10vw, 167px);
           }
           align-items: center;
           gap: 13px;
         }
-        dt{
+        dt {
           flex: 0 0 64px;
         }
-        dd{
+        dd {
           width: calc(100% - 51px);
           padding: 15px 30px;
           border-radius: 14px;
           background-color: $sbcWhite;
-          p{
+          p {
             font-size: 2.4rem;
           }
         }
@@ -107,30 +122,30 @@
   }
 }
 
-.form-info-attentions{
+.form-info-attentions {
   margin-top: 20px;
-  @include res_min( map-get($BP, LG) ) {
+  @include res_min(map-get($BP, LG)) {
     margin-top: 30px;
   }
-  h2{
+  h2 {
     font-size: 1.6rem;
     font-weight: 700;
   }
-  ul{
+  ul {
     margin-top: 10px;
-    li{
-      &:not(:first-of-type){
+    li {
+      &:not(:first-of-type) {
         margin-top: 0.7em;
       }
       padding-left: 1em;
       font-size: 1.4rem;
       line-height: 1.5;
-      @include res_min( map-get($BP, MD) ) {
+      @include res_min(map-get($BP, MD)) {
         font-size: 1.5rem;
       }
       position: relative;
-      &::before{
-        content: '・';
+      &::before {
+        content: "・";
         position: absolute;
         left: 0;
       }
@@ -138,13 +153,12 @@
   }
 }
 
-
 /* -----------------------------------------
 // 見出し
 // ---------------------------------------*/
-.sec-form-title{
+.sec-form-title {
   margin-top: 40px;
-  .form-title-tab{
+  .form-title-tab {
     border-radius: 26px 26px 0px 0px;
     background-color: $sbcBeige1;
     display: flex;
@@ -155,15 +169,15 @@
     height: 70px;
   }
 }
-@include res_min( map-get($BP, MD) ) {
-  .sec-form-title{
+@include res_min(map-get($BP, MD)) {
+  .sec-form-title {
     margin-top: 40px;
-    .form-title-tab{
+    .form-title-tab {
       border-radius: 26px 26px 0px 0px;
       background-color: $sbcBeige1;
       align-items: flex-end;
       font-size: 3rem;
-      @include res_min( map-get($BP, LG) ) {
+      @include res_min(map-get($BP, LG)) {
         margin-top: 60px;
         height: 90px;
         font-size: 3.8rem;
@@ -172,14 +186,14 @@
   }
 }
 
-.form-title{
+.form-title {
   font-size: 1.7rem;
   font-weight: 700;
   line-height: 1.5;
   display: flex;
   align-items: flex-start;
   gap: 8px;
-  &::before{
+  &::before {
     content: attr(data-num);
     font-size: 1.6rem;
     color: $sbcWhite;
@@ -193,11 +207,11 @@
     flex-shrink: 0;
   }
 }
-@include res_min( map-get($BP, MD) ) {
-  .form-title{
+@include res_min(map-get($BP, MD)) {
+  .form-title {
     font-size: 2.4rem;
     gap: 10px;
-    &::before{
+    &::before {
       font-size: 2rem;
       border-radius: 8px;
       width: 35px;
@@ -222,29 +236,29 @@
     justify-content: center;
     align-items: center;
     gap: 5px;
-    .dot{
+    .dot {
       width: 18px;
       height: 18px;
       border-radius: 50%;
       background-color: $sbcBeige2;
     }
-    .text{
+    .text {
       font-size: 1.6rem;
       letter-spacing: 0;
       white-space: nowrap;
     }
     //カレント
-    &.current{
-      .dot{
+    &.current {
+      .dot {
         background-color: $sbcLinkColor;
       }
-      .text{
+      .text {
         font-weight: 700;
       }
     }
   }
   //ステップ間の罫線
-  .step-separate{
+  .step-separate {
     margin-top: 8px;
     width: 38px;
     height: 2px;
@@ -255,14 +269,14 @@
 /* -----------------------------------------
 // フォームコンテンツのレイアウト
 // ---------------------------------------*/
-.sec-form-step{
+.sec-form-step {
   margin-left: -12px;
   margin-right: -12px;
   padding: 28px 12px 0;
   background-color: $sbcBeige1;
 }
-@include res_min( map-get($BP, MD) ) {
-  .sec-form-step{
+@include res_min(map-get($BP, MD)) {
+  .sec-form-step {
     margin-left: 0;
     margin-right: 0;
     padding: 70px 0 0;
@@ -272,31 +286,34 @@
 /* -----------------------------------------
 // コンテンツエリア
 // ---------------------------------------*/
-.sec-form-contents{ //共通
+.sec-form-contents {
+  //共通
   margin-left: -12px;
   margin-right: -12px;
   padding: 0 12px;
   position: relative;
-  @include res_min( map-get($BP, MD) ) {
+  @include res_min(map-get($BP, MD)) {
     margin-left: 0;
     margin-right: 0;
     padding: 0 12px;
   }
   //個別
-  &.sec-form-contents--1{ //パークを選択
+  &.sec-form-contents--1 {
+    //パークを選択
     padding-top: 40px;
     padding-bottom: 40px;
     background-color: $sbcBeige1;
-    @include res_min( map-get($BP, MD) ) {
+    @include res_min(map-get($BP, MD)) {
       padding-top: 60px;
     }
   }
-  &.sec-form-contents--2{ //モデルハウスを選択
+  &.sec-form-contents--2 {
+    //モデルハウスを選択
     padding-top: 40px;
     padding-bottom: 45px;
     background-color: $sbcBeige2;
-    &::before{
-      content: '';
+    &::before {
+      content: "";
       width: 27px;
       height: 20px;
       background-image: url(./assets/images/common/ico-triangle.svg);
@@ -305,77 +322,78 @@
       left: 25%;
       top: -20px;
     }
-    @include res_min( map-get($BP, MD) ) {
+    @include res_min(map-get($BP, MD)) {
       padding-top: 60px;
-      &::before{
+      &::before {
         left: 20%;
       }
     }
   }
-  &.sec-form-contents--3{ //見学日と見学開始時間を選択
+  &.sec-form-contents--3 {
+    //見学日と見学開始時間を選択
     padding-top: 40px;
     padding-bottom: 40px;
     background-color: $sbcBeige1;
-    @include res_min( map-get($BP, MD) ) {
+    @include res_min(map-get($BP, MD)) {
       padding-top: 80px;
       padding-bottom: 80px;
     }
   }
-  &.sec-form-contents--4{ //お申込者様情報
+  &.sec-form-contents--4 {
+    //お申込者様情報
     padding-bottom: 40px;
     background-color: $sbcBeige1;
-    .form-title{
+    .form-title {
       padding-top: 40px;
       border-top: 1px solid $sbcBeige2;
     }
-    @include res_min( map-get($BP, MD) ) {
+    @include res_min(map-get($BP, MD)) {
       padding-bottom: 80px;
-      .form-title{
+      .form-title {
         padding-top: 80px;
       }
     }
   }
-  &.sec-agree{
+  &.sec-agree {
     background-color: $sbcBeige1;
   }
-  &.sec-button{
+  &.sec-button {
     margin-bottom: -40px;
     padding-top: 50px;
     padding-bottom: 60px;
     background-color: $sbcBeige1;
-    @include res_min( map-get($BP, MD) ) {
+    @include res_min(map-get($BP, MD)) {
       padding-top: 60px;
       padding-bottom: 80px;
     }
   }
 }
 
-
 //個人情報の取扱いについて
-.agree-title{
+.agree-title {
   font-size: 1.8rem;
   font-weight: 700;
   line-height: 1.4;
 }
 
-.agree-lead{
+.agree-lead {
   margin-top: 10px;
   font-size: 1.4rem;
-  @include res_min( map-get($BP, MD) ) {
+  @include res_min(map-get($BP, MD)) {
     margin-top: 30px;
     font-size: 1.6rem;
   }
 }
 
-.agree-inc-pp{
+.agree-inc-pp {
   margin-top: 20px;
   padding: 20px 15px 20px 20px;
   background-color: $sbcWhite;
   border-radius: 10px;
-  box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.10);
+  box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   position: relative;
-  @include res_min( map-get($BP, MD) ) {
+  @include res_min(map-get($BP, MD)) {
     margin-top: 40px;
     padding: 35px 20px 40px 40px;
     border-radius: 14px;
@@ -383,8 +401,8 @@
   }
 
   //タップ、クリックして読む
-  &:not(.is-visible)::before{
-    content: '';
+  &:not(.is-visible)::before {
+    content: "";
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
@@ -393,10 +411,10 @@
     top: 0;
     cursor: pointer;
   }
-  &:not(.is-visible)::after{
-    content: 'ここをタップして読む';
-    @include res_min( map-get($BP, MD) ) {
-      content: 'ここをクリックして読む';
+  &:not(.is-visible)::after {
+    content: "ここをタップして読む";
+    @include res_min(map-get($BP, MD)) {
+      content: "ここをクリックして読む";
     }
     font-size: 2rem;
     font-weight: 500;
@@ -405,11 +423,11 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     cursor: pointer;
   }
 
-  .pp{
+  .pp {
     aspect-ratio: 1 / 0.7;
     width: 100%;
     max-height: 280px;
@@ -425,130 +443,127 @@
     }
     //読み込んだppファイルを調整
     h2,
-    dt{
+    dt {
       font-size: 1.6rem;
     }
-    dl{
+    dl {
       margin-top: 1em;
     }
-    dt{
+    dt {
       margin-top: 1em;
     }
-    @include res_min( map-get($BP, MD) ) {
+    @include res_min(map-get($BP, MD)) {
       aspect-ratio: 1 / 0.5;
       //読み込んだppファイルを調整
       h2,
-      dt{
+      dt {
         font-size: 1.8rem;
       }
-      dl{
+      dl {
         margin-top: 0;
       }
     }
   }
 }
 
-
 //確認ページ
-.--confirm{
+.--confirm {
   margin-top: 20px;
-  .sec-form-step{
+  .sec-form-step {
     padding-top: 40px;
   }
-  @include res_min( map-get($BP, MD) ) {
+  @include res_min(map-get($BP, MD)) {
     margin-top: 40px;
-    .sec-form-step{
+    .sec-form-step {
       padding-top: 80px;
     }
   }
-  .sec-form-contents--confirm{
+  .sec-form-contents--confirm {
     padding-top: 30px;
     background-color: $sbcBeige1;
-    @include res_min( map-get($BP, MD) ) {
+    @include res_min(map-get($BP, MD)) {
       padding-top: 60px;
     }
   }
 }
 
-.confirm-items{
+.confirm-items {
   margin-top: 35px;
   display: grid;
   grid-template-columns: 100%;
   gap: 0;
-  @include res_min( map-get($BP, LG) ) {
+  @include res_min(map-get($BP, LG)) {
     margin-top: 60px;
     gap: 20px;
   }
 }
 
-.confirm-item{
+.confirm-item {
   display: grid;
   grid-template-columns: 100%;
   gap: 0;
-  .confirm-item-label{
+  .confirm-item-label {
     padding: 6px 10px;
     background-color: $sbcBeige2;
     font-size: 1.6rem;
     font-weight: 700;
   }
-  .confirm-item-data{
+  .confirm-item-data {
     padding: 8px 10px 12px;
   }
-  @include res_min( map-get($BP, LG) ) {
+  @include res_min(map-get($BP, LG)) {
     grid-template-columns: 32% 1fr;
     gap: 1.5em;
-    .confirm-item-label{
+    .confirm-item-label {
       padding: 0;
       background-color: transparent;
     }
-    .confirm-item-data{
+    .confirm-item-data {
       padding: 0;
       font-size: 1.6rem;
     }
   }
 }
 
-
 //完了ページ
-.--complete{
+.--complete {
   margin-top: 20px;
-  .sec-form-step{
+  .sec-form-step {
     padding-top: 40px;
   }
-  @include res_min( map-get($BP, MD) ) {
+  @include res_min(map-get($BP, MD)) {
     margin-top: 40px;
-    .sec-form-step{
+    .sec-form-step {
       padding-top: 80px;
     }
   }
-  .sec-form-contents--complete{
+  .sec-form-contents--complete {
     padding-top: 40px;
     background-color: $sbcBeige1;
-    @include res_min( map-get($BP, MD) ) {
+    @include res_min(map-get($BP, MD)) {
       padding-top: 60px;
     }
   }
-  .complete-title{
+  .complete-title {
     margin-bottom: 15px;
     font-size: 2rem;
     font-weight: 700;
     text-align: center;
-    @include res_min( map-get($BP, MD) ) {
+    @include res_min(map-get($BP, MD)) {
       margin-bottom: 25px;
       font-size: 3.2rem;
     }
   }
-  .form-info-attentions{
+  .form-info-attentions {
     margin-top: 20px;
     padding: 16px;
     background-color: $sbcWhite;
-    em{
+    em {
       font-weight: 700;
     }
-    @include res_min( map-get($BP, MD) ) {
+    @include res_min(map-get($BP, MD)) {
       padding: 20px;
       margin-top: 40px;
     }
   }
 }
-
