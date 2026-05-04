@@ -13,18 +13,27 @@ add_action('wp_enqueue_scripts', function () {
 <?php get_header(); ?>
 <header class="page-header page-header--reserve">
   <div class="inner">
-    <h1 class="page-header__title page-header__title--reserve">モデルハウス見学予約フォーム［無料］</h1>
+    <h1 class="page-header__title page-header__title--reserve">【見学予約フォーム】</h1>
   </div>
 </header>
 
 <section class="sec sec-form-info">
   <div class="inner">
-    <p class="form-info-intro">気になるハウスメーカーのモデルハウスをまとめて見学予約できるサービスです。<br>下記の申し込みフォームにて<em>同一展示場からご希望のモデルハウスを最大3棟</em>まで選び、ご希望の見学日・時間帯を指定してください。なお、見学時間は<em>1棟あたり90分間隔以上</em>をお勧めします。また、<em>30分以内のご見学及び住宅建築予定が無い方のご見学はプレゼント対象外</em>とさせていただきます。</p>
+    <p class="form-info-intro">モデルハウスを一括で見学予約できます。<br>
+      下記の予約フォームで<em>同一展示場から最大3棟</em>選び、見学日・時間帯を指定してください。<br>
+      ※見学時間は<em>1棟90分</em>をお勧めします。<br>
+      ※事前に各展示場「営業日カレンダー」をご確認ください。火曜・水曜及びお盆、年末年始は定休日のモデルハウスが多いのでご注意ください。<br>
+      ※複数日に分けての予約も可能です。
+    </p>
+
     <div class="form-info-notes">
-      <p>※キャンペーン開催の場合は、<em class="red">”期間中に見学された方”</em>が特典対象となります。なお、過去に本キャンぺーン特典を受けたご家族は特典対象外とさせていただきます。</p>
-      <p>※各出展メーカーが単独開催する見学キャンペーンとの重複申込みはできません。</p>
-      <p>※見学予約日のご指定前に必ず各展示場の「営業日カレンダー」にて営業日をご確認ください。</p>
+      <h2 class="form-info-notes-title">【見学予約キャンペーン開催時の注意事項】</h2>
+      <p>●特典は<em class="red">“期間中に見学された方”</em>が対象となります。</p>
+      <p>●過去にキャンペーンご利用の方は特典対象外です。</p>
+      <p>●各出展メーカーの類似キャンペーンとの重複申込みはできません。</p>
+      <p>●<em class="red">住宅建築予定が無い方は特典対象外</em>です。</p>
     </div>
+
     <div class="form-info-merit-container">
       <h2>見学予約のメリット</h2>
       <dl class="form-info-merit">
@@ -33,7 +42,7 @@ add_action('wp_enqueue_scripts', function () {
             <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/reserve/img-merit-1.svg" alt="メリット1">
           </dt>
           <dd>
-            <p>予約済みなので<em class="text-em-red">待ち時間がありません</em>！</p>
+            <p>予約済みなので<em class="text-em-red">待ち時間なし</em>！</p>
           </dd>
         </div>
         <div>
@@ -41,7 +50,7 @@ add_action('wp_enqueue_scripts', function () {
             <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/reserve/img-merit-2.svg" alt="メリット2">
           </dt>
           <dd>
-            <p>ご希望の見学時間で<em class="text-em-green">ゆったり見学</em>できます！</p>
+            <p>ご希望時間で<em class="text-em-green">ゆったり見学</em>！</p>
           </dd>
         </div>
         <div>
@@ -49,7 +58,7 @@ add_action('wp_enqueue_scripts', function () {
             <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/reserve/img-merit-3.svg" alt="メリット3">
           </dt>
           <dd>
-            <p>事前に質問などができるので<em class="text-em-blue">効率的</em>です！</p>
+            <p>事前に質問できるので<em class="text-em-blue">効率的</em>！</p>
           </dd>
         </div>
       </dl>
@@ -57,11 +66,12 @@ add_action('wp_enqueue_scripts', function () {
     <div class="form-info-attentions">
       <h2>注意事項</h2>
       <ul>
-        <li>お申込みフォームは、お申込みをSBCハウジングが代行して一旦受け付けるもので、<em>ご予約の完了ではありません。</em></li>
-        <li>ご希望日時を各モデルハウスと調整のうえ、SBCハウジングより<em>改めて見学予約結果を連絡させていただきます。</em></li>
-        <li>お申込み後の自動返信メールや、予約結果連絡メールが「@sbchp.jp」から送信されますので受信設定をお願い致します。なお、メールが届かない場合はSBCハウジングまでお電話ください。TEL.026-238-6501（平日：10:00～18:00）</li>
-        <li>モデルハウスが定休日や長期休暇等により、予約結果連絡メールの日数がかかる場合があります。また、ご予約いただいたメーカーよりお電話がある場合がございます。</li>
-        <li>ご予約が確定した後に<em>キャンセルをされる場合は各モデルハウスへ直接ご連絡をお願いいたします。</em></li>
+        <li>見学予約フォームのお申込で<em>ご予約完了ではありません。</em>SBCハウジングで各出展メーカーに確認のうえ<em>予約結果をご返信します。</em></li>
+        <li>お申込み直後の自動返信メールや、予約結果連絡メールが「@sbchp.jp」から送信されますので受信設定をお願いします。</li>
+        <li>上記メールが届かない場合はSBCハウジングへお電話ください。TEL.026-238-6501（平日：10:00～18:00）</li>
+        <li>モデルハウスの定休日や臨時休業等により、予約結果連絡メールに数日がかかる場合があります。</li>
+        <li>ご予約いただいたメーカーより日時調整等のお電話がある場合がございます。</li>
+        <li>ご予約確定後に<em>キャンセルされる場合は各モデルハウスへ直接ご連絡をお願いします。</em></li>
       </ul>
     </div>
   </div>
