@@ -91,9 +91,9 @@ body:not(.calendar-child) {
   .header {
     -moz-column-gap: 20px;
     column-gap: 20px;
-    padding: 0 24px 0 20px;
+    padding: 0 24px;
     @include res_min(map-get($BP, XXL)) {
-      padding: 0 30px 0 34px;
+      padding: 0 30px;
     }
     height: #{$headerHighPC + px};
     .header__logo-wrap {
@@ -104,14 +104,17 @@ body:not(.calendar-child) {
         img {
           height: 26px;
           max-height: 26px;
+          @include res_min(map-get($BP, XXL)) {
+            height: min(1.73vw, 26px);
+          }
         }
       }
       .site-copy {
         display: block;
         margin-top: 12px;
         font-size: 1.2rem;
-        @include res_min(map-get($BP, XXXL)) {
-          font-size: 1.4rem;
+        @include res_min(map-get($BP, XXL)) {
+          font-size: min(0.93vw, 1.4rem);
         }
         font-weight: 500;
         line-height: 1;
@@ -145,22 +148,16 @@ body:not(.calendar-child) {
   top: #{$headerHighSP + px};
   pointer-events: none;
   z-index: 8;
-  @include res_min(map-get($BP, LG)) {
-    flex-direction: row;
-    justify-content: flex-end;
-  }
 
   .header-nav {
-    padding: 20px 25px 0;
+    padding: 20px 25px 80px;
     background-color: $sbcWhite;
-    border-radius: 10px 10px 0 0;
+    border-radius: 10px;
     .menu {
       .menu-item {
         border-bottom: 1px solid $sbcBeige2;
         letter-spacing: 0.02em;
-        @include res_min(map-get($BP, XXXL)) {
-          letter-spacing: 0.05em;
-        }
+        font-size: 1.8rem;
         a {
           display: block;
           padding: 11px 10px 11px 30px;
@@ -214,11 +211,13 @@ body:not(.calendar-child) {
   }
 
   .sns-links-wrap {
+    display: grid;
+    display: none;
+
     padding: 40px 0 180px;
     background-color: $sbcWhite;
     // border-radius: 0 0 10px 10px;
     overflow: hidden;
-    display: grid;
     @include res_min(map-get($BP, MD)) {
       padding-bottom: 80px;
       @include res_min(map-get($BP, LG)) {
@@ -238,10 +237,13 @@ body:not(.calendar-child) {
     }
   }
 }
+
 @include res_min(map-get($BP, LG)) {
   .global-menu {
+    flex-direction: row;
+    justify-content: flex-end;
     align-self: center;
-    @include res_min(map-get($BP, XXL)) {
+    @include res_min(map-get($BP, XXXL)) {
       align-self: stretch;
     }
     opacity: 1;
@@ -252,31 +254,38 @@ body:not(.calendar-child) {
     left: 0;
     top: 0;
     pointer-events: visible;
+
     .header-nav {
       padding: 0;
       background-color: transparent;
       border-radius: 0;
       .menu {
         @include flex(wrap, flex-end, stretch);
-        gap: 0 min(1.8vw, 29px);
-        @include res_min(map-get($BP, XXL)) {
-          @include flex(nowrap, flex-end, stretch);
-          gap: min(1.8vw, 29px);
+        gap: 0 min(1.33vw, 20px);
+        @include res_min(map-get($BP, XXXL)) {
+          flex-wrap: nowrap;
+          gap: 0 min(1.67vw, 25px);
         }
         .menu-item {
           border-bottom: none;
+          font-size: 1.5rem;
           white-space: nowrap;
           position: relative;
+          @include res_min(map-get($BP, XXL)) {
+            font-size: 1.7rem;
+            letter-spacing: 0.05em;
+          }
           a {
             @include flex(nowrap, flex-start, center);
             height: 36px;
-            @include res_min(map-get($BP, XXL)) {
-              height: #{$headerHighPC + px};
-            }
             padding: 0;
             font-size: 1.5rem;
-            @include res_min(map-get($BP, XXL)) {
-              font-size: 1.7rem;
+            @include res_min(map-get($BP, XXXL)) {
+              height: #{$headerHighPC + px};
+              // font-size: 1.7rem;
+              @include res_min(map-get($BP, XXXXL)) {
+                font-size: 1.7rem;
+              }
             }
             &::before {
               content: none;

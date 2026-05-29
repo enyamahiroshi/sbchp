@@ -104,8 +104,14 @@ $group_block = SCF::get('scf_group_modelhouse_block');
 		</div>
 
 		<?php //モデルハウス 各種問い合わせボタン ?>
+		<?php
+		$_reserve_park_id = 'park-' . $post_type_slug;
+		$_reserve_mh_slug = get_post_field('post_name');
+		$_reserve_mh_id   = get_the_ID();
+		$_reserve_mh_cb_id = 'mh-' . $_reserve_mh_slug . ( $post_type_slug === 'saku' ? '' : '_' ) . $_reserve_mh_id;
+		?>
 		<div class="button-wrap-modelhouse">
-			<a href="<?php echo esc_url( home_url() ); ?>/reserve" class="button button-reserve-l">見学予約</a>
+			<a href="<?php echo esc_url( home_url() ); ?>/reserve?park=<?php echo esc_attr( $_reserve_park_id ); ?>&mh=<?php echo esc_attr( $_reserve_mh_cb_id ); ?>" class="button button-reserve-l">見学予約</a>
 			<?php if($tel){ echo '<a href="tel:'.$tel.'" class="button button-tel">'.$tel.'</a>'; } ?>
 			<?php if($website){ echo '<a href="'.$website.'" target="_blank" rel="noopener noreferrer" class="button button-blank">メーカーサイト</a>'; } ?>
 		</div>

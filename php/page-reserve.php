@@ -753,6 +753,19 @@ add_action('wp_enqueue_scripts', function () {
 
         const objModelhouseList = document.querySelector('.js-modelhouseList');
 
+        // URLパラメータによる展示場・モデルハウス自動選択
+        const urlParams = new URLSearchParams(window.location.search);
+        const parkParam = urlParams.get('park');
+        const mhParam   = urlParams.get('mh');
+        if (parkParam) {
+          const parkRadio = document.getElementById(parkParam);
+          if (parkRadio) parkRadio.checked = true;
+        }
+        if (mhParam) {
+          const mhCheckbox = document.getElementById(mhParam);
+          if (mhCheckbox) mhCheckbox.checked = true;
+        }
+
         fromInit();
         handlerModelhouseMess();
 
@@ -908,6 +921,12 @@ add_action('wp_enqueue_scripts', function () {
 
             handlerModelhouseMess();
           });
+        }
+
+        // URLパラメータのモデルハウスをリストに追加（イベントリスナー登録後）
+        if (mhParam) {
+          const mhCheckboxAuto = document.getElementById(mhParam);
+          if (mhCheckboxAuto) mhCheckboxAuto.dispatchEvent(new Event('change'));
         }
       });
     </script>

@@ -50,14 +50,24 @@
         <a class="sns-links-wrap__item" href="https://www.instagram.com/sbc.hp/" target="_blank" rel="noopener noreferrer"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/common/ico-instagram.svg" alt="Instagram" width="40" height="40"></a>
       </aside>
     </section>
-    <a href="<?php echo esc_url(home_url()); ?>/reserve" class="button-reserve">
+    <?php
+    $_h_reserve_url = esc_url(home_url()) . '/reserve';
+    if ( is_singular( array('nag-c', 'ueda', 'saku') ) ) {
+      $_h_park_type  = get_post_type();
+      $_h_mh_slug    = get_post_field('post_name');
+      $_h_mh_id      = get_the_ID();
+      $_h_mh_cb_id   = 'mh-' . $_h_mh_slug . ( $_h_park_type === 'saku' ? '' : '_' ) . $_h_mh_id;
+      $_h_reserve_url .= '?park=' . rawurlencode( 'park-' . $_h_park_type ) . '&mh=' . rawurlencode( $_h_mh_cb_id );
+    }
+    ?>
+    <a href="<?php echo $_h_reserve_url; ?>" class="button-reserve">
       <em>見学予約</em>
     </a>
     <button class="menu-bar js-tgl-menu" type="button"><span class="menu-bar-line"></span></button>
   </header>
 
   <?php if (!is_page(array('reserve', 'confirm'))): ?>
-    <a href="<?php echo esc_url(home_url()); ?>/reserve" class="button-reserve button-reserve--fixed">
+    <a href="<?php echo $_h_reserve_url; ?>" class="button-reserve button-reserve--fixed">
       <span>今すぐ</span><em>見学予約</em><span>をする</span>
     </a>
   <?php endif; ?>

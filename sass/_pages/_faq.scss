@@ -1,0 +1,63 @@
+@use "../_core/valiables" as *;
+@use "../_core/mixins" as *;
+
+/* ----------------------------------------------------------------
+  FAQプラグイン：Arconix FAQ
+---------------------------------------------------------------- */
+
+//カテゴリーの見出し
+.arconix-faq-term-title {
+  padding-top: 1em;
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1.5;
+  @include res_min(map-get($BP, MD)) {
+    font-size: 2rem;
+  }
+}
+
+//各FAQ
+.arconix-faq-wrap {
+  margin: 0.85em 0 !important;
+  padding: 0.85em 1em !important;
+  background-color: $sbcBeige1 !important;
+  border-color: $sbcBeige1 !important;
+  @include res_min(map-get($BP, MD)) {
+    padding: 1em 1.5em !important;
+  }
+
+  &:has(.faq-open) {
+  }
+
+  //質問
+  .arconix-faq-title {
+    font-weight: 500;
+    @include res_min(map-get($BP, MD)) {
+      font-size: 1.8rem;
+    }
+    //閉じている時
+    &.faq-closed {
+      background-image: url(./assets/images/common/icon-closed.png) !important;
+      background-size: 16px;
+      &:hover {
+        font-weight: 700;
+      }
+    }
+    //開いている時
+    &.faq-open {
+      background-image: url(./assets/images/common/icon-opened.png) !important;
+      background-size: 16px;
+    }
+  }
+
+  //答え
+  .arconix-faq-content {
+    font-size: 1.6rem;
+    //閉じている時
+    &.faq-closed {
+    }
+    //開いている時
+    &.faq-open {
+    }
+  }
+}
