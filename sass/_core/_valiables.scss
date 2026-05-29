@@ -3,72 +3,73 @@
 // ---------------------------------------------------------------
 //ブレークポイント設定
 $BP: (
-  SM: 400,
-  MD: 768,
-  LG: 1024,
-  XL: 1260,
-  XXL: 1400,
-  XXXL: 1500
+	SM: 400,
+	MD: 768,
+	LG: 1024,
+	XL: 1260,
+	XXL: 1400,
+	XXXL: 1500,
+	XXXXL: 1600
 );
 
 //Maxサイズ設定
 $maxSize: (
-  xs: 500,
-   s: 800,
-base: 1000,
-   l: 1260,
-  xl: 1400
+	xs: 500,
+	s: 800,
+	base: 1000,
+	l: 1260,
+	xl: 1400
 );
 
-$ff-go: 'Zen Kaku Gothic New', sans-serif; // R:400, M:500, B:700
-$ff-go2: 'Noto Sans CJK JP', sans-serif; // R:400, M:500, B:700, BLK:900
+$ff-go: "Zen Kaku Gothic New", sans-serif; // R:400, M:500, B:700
+$ff-go2: "Noto Sans CJK JP", sans-serif; // R:400, M:500, B:700, BLK:900
 // $ff-go: Helvetica, "Helvetica Neue", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro W3", sans-serif;
 // $ff-go: "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", sans-serif;
 // $ff-min: '游明朝', '游明朝体', 'Yu Mincho', YuMincho, serif;
-$ff-en: 'Montserrat', sans-serif;
-$ff-num: 'Roboto', sans-serif;
+$ff-en: "Montserrat", sans-serif;
+$ff-num: "Roboto", sans-serif;
 // $ff-icon: 'ForkAwesome';
 
-$textBaseColor: #1A1A1A;
-$mainColor: #2C3692;
+$textBaseColor: #1a1a1a;
+$mainColor: #2c3692;
 $mainColorLight: #131741;
 $mainColorDark: #131741;
-$keyColor: #FFE033;
+$keyColor: #ffe033;
 $linkColor: $textBaseColor;
 $linkHoverColor: $textBaseColor;
 
-$sbcBlack: #1A1A1A;
-$sbcRed: #E62310;
+$sbcBlack: #1a1a1a;
+$sbcRed: #e62310;
 $sbcGreen: #009544;
-$sbcBlue: #006EBB;
+$sbcBlue: #006ebb;
 $sbcWhite: #ffffff;
-$sbcGray1: #F1F1F1;
-$sbcGray2: #EFEFEF;
-$sbcGray3: #D9D9D9;
-$sbcGray4: #AAAAAA;
-$sbcGray5: #4C4C4C;
-$sbcOrangeUsui: #F1EDE3;
-$sbcOrange: #F9CF3B;
-$sbcOrangeKoi1: #DDBE6D;
-$sbcSkyBlue: #2A9BDB;
-$sbcOrangeKoi2: #F2BD00;
-$sbcOrangeAzayaka: #F7C033;
-$sbcBeige1: #F5F4F3;
-$sbcBeige2: #E0DEDA;
-$sbcBeige3: #BFBDBA;
-$sbcRedAwai: #F78479;
-$sbcLinkColor: #F0595F;
+$sbcGray1: #f1f1f1;
+$sbcGray2: #efefef;
+$sbcGray3: #d9d9d9;
+$sbcGray4: #aaaaaa;
+$sbcGray5: #4c4c4c;
+$sbcOrangeUsui: #f1ede3;
+$sbcOrange: #f9cf3b;
+$sbcOrangeKoi1: #ddbe6d;
+$sbcSkyBlue: #2a9bdb;
+$sbcOrangeKoi2: #f2bd00;
+$sbcOrangeAzayaka: #f7c033;
+$sbcBeige1: #f5f4f3;
+$sbcBeige2: #e0deda;
+$sbcBeige3: #bfbdba;
+$sbcRedAwai: #f78479;
+$sbcLinkColor: #f0595f;
 $sbcLinkColorAwai: #f68c8f;
-$sbcNagano: #F89D95;
-$sbcUeda: #66CE95;
-$sbcSaku: #64BAF7;
-$sbcYumecolor: #F14702;
+$sbcNagano: #f89d95;
+$sbcUeda: #66ce95;
+$sbcSaku: #64baf7;
+$sbcYumecolor: #f14702;
 
-$gray: #DFDFDF;
-$brown: #40210F;
+$gray: #dfdfdf;
+$brown: #40210f;
 $red: #ff1212;
-$orange: #FF9C15;
-$green: #59D821;
+$orange: #ff9c15;
+$green: #59d821;
 
 // to figma
 /* 基本サイズ(PC) */
@@ -133,8 +134,8 @@ $green: #59D821;
 	line-height: 150%;
 }
 @mixin effectStyleDropShadow1() {
-	box-shadow: 0px 1px 15px rgba(0,45,74,0.100);
+	box-shadow: 0px 1px 15px rgba(0, 45, 74, 0.1);
 }
 @mixin effectStyleDropShadow2() {
-	box-shadow: 0px 1px 12px rgba(0,0,0,0.150);
+	box-shadow: 0px 1px 12px rgba(0, 0, 0, 0.15);
 }

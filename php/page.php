@@ -1,14 +1,13 @@
 <?php get_header(); ?>
-  <header class="page-header">
+<header class="page-header">
+  <div class="inner">
     <h1 class="page-header__title"><?php the_title(); ?></h1>
-  </header>
-  <?php //パンくずリスト(yoast seo)
-  if ( function_exists('yoast_breadcrumb') ) { yoast_breadcrumb( '<aside class="bread-navi">','</aside>' ); }
-  ?>
+  </div>
+</header>
 
-  <section class="sec">
-    <div class="inner">
-		<?php the_content(); ?>
-    </div>
-  </section>
+<section class="sec">
+  <div class="inner">
+    <?php the_content(); ?>
+  </div>
+</section>
 <?php get_footer(); ?>

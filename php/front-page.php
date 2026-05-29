@@ -104,11 +104,11 @@
 
           $args = array(
             'post_type' => $post_types,
-            'posts_per_page' => '3',
+            'posts_per_page' => '5',
             'orderby' => 'date', // 新着順にソート
             'order' => 'DESC', // 降順（新しい順）
           );
-          get_template_part('template/loop', 'modelhouse-topics-no-images', $args);
+          get_template_part('template/loop', 'modelhouse-topics', $args);
           ?>
           <div class="button-wrap --right">
             <a href="<?php echo esc_url(home_url()); ?>/model-house-topics/nag-c-hp-topics" class="button-arrow-right">一覧を見る</a>
@@ -160,11 +160,11 @@
 
           $args = array(
             'post_type' => $post_types,
-            'posts_per_page' => '3',
+            'posts_per_page' => '5',
             'orderby' => 'date', // 新着順にソート
             'order' => 'DESC', // 降順（新しい順）
           );
-          get_template_part('template/loop', 'modelhouse-topics-no-images', $args);
+          get_template_part('template/loop', 'modelhouse-topics', $args);
           ?>
           <div class="button-wrap --right">
             <a href="<?php echo esc_url(home_url()); ?>/model-house-topics/ueda-hp-topics" class="button-arrow-right">一覧を見る</a>
@@ -216,11 +216,11 @@
 
           $args = array(
             'post_type' => $post_types,
-            'posts_per_page' => '3',
+            'posts_per_page' => '5',
             'orderby' => 'date', // 新着順にソート
             'order' => 'DESC', // 降順（新しい順）
           );
-          get_template_part('template/loop', 'modelhouse-topics-no-images', $args);
+          get_template_part('template/loop', 'modelhouse-topics', $args);
           ?>
           <div class="button-wrap --right">
             <a href="<?php echo esc_url(home_url()); ?>/model-house-topics/saku-hp-topics" class="button-arrow-right">一覧を見る</a>

@@ -5,41 +5,41 @@ Author URI:
 */
 
 // @use '_fonts/notosans-cjk-jp';
-@use '_fonts/notosans-jp';
+@use "_fonts/notosans-jp";
 // @use '_fonts/notoserif-cjk-jp';
 // @use '_fonts/fork-awesome';
 
+@use "_core/_reset";
 
-@use '_core/_reset';
-
-@use '_partials/base';
-@use '_partials/common';
+@use "_partials/base";
+@use "_partials/common";
 // @use '_partials/breadcrumb'; //パンくずリスト（プラグインなし）functions.php で get_template_part( 'block/breadcrumb' ); 呼び出し
-@use '_partials/link';
-@use '_partials/list';
-@use '_partials/headline';
-@use '_partials/header';
-@use '_partials/footer';
+@use "_partials/link";
+@use "_partials/list";
+@use "_partials/headline";
+@use "_partials/header";
+@use "_partials/footer";
 // @use '_partials/pages';
-@use '_partials/editor';
-@use '_partials/post';
+@use "_partials/editor";
+@use "_partials/post";
 
-@use '_pages/home'; //各ハウジングパーク案内ページ
-@use '_pages/park'; //各ハウジングパーク案内ページ
-@use '_pages/design'; //デザインから選ぶページ
-@use '_pages/modelhouse'; //各モデルハウスページ
-@use '_pages/event-news'; //イベント＆NEWSページ
-@use '_pages/oyakudachi-column';
-@use '_pages/single';
-@use '_pages/reserve';
-@use '_pages/reserve-form-elements';
-@use '_pages/calendar';
-@use '_pages/other';
+@use "_pages/home"; //各ハウジングパーク案内ページ
+@use "_pages/park"; //各ハウジングパーク案内ページ
+@use "_pages/design"; //デザインから選ぶページ
+@use "_pages/modelhouse"; //各モデルハウスページ
+@use "_pages/event-news"; //イベント＆NEWSページ
+@use "_pages/oyakudachi-column";
+@use "_pages/single";
+@use "_pages/reserve";
+@use "_pages/reserve-form-elements";
+@use "_pages/calendar";
+@use "_pages/faq";
+@use "_pages/other";
 
-@use '_scripts/swiper';
-@use '_scripts/scroll-hint';
+@use "_scripts/swiper";
+@use "_scripts/scroll-hint";
 
-@use '_plugins/allinone-pankuzu'; //パンくずリスト
+@use "_plugins/allinone-pankuzu"; //パンくずリスト
 // @use '_plugins/add-to-any'; //シェアボタン（AddToAny）
 
 // @import は @use の後に書かないとエラーになる（読み込みは先頭）

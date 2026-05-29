@@ -5,32 +5,29 @@
       <div class="footer__menu">
         <div class="footer__menu__nav">
           <?php //カスタムメニューの呼び出し
-            $menu = array (
-              'menu'=>'footer_menu1',
-              'menu_class'=>'menu',
-              'container'=>'nav',
-              'container_class' =>'footer-nav',
-              'items_wrap'=>'<ul class="%2$s">%3$s</ul>',
-            );
-            wp_nav_menu( $menu );
+          $menu = array(
+            'menu' => 'footer_menu1',
+            'menu_class' => 'menu',
+            'container' => 'nav',
+            'container_class' => 'footer-nav',
+            'items_wrap' => '<ul class="%2$s">%3$s</ul>',
+          );
+          wp_nav_menu($menu);
           ?>
           <?php //カスタムメニューの呼び出し
-            $menu = array (
-              'menu'=>'footer_menu2',
-              'menu_class'=>'menu',
-              'container'=>'nav',
-              'container_class' =>'footer-nav',
-              'items_wrap'=>'<ul class="%2$s">%3$s</ul>',
-            );
-            wp_nav_menu( $menu );
+          $menu = array(
+            'menu' => 'footer_menu2',
+            'menu_class' => 'menu',
+            'container' => 'nav',
+            'container_class' => 'footer-nav',
+            'items_wrap' => '<ul class="%2$s">%3$s</ul>',
+          );
+          wp_nav_menu($menu);
           ?>
         </div>
-        <aside class="sns-links-wrap">
-          <ul class="sns-links">
-            <li class="sns-links__item sns-links__item--instagram">
-              <a href="https://www.instagram.com/sbc.hp/" target="_blank" rel="noopener noreferrer">SBCハウジング</a>
-            </li>
-          </ul>
+        <aside class="include-instagram">
+          <a class="link-instagram" href="https://www.instagram.com/sbc.hp/" target="_blank" rel="noopener noreferrer"><i><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/common/ico-instagram.svg" alt="Instagram Icon" width="20" height="20"></i>SBCHP公式インスタグラム</a>
+          <?php echo do_shortcode('[instagram-feed feed=1]'); ?>
         </aside>
       </div>
 
@@ -52,6 +49,7 @@
   <aside>
     <a href="#top" class="button-page-top"></a>
   </aside>
-<?php wp_footer(); ?>
-</body>
-</html>
+  <?php wp_footer(); ?>
+  </body>
+
+  </html>

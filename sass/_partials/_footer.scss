@@ -32,6 +32,25 @@
       margin: auto;
     }
   }
+
+  // インスタ埋め込み
+  .include-instagram {
+    margin-top: 40px;
+    margin-inline: auto;
+    max-width: 1000px;
+    .link-instagram {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      i {
+        line-height: 1;
+        img {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+  }
 }
 @include res_min(map-get($BP, LG)) {
   .footer__menu {
