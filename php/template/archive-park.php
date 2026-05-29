@@ -75,7 +75,7 @@ switch ($post_type_slug) {
     $park_tel = "0267-66-6650";
     $park_open = "3～9月 10:00～17:30 / 10月～2月 10:00～17:00";
     $park_logo_image = 'logo-saku-hp.svg';
-    $park_map_image = 'park/saku/img-facility-map-saku.png?20250731';
+    $park_map_image = 'park/saku/img-facility-map-saku.png?20260530-1';
     $cal_link = 'saku-calendar';
     //特定の投稿タイプのみを配列に代入
     foreach ($cp_types as $cp_type) {
