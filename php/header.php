@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="format-detection" content="telephone=no">
   <title><?php wp_title('|', true, 'left'); ?></title>
+  <meta name="google-site-verification" content="J4KohrA80eLRtSKHEqeUnjvrwbujUCf_wts2Nd7QvaY" />
   <?php wp_head(); ?>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,7 +27,7 @@
 
 <body id="top" <?php body_class(); ?>>
 
-  <?php //header 
+  <?php //header
   ?>
   <header class="header">
     <div class="header__logo-wrap">
@@ -52,12 +53,12 @@
     </section>
     <?php
     $_h_reserve_url = esc_url(home_url()) . '/reserve';
-    if ( is_singular( array('nag-c', 'ueda', 'saku') ) ) {
+    if (is_singular(array('nag-c', 'ueda', 'saku'))) {
       $_h_park_type  = get_post_type();
       $_h_mh_slug    = get_post_field('post_name');
       $_h_mh_id      = get_the_ID();
-      $_h_mh_cb_id   = 'mh-' . $_h_mh_slug . ( $_h_park_type === 'saku' ? '' : '_' ) . $_h_mh_id;
-      $_h_reserve_url .= '?park=' . rawurlencode( 'park-' . $_h_park_type ) . '&mh=' . rawurlencode( $_h_mh_cb_id );
+      $_h_mh_cb_id   = 'mh-' . $_h_mh_slug . ($_h_park_type === 'saku' ? '' : '_') . $_h_mh_id;
+      $_h_reserve_url .= '?park=' . rawurlencode('park-' . $_h_park_type) . '&mh=' . rawurlencode($_h_mh_cb_id);
     }
     ?>
     <a href="<?php echo $_h_reserve_url; ?>" class="button-reserve">
